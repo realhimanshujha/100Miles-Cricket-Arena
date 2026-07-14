@@ -1,0 +1,369 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<link rel="stylesheet" href="css/sidebar.css">
+<link rel="stylesheet" href="css/promocodes.css">
+
+<body>
+
+<div id="sidebar-container"></div>
+
+<main class="main-content">
+
+    <header class="topbar">
+
+        <div class="left">
+
+            <button id="menuToggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <h2>Promocodes</h2>
+
+        </div>
+
+    </header>
+
+    <div class="container">
+
+        <div class="page-header">
+
+            <div>
+
+                <h1>
+
+                    Promocode Management
+
+                </h1>
+
+                <p>
+
+                    Create and manage promotional discount codes.
+
+                </p>
+
+            </div>
+
+            <button id="createPromoBtn" class="create-btn">
+
+                <i class="fa-solid fa-plus"></i>
+
+                Create Promocode
+
+            </button>
+
+        </div>
+
+        <section class="stats-grid">
+
+            <div class="stat-card">
+
+                <h3 id="totalCodes">0</h3>
+
+                <p>Total Promocodes</p>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h3 id="activeCodes">0</h3>
+
+                <p>Active</p>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h3 id="expiredCodes">0</h3>
+
+                <p>Expired</p>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h3 id="usedCodes">0</h3>
+
+                <p>Redeemed</p>
+
+            </div>
+
+        </section>
+
+        <section class="search-card">
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="searchPromo"
+                    placeholder="Search Promocode">
+
+                <button id="searchPromoBtn">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    Search
+
+                </button>
+
+            </div>
+
+            <div class="filter-buttons">
+
+                <button id="filterAll" class="active">
+
+                    All
+
+                </button>
+
+                <button id="filterActive">
+
+                    Active
+
+                </button>
+
+                <button id="filterExpired">
+
+                    Expired
+
+                </button>
+
+                <button id="filterDisabled">
+
+                    Disabled
+
+                </button>
+
+            </div>
+
+        </section>
+
+        <section class="table-card">
+
+            <table id="promoTableContainer">
+
+                <thead>
+                    <tr>
+
+                        <th>Code</th>
+
+                        <th>Type</th>
+
+                        <th>Value</th>
+
+                        <th>Min Booking</th>
+
+                        <th>Max Discount</th>
+
+                        <th>Used</th>
+
+                        <th>Usage Limit</th>
+
+                        <th>Expiry</th>
+
+                        <th>Status</th>
+
+                        <th>Action</th>
+
+                    </tr>
+                </thead>
+
+                <tbody id="promocodeTableBody">
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </div>
+
+
+    <!-- ==========================
+     Create Promocode Modal
+========================== -->
+
+    <div id="promoModal" class="modal">
+
+        <div class="modal-content">
+
+            <input
+                type="hidden"
+                id="promoMode"
+                value="create">
+
+            <input
+                type="hidden"
+                id="promoRow">
+
+            <span
+                id="closePromoModal"
+                class="close">
+
+                &times;
+
+            </span>
+
+            <h2 id="promoModalTitle">
+
+                Create Promocode
+
+            </h2>
+
+            <div class="modal-grid">
+
+                <div class="input-group full">
+
+                    <label>Promocode</label>
+
+                    <input
+                        type="text"
+                        id="promoCodeInput"
+                        placeholder="WELCOME10">
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Discount Type</label>
+
+                    <select id="promoTypeInput">
+
+                        <option value="Percentage">Percentage</option>
+
+                        <option value="Fixed">Fixed Amount</option>
+
+                    </select>
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Discount Value</label>
+
+                    <input
+                        type="number"
+                        id="promoValueInput">
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Minimum Booking</label>
+
+                    <input
+                        type="number"
+                        id="promoMinBooking">
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Maximum Discount</label>
+
+                    <input
+                        type="number"
+                        id="promoMaxDiscount">
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Usage Limit</label>
+
+                    <input
+                        type="number"
+                        id="promoUsageLimit">
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Expiry Date</label>
+
+                    <input
+                        type="date"
+                        id="promoExpiryDate">
+
+                </div>
+
+                <div class="input-group full">
+
+                    <label>Status</label>
+
+                    <select id="promoStatusInput">
+
+                        <option value="Active">Active</option>
+
+                        <option value="Disabled">Disabled</option>
+
+                    </select>
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Payment Rule</label>
+
+                    <select id="promoPaymentRule">
+
+                        <option value="Any">Any Payment</option>
+
+                        <option value="Prepaid Only">Prepaid Only</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <button
+                id="savePromoBtn"
+                class="save-btn">
+
+                <i class="fa-solid fa-floppy-disk"></i>
+
+                Create Promocode
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+</main>
+
+<script>
+
+fetch("components/sidebar.html")
+.then(response => response.text())
+.then(html => {
+
+    document.getElementById("sidebar-container").innerHTML = html;
+
+    const script = document.createElement("script");
+
+    script.src = "js/sidebar.js";
+
+    document.body.appendChild(script);
+
+})
+.catch(error => {
+
+    console.error("Unable to load sidebar.", error);
+
+});
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="js/promocodes.js"></script>

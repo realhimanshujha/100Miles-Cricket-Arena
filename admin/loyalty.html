@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Loyalty Management</title>
+
+<link rel="stylesheet" href="css/sidebar.css">
+<link rel="stylesheet" href="css/loyalty.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div id="sidebar-container"></div>
+
+<main class="main-content">
+
+<header class="topbar">
+
+    <div class="left">
+
+        <button id="menuToggle">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <h2>Loyalty</h2>
+
+    </div>
+
+</header>
+
+<div class="container">
+
+<div class="page-header">
+
+<div>
+
+<div>
+
+<h1>
+
+Loyalty Management
+
+</h1>
+
+<p>
+
+    Manage loyalty cards, points and rewards.
+
+</p>
+
+</div>
+
+<button class="new-card-btn" onclick="openNewCard()">
+
+<i class="fa-solid fa-plus"></i>
+
+New Loyalty Card
+
+</button>
+
+</div>
+
+</div>
+<!-- Search -->
+
+<div class="search-card">
+
+<h2>
+
+Search Loyalty Card
+
+</h2>
+
+<div class="search-box">
+
+<input
+
+type="text"
+
+id="searchCard"
+
+placeholder="Card Number or Phone Number">
+
+<button onclick="searchCard()">
+
+Search
+
+</button>
+
+</div>
+
+</div>
+
+<!-- Customer Card -->
+
+<div class="customer-card">
+
+<div class="customer-header">
+
+<h2 id="name">
+
+-
+
+</h2>
+
+<span id="status" class="status">
+
+-
+
+</span>
+
+</div>
+
+<div class="customer-grid">
+
+<div>
+
+<label>Card Number</label>
+
+<p id="cardNo">-</p>
+
+</div>
+
+<div>
+
+<label>Phone Number</label>
+
+<p id="phone">-</p>
+
+</div>
+
+<div>
+
+<label>Current Points</label>
+
+<h3 id="points">
+
+0
+
+</h3>
+
+</div>
+
+<div>
+
+<label>Total Earned</label>
+
+<h3 id="totalPoints">
+
+0
+
+</h3>
+
+</div>
+
+<div>
+
+<label>Issued Date</label>
+
+<p id="issueDate">-</p>
+
+</div>
+
+<div>
+
+<label>Expiry Date</label>
+
+<p id="expiryDate">-</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Quick Points -->
+
+<div class="points-card">
+
+<h2>
+
+Quick Add Points
+
+</h2>
+
+<div class="quick-buttons">
+
+<button onclick="addPoints(1)">+1</button>
+
+<button onclick="addPoints(2)">+2</button>
+
+<button onclick="addPoints(4)">+4</button>
+
+<button onclick="addPoints(8)">+8</button>
+
+</div>
+
+<div class="custom-box">
+
+<input
+
+type="number"
+
+id="customPoints"
+
+placeholder="Custom Points">
+
+<button onclick="customPoint()">
+
+Add Points
+
+</button>
+
+</div>
+
+</div>
+
+<!-- Actions -->
+
+<div class="action-card">
+
+<h2>
+
+Card Actions
+
+</h2>
+
+<div class="action-buttons">
+
+<button onclick="openEditCard()">
+
+<i class="fa-solid fa-pen"></i>
+
+Edit Card
+
+</button>
+
+<button onclick="toggleCardStatus()">
+
+<i class="fa-solid fa-ban"></i>
+
+<span id="blockBtnText">
+
+Block Card
+
+</span>
+
+</button>
+
+<button onclick="deleteCard()">
+    <i class="fa-solid fa-trash"></i>
+    Delete Card
+</button>
+
+<button onclick="renewCard()">
+
+<i class="fa-solid fa-rotate-right"></i>
+
+Renew Card
+
+</button>
+
+<button onclick="viewCouponHistory()">
+    <i class="fa-solid fa-clock-rotate-left"></i>
+    Coupon History
+</button>
+
+</div>
+
+</div>
+
+<!-- Create Card Modal -->
+
+<div id="cardModal" class="modal">
+
+<div class="modal-content">
+
+<span class="close"
+
+onclick="closeNewCard()">
+
+&times;
+
+</span>
+
+<h2>
+
+Create Loyalty Card
+
+</h2>
+
+<div class="input-group">
+
+<label>
+
+Card Number
+
+</label>
+
+<input
+
+type="text"
+
+id="newCardNumber"
+
+placeholder="100M-0001">
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Customer Name
+
+</label>
+
+<input
+
+type="text"
+
+id="newCustomerName">
+
+</div>
+
+<div class="input-group">
+
+<label>
+
+Phone Number
+
+</label>
+
+<input
+
+type="text"
+
+id="newPhone">
+
+</div>
+
+<button onclick="createCard()">
+
+Create Card
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div id="editModal" class="modal">
+
+    <div class="modal-content">
+
+        <span class="close" onclick="closeEditCard()">&times;</span>
+
+        <h2>Edit Loyalty Card</h2>
+
+        <div class="input-group">
+
+            <label>Card Number</label>
+
+            <input id="editCardNo" readonly>
+
+        </div>
+
+        <div class="input-group">
+
+            <label>Name</label>
+
+            <input id="editName">
+
+        </div>
+
+        <div class="input-group">
+
+            <label>Phone</label>
+
+            <input id="editPhone">
+
+        </div>
+
+        <div class="input-group">
+
+            <label>Status</label>
+
+            <select id="editStatus">
+
+                <option>Active</option>
+
+                <option>Blocked</option>
+
+            </select>
+
+        </div>
+
+        <button onclick="saveCard()">
+
+            Save Changes
+
+        </button>
+
+    </div>
+
+</div>
+
+<div id="couponModal" class="modal">
+
+    <div class="modal-content" style="max-width:900px;">
+
+        <span class="close" onclick="closeCouponHistory()">&times;</span>
+
+        <h2>Coupon History</h2>
+
+        <table class="table">
+
+            <thead>
+
+                <tr>
+
+                    <th>Coupon</th>
+
+                    <th>Reward</th>
+
+                    <th>Status</th>
+
+                    <th>Created</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="couponTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+</main>
+
+<script>
+fetch("components/sidebar.html")
+.then(response => response.text())
+.then(html => {
+
+    document.getElementById("sidebar-container").innerHTML = html;
+
+    const script = document.createElement("script");
+    script.src = "js/sidebar.js";
+    document.body.appendChild(script);
+
+})
+.catch(error => {
+
+    console.error("Unable to load sidebar.", error);
+
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/admin/js/loyalty.js"></script>
+
+
+</body>
+
+</html>

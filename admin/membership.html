@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Membership Management</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/membership.css">
+</head>
+
+<body>
+    <div id="sidebar-container"></div>
+    <main class="main-content">
+        <header class="topbar">
+
+            <div class="left">
+
+                <button id="menuToggle">
+
+                    <i class="fa-solid fa-bars"></i>
+
+                </button>
+
+                <div class="topbar-title">
+
+                    <h2>Membership</h2>
+
+                </div>
+
+            </div>
+
+            <div class="profile">
+
+                <div class="avatar">
+
+                    <i class="fa-solid fa-user"></i>
+
+                </div>
+
+                <div>
+
+                    <h4 id="adminName">
+
+                        Admin
+
+                    </h4>
+
+                    <span>
+
+                        Administrator
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </header>
+        <div class="container">
+            <div class="page-header">
+                <div>
+                    <h1>Membership Management</h1>
+                    <p>Create, manage and renew memberships.</p>
+                </div><button id="createMemberBtn" class="create-btn"><i class="fa-solid fa-plus"></i>Create
+                    Membership</button>
+            </div>
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <h3 id="totalMembers">0</h3>
+                    <p>Total Members</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="activeMembers">0</h3>
+                    <p>Active Members</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="expiredMembers">0</h3>
+                    <p>Expired Members</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="membershipRevenue">₹0</h3>
+                    <p>Membership Revenue</p>
+                </div>
+            </section>
+            <section class="search-card">
+                <div class="search-box"><input id="searchMember" type="text"
+                        placeholder="Search by Name, Phone or Member ID"><button id="searchMemberBtn"><i
+                            class="fa-solid fa-magnifying-glass"></i> Search</button></div>
+                <div class="filter-group">
+
+                    <h4>Status</h4>
+
+                    <div class="filter-buttons">
+
+                        <button
+                            id="statusAll"
+                            class="status-filter active">
+
+                            All
+
+                        </button>
+
+                        <button
+                            id="statusActive"
+                            class="status-filter">
+
+                            Active
+
+                        </button>
+
+                        <button
+                            id="statusExpired"
+                            class="status-filter">
+
+                            Expired
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="filter-group">
+
+                    <h4>Membership</h4>
+
+                    <div class="filter-buttons">
+
+                        <button
+                            id="planAll"
+                            class="plan-filter active">
+
+                            All
+
+                        </button>
+
+                        <button
+                            id="planBeginner"
+                            class="plan-filter">
+
+                            Beginner
+
+                        </button>
+
+                        <button
+                            id="planAdvanced"
+                            class="plan-filter">
+
+                            Advanced
+
+                        </button>
+
+                        <button
+                            id="planProfessional"
+                            class="plan-filter">
+
+                            Professional
+
+                        </button>
+
+                    </div>
+
+                </div>
+            </section>
+            <section class="table-card">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Member ID</th>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Plan</th>
+                            <th>Join Date</th>
+                            <th>Expiry</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="membershipTableBody"></tbody>
+                </table>
+            </section>
+        </div>
+        <div id="memberModal" class="modal">
+            <div class="modal-content"><input type="hidden" id="memberMode" value="create"><input type="hidden"
+                    id="memberRow"><span class="close" id="closeMemberModal">&times;</span>
+                <h2 id="memberModalTitle">Create Membership</h2>
+                <div class="modal-grid">
+                    <div class="input-group full"><label>Member Name</label><input id="memberName" type="text"></div>
+                    <div class="input-group"><label>Phone Number</label><input id="memberPhone" type="text"></div>
+                    <div class="input-group"><label>Plan</label><select id="memberPlan">
+                                <option value="">Select Plan</option>
+
+                                <option value="Beginner">Beginner</option>
+
+                                <option value="Advanced">Advanced</option>
+
+                                <option value="Professional">Professional</option>
+                                
+                        </select></div>
+                    <div class="input-group"><label>Join Date</label><input id="memberJoinDate" type="date"></div>
+                    <div class="input-group">
+
+                        <label>Expiry Date</label>
+
+                        <input
+                            id="memberExpiryDate"
+                            type="date"
+                            readonly>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>Amount</label>
+
+                        <input
+                            id="memberAmount"
+                            type="number"
+                            readonly>
+
+                    </div>
+
+                    <div class="input-group">
+
+                    <label>Overs Per Day</label>
+
+                    <input
+                        id="memberOversPerDay"
+                        type="number"
+                        readonly>
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Total Overs</label>
+
+                    <input
+                        id="memberTotalOvers"
+                        type="number"
+                        readonly>
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Used Overs</label>
+
+                    <input
+                        id="renewUsedOvers"
+                        readonly>
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Remaining Overs</label>
+
+                    <input
+                        id="renewRemainingOvers"
+                        readonly>
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Status</label>
+
+                    <input
+                        id="renewStatus"
+                        readonly>
+
+                </div>
+                    <div class="input-group full">
+                        <label>Status</label>
+                        
+                        <select id="memberStatus">
+                            <option>Active</option>
+                            <option>Expired</option>
+                        </select>
+                    </div>
+
+
+                </div><button id="saveMemberBtn" class="save-btn"><i class="fa-solid fa-floppy-disk"></i>Create
+                    Membership</button>
+            </div>
+        </div>
+
+        <div id="manageModal" class="modal">
+
+            <div class="modal-content">
+
+                <span class="close" id="closeRenewModal">&times;</span>
+
+                <h2>Manage Membership</h2>
+
+                <input type="hidden" id="renewRow">
+
+                <div class="modal-grid">
+
+                    <div class="input-group">
+                        <label>Member ID</label>
+                        <input id="renewMemberID" readonly>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Member Name</label>
+                        <input id="renewMemberName" readonly>
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>Current Plan</label>
+
+                        <input
+                            id="currentPlan"
+                            readonly>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>New Plan</label>
+
+                        <select id="newPlan">
+
+                            <option value="Beginner">Beginner</option>
+
+                            <option value="Advanced">Advanced</option>
+
+                            <option value="Professional">Professional</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="input-group">
+                        <label>Current Expiry</label>
+                        <input id="renewCurrentExpiry" readonly>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Renewal Amount</label>
+                        <input id="renewAmount" readonly>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Overs Per Day</label>
+                        <input id="renewOversPerDay" readonly>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Total Overs</label>
+                        <input id="renewTotalOvers" readonly>
+                    </div>
+
+                    <div class="input-group">
+                        <label>New Expiry</label>
+                        <input id="renewExpiry" readonly>
+                    </div>
+
+                </div>
+
+                <button
+                    id="updateMembershipBtn"
+                    class="save-btn">
+
+                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    Save Changes
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+    </main>
+    <script>fetch("components/sidebar.html").then(r => r.text()).then(h => { document.getElementById("sidebar-container").innerHTML = h; const s = document.createElement("script"); s.src = "js/sidebar.js"; document.body.appendChild(s); });</script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/membership.js"></script>
+</body>
+
+</html>

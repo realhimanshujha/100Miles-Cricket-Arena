@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | 100 Miles Arena</title>
+
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+<div id="sidebar-container"></div>
+    
+
+    <!-- Main Content -->
+
+    <main class="main-content">
+
+        <!-- Top Bar -->
+
+        <header class="topbar">
+
+            <div class="left">
+
+                <button id="menuToggle">
+
+                    <i class="fa-solid fa-bars"></i>
+
+                </button>
+
+                <h2>Dashboard</h2>
+
+            </div>
+
+            <div class="right">
+
+                <div class="notification-wrapper">
+
+                    <button id="notificationBtn" class="notification-btn">
+
+                        <i class="fa-solid fa-bell"></i>
+
+                        <span id="notificationCount" class="notification-count">0</span>
+
+                    </button>
+
+                    <div id="notificationDropdown" class="notification-dropdown">
+
+                        <div class="notification-header">
+
+                            <h3>Notifications</h3>
+
+                            <button id="markReadBtn">
+
+                                <i class="fa-solid fa-check-double"></i>
+
+                                Mark all read
+
+                            </button>
+
+                        </div>
+
+                        <div id="notificationList">
+
+                            Loading...
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="profile">
+
+                    <div class="avatar">
+
+                        <i class="fa-solid fa-user"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h4 id="adminName">
+
+                            Admin
+
+                        </h4>
+
+                        <span>
+
+                            Administrator
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- Welcome -->
+
+        <section class="welcome">
+
+            <h1>
+
+                Welcome Back 👋
+
+            </h1>
+
+            <p>
+
+                Manage your cricket arena bookings, loyalty program, memberships and promocodes from one place.
+
+            </p>
+
+        </section>
+
+        <!-- Statistics -->
+
+        <section class="stats">
+
+            <div class="card">
+
+                <i class="fa-solid fa-calendar-check"></i>
+
+                <h2 id="todayBookings">0</h2>
+
+                <p>Today's Bookings</p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-indian-rupee-sign"></i>
+
+                <h2 id="todayRevenue">₹0</h2>
+
+                <p>Today's Revenue</p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-star"></i>
+
+                <h2 id="loyaltyCards">0</h2>
+
+                <p>Loyalty Cards</p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-crown"></i>
+
+                <h2 id="memberships">0</h2>
+
+                <p>Memberships</p>
+
+            </div>
+
+        </section>
+
+        <section class="chart-section">
+
+            <div class="chart-card">
+
+                <div class="chart-header">
+
+                    <h2>Revenue (Last 7 Days)</h2>
+
+                </div>
+
+                <canvas id="revenueChart"></canvas>
+
+            </div>
+
+        </section>
+
+        <!-- Quick Actions -->
+
+        <section class="quick-actions">
+
+            <h2>Quick Actions</h2>
+
+            <div class="action-grid">
+
+                <button id="newBookingBtn">
+                    <i class="fa-solid fa-calendar-plus"></i>
+                    New Booking
+                </button>
+
+                <button id="newLoyaltyBtn">
+                    <i class="fa-solid fa-id-card"></i>
+                    New Loyalty Card
+                </button>
+
+                <button id="promoBtn">
+                    <i class="fa-solid fa-ticket"></i>
+                    Create Promocode
+                </button>
+
+                <button id="membershipBtn">
+                    <i class="fa-solid fa-crown"></i>
+                    New Membership
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- Recent Activity -->
+
+        <section class="recent">
+
+            <h2>Recent Activity</h2>
+
+            <div id="recentActivity">
+
+                <div class="loading">
+
+                    Loading...
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/admin/js/dashboard.js"></script>
+
+</body>
+
+</html>

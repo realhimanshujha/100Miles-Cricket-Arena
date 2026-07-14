@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bookings | 100 Miles Arena</title>
+
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/bookings.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div id="sidebar-container"></div>
+
+<main class="main-content">
+
+<header class="topbar">
+
+<div class="left">
+
+<button id="menuToggle">
+
+<i class="fa-solid fa-bars"></i>
+
+</button>
+
+<div class="page-header">
+
+    <h1>Bookings</h1>
+
+    <button
+    id="openActivityModal"
+    class="activity-btn">
+
+        <i class="fa-solid fa-clock-rotate-left"></i>
+
+        Recent Activity
+
+    </button>
+
+</div>
+
+</div>
+
+<div class="profile">
+
+<div class="avatar">
+
+<i class="fa-solid fa-user"></i>
+
+</div>
+
+<div>
+
+<h4 id="adminName">
+
+Admin
+
+</h4>
+
+<span>
+
+Administrator
+
+</span>
+
+</div>
+
+</div>
+
+</header>
+
+<section class="stats">
+
+    <div class="stat-card">
+
+        <i class="fa-solid fa-calendar-check"></i>
+
+        <h3 id="todayBookings">0</h3>
+
+        <p>Today's Bookings</p>
+
+    </div>
+
+    <div class="stat-card">
+
+        <i class="fa-solid fa-indian-rupee-sign"></i>
+
+        <h3 id="todayRevenue">₹0</h3>
+
+        <p>Today's Revenue</p>
+
+    </div>
+
+    <div class="stat-card">
+
+        <i class="fa-solid fa-clock"></i>
+
+        <h3 id="pendingBookings">0</h3>
+
+        <p>Pending</p>
+
+    </div>
+
+    <div class="stat-card">
+        
+        <i class="fa-solid fa-circle-check"></i>
+        
+        <h3 id="completedBookings">0</h3>
+        
+        <p>Completed</p>
+        
+    </div>
+    
+</div>
+
+</section>
+
+<section class="booking-card">
+
+<div class="section-title">
+
+<h2>
+
+New Booking
+
+</h2>
+
+</div>
+
+<form id="bookingForm">
+
+<div class="grid">
+
+<div>
+
+<div>
+
+<label>Booking ID</label>
+
+<input
+type="text"
+id="bookingId"
+readonly>
+
+</div>
+
+<div>
+
+    <label>Booking Type</label>
+
+    <select id="bookingType">
+
+        <option value="Regular">Regular Booking</option>
+
+        <option value="Membership">Membership Booking</option>
+
+    </select>
+
+</div>
+
+<div id="membershipSection" style="display:none;">
+
+    <label>Member ID / Phone</label>
+
+    <input
+        id="memberSearch"
+        type="text"
+        placeholder="Enter Member ID or Phone">
+
+    <button id="searchMemberBtn" class="search-member-btn">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        Search Member
+    </button>
+
+</div>
+
+<div
+    id="memberCard"
+    class="member-card"
+    style="display:none;">
+
+    <div class="member-card-header">
+
+        <div class="member-avatar">
+
+            <i class="fa-solid fa-id-card"></i>
+
+        </div>
+
+        <div>
+
+            <h3 id="mName"></h3>
+
+            <p id="mPlan"></p>
+
+        </div>
+
+    </div>
+
+    <div class="member-grid">
+
+        <div class="member-item">
+
+            <span>Expiry</span>
+
+            <strong id="mExpiry"></strong>
+
+        </div>
+
+        <div class="member-item">
+
+            <span>Remaining Overs</span>
+
+            <strong id="mRemaining"></strong>
+
+        </div>
+
+        <div class="member-item">
+
+            <span>Today's Used</span>
+
+            <strong id="mTodayUsed"></strong>
+
+        </div>
+
+        <div class="member-item">
+
+            <span>Daily Limit</span>
+
+            <strong id="mDailyLimit"></strong>
+
+        </div>
+
+    </div>
+
+</div>
+
+<label>Customer Name</label>
+
+<input
+type="text"
+id="customerName"
+required>
+
+</div>
+
+<div>
+
+<label>Phone Number</label>
+
+<input
+type="text"
+id="phone"
+required>
+
+</div>
+
+<div>
+
+<label>Date</label>
+
+<input
+type="date"
+id="bookingDate"
+required>
+
+</div>
+
+<div class="full-width">
+
+<label>Select Time Slot</label>
+
+<div class="slot-grid" id="slotGrid">
+
+<button type="button" class="slot available" data-slot="06:00">06:00</button>
+<button type="button" class="slot available" data-slot="06:30">06:30</button>
+
+<button type="button" class="slot available" data-slot="07:00">07:00</button>
+<button type="button" class="slot available" data-slot="07:30">07:30</button>
+
+<button type="button" class="slot available" data-slot="08:00">08:00</button>
+<button type="button" class="slot available" data-slot="08:30">08:30</button>
+
+<button type="button" class="slot available" data-slot="09:00">09:00</button>
+<button type="button" class="slot available" data-slot="09:30">09:30</button>
+
+<button type="button" class="slot available" data-slot="10:00">10:00</button>
+<button type="button" class="slot available" data-slot="10:30">10:30</button>
+
+<button type="button" class="slot available" data-slot="11:00">11:00</button>
+<button type="button" class="slot available" data-slot="11:30">11:30</button>
+
+<button type="button" class="slot available" data-slot="12:00">12:00</button>
+<button type="button" class="slot available" data-slot="12:30">12:30</button>
+
+<button type="button" class="slot available" data-slot="13:00">13:00</button>
+<button type="button" class="slot available" data-slot="13:30">13:30</button>
+
+<button type="button" class="slot available" data-slot="14:00">14:00</button>
+<button type="button" class="slot available" data-slot="14:30">14:30</button>
+
+<button type="button" class="slot available" data-slot="15:00">15:00</button>
+<button type="button" class="slot available" data-slot="15:30">15:30</button>
+
+<button type="button" class="slot available" data-slot="16:00">16:00</button>
+<button type="button" class="slot available" data-slot="16:30">16:30</button>
+
+<button type="button" class="slot available" data-slot="17:00">17:00</button>
+<button type="button" class="slot available" data-slot="17:30">17:30</button>
+
+<button type="button" class="slot available" data-slot="18:00">18:00</button>
+<button type="button" class="slot available" data-slot="18:30">18:30</button>
+
+<button type="button" class="slot available" data-slot="19:00">19:00</button>
+<button type="button" class="slot available" data-slot="19:30">19:30</button>
+
+<button type="button" class="slot available" data-slot="20:00">20:00</button>
+<button type="button" class="slot available" data-slot="20:30">20:30</button>
+
+<button type="button" class="slot available" data-slot="21:00">21:00</button>
+<button type="button" class="slot available" data-slot="21:30">21:30</button>
+
+<button type="button" class="slot available" data-slot="22:00">22:00</button>
+
+</div>
+
+<input type="hidden" id="slot">
+
+</div>
+
+<div>
+
+<label>Overs</label>
+
+<select id="overs">
+
+<option>3 Overs</option>
+
+<option>5 Overs</option>
+
+<option>10 Overs</option>
+
+<option>20 Overs</option>
+
+</select>
+
+</div>
+
+<div>
+
+<label>Players</label>
+
+<input
+type="number"
+id="players"
+min="1"
+max="3"
+value="1">
+
+</div>
+
+<div>
+
+<label>Amount</label>
+
+<input type="text" id="amount">
+
+<small
+    id="membershipAmountNote"
+    style="display:none;color:#FFC107;">
+
+    Included in Membership - No payment required.
+
+</small>
+
+</div>
+
+<div>
+
+    <label>Promo Code</label>
+
+    <div class="promo-box">
+
+        <input
+            type="text"
+            id="promoCode"
+            placeholder="Enter Promo Code">
+
+        <button
+            type="button"
+            id="applyPromoBtn"
+            class="apply-promo-btn">
+
+            <i class="fa-solid fa-ticket"></i>
+            Apply
+
+        </button>
+
+    </div>
+
+    <small id="promoMessage"></small>
+
+</div>
+
+<div>
+
+    <label>Discount</label>
+
+    <input
+        type="text"
+        id="discount"
+        value="0"
+        readonly>
+
+</div>
+
+<div>
+
+    <label>Final Amount</label>
+
+    <input
+        type="text"
+        id="finalAmount"
+        readonly>
+
+</div>
+
+<div>
+
+    <label>Payment</label>
+
+    <select id="payment">
+        <option>Cash</option>
+        <option>UPI</option>
+        <option>Card</option>
+        <option>Membership</option>
+    </select>
+
+</div>
+
+<div>
+
+    <label>Payment Status</label>
+
+    <select id="paymentStatus">
+        <option>Pending</option>
+        <option>Paid</option>
+        <option>Refunded</option>
+        <option>Void</option>
+    </select>
+
+</div>
+
+</div>
+
+<div class="form-buttons">
+
+    <button
+        type="submit"
+        class="save-btn">
+
+        <i class="fa-solid fa-floppy-disk"></i>
+        Save Booking
+
+    </button>
+
+    <button
+        type="button"
+        id="cancelEditBtn"
+        class="cancel-edit-btn"
+        style="display:none;">
+
+        <i class="fa-solid fa-xmark"></i>
+        Cancel Edit
+
+    </button>
+
+</div>
+
+</form>
+
+</section>
+
+<section class="table-card">
+
+<div class="section-title">
+
+    <h2>Today's Bookings</h2>
+
+    <div class="table-tools">
+
+        <div class="status-filters">
+
+            <button class="filter-btn active" data-status="All">
+                All
+            </button>
+
+            <button class="filter-btn" data-status="Pending">
+                Pending
+            </button>
+
+            <button class="filter-btn" data-status="Completed">
+                Completed
+            </button>
+
+            <button class="filter-btn" data-status="Cancelled">
+                Cancelled
+            </button>
+
+        </div>
+
+        <input
+        id="searchBooking"
+        placeholder="Search Booking">
+
+    </div>
+
+</div>
+
+<table>
+
+<thead>
+<tr>
+
+<th>ID</th>
+<th>Name</th>
+<th>Phone</th>
+<th>Date</th>
+<th>Slot</th>
+<th>Overs</th>
+<th>Amount</th>
+
+<th>Payment</th>
+
+<th>Status</th>
+<th>Action</th>
+
+</tr>
+</thead>
+
+<tbody id="bookingTable">
+
+<tr>
+
+<td colspan="9">
+
+No Bookings Found
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</section>
+
+</main>
+
+<div class="booking-modal" id="bookingModal">
+
+    <div class="booking-modal-content">
+
+        <div class="booking-modal-header">
+
+            <h2>Booking Details</h2>
+
+            <button id="closeModal">&times;</button>
+            
+        </div>
+
+        <div class="booking-details">
+
+            <div><strong>Booking ID</strong><span id="mBookingID"></span></div>
+            <div><strong>Name</strong><span id="mName"></span></div>
+            <div><strong>Phone</strong><span id="mPhone"></span></div>
+            <div><strong>Date</strong><span id="mDate"></span></div>
+            <div><strong>Time</strong><span id="mTime"></span></div>
+            <div><strong>Plan</strong><span id="mPlan"></span></div>
+            <div><strong>Players</strong><span id="mPlayers"></span></div>
+            <div><strong>Amount</strong><span id="mAmount"></span></div>
+            <div>
+
+                <label>Payment Method</label>                                               
+
+                <p id="viewPaymentMethod"></p>
+
+            </div>
+
+            <div>
+
+                <label>Payment Status</label>       
+
+                <p id="viewPaymentStatus"></p>
+
+            </div>
+            <div>
+
+                <strong>Status</strong>
+
+                <span id="mStatus" class="status-badge"></span>
+
+            </div>
+
+        </div>
+
+        <div class="booking-actions">
+
+            <button id="editBookingBtn" class="edit-btn">
+                Edit Booking
+            </button>
+
+            <button id="completeBookingBtn" class="complete-btn">
+                Complete Booking
+            </button>
+
+            <button id="cancelBookingBtn" class="cancel-btn">
+                Cancel Booking
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- 
+<div class="confirm-modal" id="confirmModal">
+
+    <div class="confirm-box">
+
+        <h2 id="confirmTitle"></h2>
+
+        <p id="confirmMessage"></p>
+
+        <p id="paymentOptions" style="display:none; margin:20px 0;">
+
+            <label>
+            <input type="radio" name="paymentMethod" value="Cash" checked>
+            Cash
+            </label>
+
+            <br><br>
+
+            <label>
+            <input type="radio" name="paymentMethod" value="UPI">
+            UPI
+            </label>
+
+            <br><br>
+
+            <label>
+            <input type="radio" name="paymentMethod" value="Card">
+            Card
+            </label>
+
+            <br><br>
+
+            <label>
+            <input type="radio" name="paymentMethod" value="Online">
+            Online
+            </label>
+
+            </p>
+
+            <div class="confirm-buttons">
+
+            <button id="confirmNo">
+            Cancel
+            </button>
+
+            <button id="confirmYes">
+            Complete Booking
+            </button>
+
+            </div>
+
+    </div>
+
+</div> -->
+
+<!-- ======================================
+     Recent Activity Modal
+====================================== -->
+
+<div class="modal-overlay" id="activityModal">
+
+    <div class="activity-modal">
+
+        <div class="activity-header">
+
+            <h2>
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                Recent Activity
+            </h2>
+
+            <button id="closeActivityModal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+        <div id="recentBookings" class="activity-list">
+
+            Loading...
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="modal-overlay" id="cancelModal">
+
+    <div class="modal payment-modal">
+
+        <span class="close-modal" id="closeCancelModal">
+            &times;
+        </span>
+
+        <h2>Cancel Booking</h2>
+
+        <p style="margin:15px 0 25px;">
+            Are you sure you want to cancel this booking?
+            <br><br>
+            This slot will become available again.
+        </p>
+
+        <button class="cancel-btn" id="confirmCancelBtn">
+
+            <i class="fa-solid fa-ban"></i>
+
+            Cancel Booking
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<div class="modal-overlay" id="paymentModal">
+
+    <div class="modal payment-modal">
+
+        <span class="close-modal" id="closePaymentModal">
+            &times;
+        </span>
+
+        <h2>Collect Payment</h2>
+
+        <div class="payment-info">
+
+            <p><strong>Booking ID:</strong> <span id="payBookingID"></span></p>
+
+            <p><strong>Customer:</strong> <span id="payCustomer"></span></p>
+
+            <p><strong>Amount:</strong> ₹<span id="payAmount"></span></p>
+
+        </div>
+
+        <label>Payment Method</label>
+
+        <select id="completePaymentMethod">
+
+            <option value="Cash">Cash</option>
+
+            <option value="UPI">UPI</option>
+
+            <!-- <option value="Card">Card</option> -->
+
+            <!-- <option value="Online">Online</option> -->
+
+        </select>
+
+        <button class="save-btn" id="receivePaymentBtn">
+
+            <i class="fa-solid fa-check"></i>
+
+            Receive Payment & Complete
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<div id="toast"></div>
+
+<script src="js/bookings.js"></script>
+
+</body>
+
+</html>

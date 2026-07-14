@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Business Report</title>
+
+    <link rel="stylesheet" href="css/print-report.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<div class="report">
+
+    <header class="report-header">
+
+        <img
+            src="/assets/images/logo.jpeg"
+            class="report-logo">
+
+        <h1>100 Miles Cricket Arena</h1>
+
+        <p class="subtitle">
+            Business Performance Report
+        </p>
+
+    </header>
+
+    <div class="report-meta">
+
+        <div class="meta-card">
+
+            <div class="meta-icon">📅</div>
+
+            <div>
+
+                <span class="meta-title">
+
+                    Report Period
+
+                </span>
+
+                <h3 id="reportPeriod"></h3>
+
+            </div>
+
+        </div>
+
+        <div class="meta-card">
+
+            <div class="meta-icon">🕒</div>
+
+            <div>
+
+                <span class="meta-title">
+
+                    Generated On
+
+                </span>
+
+                <h3 id="generatedDate"></h3>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <section class="summary">
+
+        <div class="card">
+
+            <span>Revenue</span>
+
+            <h2 id="pdfRevenue">₹0</h2>
+
+        </div>
+
+        <div class="card">
+
+            <span>Bookings</span>
+
+            <h2 id="pdfBookings">0</h2>
+
+        </div>
+
+        <div class="card">
+
+            <span>Completed</span>
+
+            <h2 id="pdfCompleted">0</h2>
+
+        </div>
+
+        <div class="card">
+
+            <span>Cancelled</span>
+
+            <h2 id="pdfCancelled">0</h2>
+
+        </div>
+
+        <div class="card">
+
+            <span>Regular</span>
+
+            <h2 id="pdfRegular">0</h2>
+
+        </div>
+
+        <div class="card">
+
+            <span>Membership</span>
+
+            <h2 id="pdfMembership">0</h2>
+
+        </div>
+
+        <div class="card">
+
+            <span>Refunds</span>
+
+            <h2 id="pdfRefunds">₹0</h2>
+
+        </div>
+
+    </section>
+
+    <section class="chart-section">
+
+        <h3>Revenue Trend</h3>
+
+        <canvas id="pdfChart"></canvas>
+
+    </section>
+
+    <section>
+
+        <h3>Booking Details</h3>
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Customer</th>
+
+                        <th>Phone</th>
+
+                        <th>Date</th>
+
+                        <th>Time</th>
+
+                        <th>Plan</th>
+
+                        <th>Amount</th>
+
+                        <th>Status</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="bookingTable">
+
+                </tbody>
+
+            </table>
+
+            <div class="pagination">
+
+                <button id="prevPage">← Previous</button>
+
+                <span id="pageInfo"></span>
+
+                <button id="nextPage">Next →</button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <div class="print-toolbar">
+
+        <button id="printBtn">
+
+            <i class="fa-solid fa-print"></i>
+
+            Print / Save PDF
+
+        </button>
+
+    </div>
+
+    <footer>
+
+        <p>
+
+            100 Miles Cricket Arena
+
+        </p>
+
+        <p>
+
+            Generated from Admin Dashboard
+
+        </p>
+
+        <p>
+
+            Powered by Global Edge Solutions
+
+        </p>
+
+    </footer>
+
+</div>
+
+<script src="js/print-report.js"></script>
+
+</body>
+
+</html>

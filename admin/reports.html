@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Reports | 100 Miles Cricket Arena</title>
+
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/reports.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<div id="sidebar-container"></div>
+
+<main class="main-content">
+
+    <!-- Header -->
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>
+                <i class="fa-solid fa-chart-line"></i>
+                Reports
+            </h1>
+
+            <p>
+                Track revenue, bookings and business performance.
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Filter -->
+
+    <div class="report-filter">
+
+        <select id="reportFilter">
+
+            <option value="today">Today</option>
+
+            <option value="yesterday">Yesterday</option>
+
+            <option value="week">This Week</option>
+
+            <option value="month">This Month</option>
+
+            <option value="custom">Custom Date Range</option>
+
+        </select>
+
+        <div id="customDateRange" class="custom-date-range">
+
+            <input
+                type="date"
+                id="fromDate">
+
+            <input
+                type="date"
+                id="toDate">
+
+        </div>
+
+        <button id="generateReportBtn">
+
+            <i class="fa-solid fa-chart-column"></i>
+
+            Generate Report
+
+        </button>
+
+    </div>
+
+    <div id="printHeader" class="print-header">
+
+        <h1>100 Miles Cricket Arena</h1>
+
+        <h3>Business Report</h3>
+
+        <p id="reportDate"></p>
+
+    </div>
+
+    <!-- Cards -->
+
+    <div class="report-cards">
+
+        <div class="report-card">
+
+            <i class="fa-solid fa-indian-rupee-sign"></i>
+
+            <h2 id="reportRevenue">₹0</h2>
+
+            <span>Revenue</span>
+
+        </div>
+
+        <div class="report-card">
+
+            <i class="fa-solid fa-calendar-check"></i>
+
+            <h2 id="reportBookings">0</h2>
+
+            <span>Total Bookings</span>
+
+        </div>
+
+        <div class="report-card">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+            <h2 id="reportCompleted">0</h2>
+
+            <span>Completed</span>
+
+        </div>
+
+        <div class="report-card">
+
+            <i class="fa-solid fa-ban"></i>
+
+            <h2 id="reportCancelled">0</h2>
+
+            <span>Cancelled</span>
+
+        </div>
+
+        <div class="report-card">
+
+            <i class="fa-solid fa-user"></i>
+
+            <h2 id="reportRegular">0</h2>
+
+            <span>Regular</span>
+
+        </div>
+
+        <div class="report-card">
+
+            <i class="fa-solid fa-id-card"></i>
+
+            <h2 id="reportMembership">0</h2>
+
+            <span>Membership</span>
+
+        </div>
+
+        <div class="report-card">
+
+            <i class="fa-indian-rupee-sign"></i>
+        
+            <h2 id="reportRefunds">₹0.00</h2>
+
+            <span>Refunds</span>
+
+        </div>
+
+    </div>
+
+    <!-- Revenue Chart -->
+
+    <div class="chart-card">
+
+        <div class="chart-header">
+
+            <h2>
+
+                Revenue Overview
+
+            </h2>
+
+        </div>
+
+        <div class="chart-container">
+
+            <canvas id="revenueChart"></canvas>
+
+        </div>
+
+    </div>
+
+    <div class="report-actions">
+
+        <button id="exportExcelBtn">
+            <i class="fa-solid fa-file-excel"></i>
+            Export Excel
+        </button>
+
+        <button id="printPdfBtn">
+            <i class="fa-solid fa-file-pdf"></i>
+            Print / Save PDF
+        </button>
+
+    </div>
+
+</main>
+
+<script src="js/reports.js"></script>
+
+</body>
+
+</html>
