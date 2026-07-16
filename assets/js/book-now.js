@@ -649,7 +649,9 @@ function openRazorpay(order){
 
                 response.razorpay_payment_id,
 
-                response.razorpay_order_id
+                response.razorpay_order_id,
+
+                response.razorpay_signature
 
             );
 
@@ -683,7 +685,9 @@ async function submitBooking(
 
     paymentId,
 
-    orderId
+    orderId,
+
+    signature
 
 ){
 
@@ -693,33 +697,43 @@ async function submitBooking(
 
     const data = {
 
-        bookingType:"Regular",
+        bookingType: "Regular",
 
-        name:customerName.value.trim(),
+        name: customerName.value.trim(),
 
-        phone:customerPhone.value.trim(),
+        phone: customerPhone.value.trim(),
 
-        date:bookingDate.value,
+        date: bookingDate.value,
 
-        time:summarySlot.textContent,
+        time: summarySlot.textContent,
 
-        plan:summaryPlan.textContent,
+        plan: summaryPlan.textContent,
 
-        players:1,
+        players: 1,
 
-        amount:basePrice + equipmentPrice - discount,
+        amount: basePrice + equipmentPrice - discount,
 
-        promoCode:promoInput.value.trim(),
+        promoCode: promoInput.value.trim(),
 
-        loyaltyPoints:0,
+        loyaltyPoints: 0,
 
-        paymentMethod:"Razorpay",
+        paymentMethod: "Razorpay",
 
-        paymentStatus:"Paid",
+        paymentStatus: "Paid",
 
-        paymentId:paymentId,
+        discount: discount,
 
-        orderId:orderId,
+        equipment: equipmentCheckbox.checked,
+
+        notes: customerNotes.value.trim(),
+
+        razorpayOrderId: orderId,
+
+        razorpayPaymentId: paymentId,
+
+        razorpaySignature: signature,
+
+        paymentVerified: "Yes"
 
     };
 
