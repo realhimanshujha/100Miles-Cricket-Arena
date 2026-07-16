@@ -466,7 +466,7 @@ async function loadBookedSlots(date){
 
 
 const PAYMENT_API =
-"http://localhost:3000/api/payment";
+"https://one00miles-payment-server.onrender.com/api/payment";
 
 function validateBooking(){
 
