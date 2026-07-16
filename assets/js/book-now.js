@@ -36,6 +36,8 @@ const summaryPrice = document.getElementById("summaryPrice");
 const summaryEquipment = document.getElementById("summaryEquipment");
 const summaryDiscount = document.getElementById("summaryDiscount");
 const summaryTotal = document.getElementById("summaryTotal");
+const gatewayFee = document.getElementById("gatewayFee");
+const buttonAmount = document.getElementById("buttonAmount");
 
 const promoInput = document.getElementById("promoCode");
 const applyPromo = document.getElementById("applyPromo");
@@ -47,9 +49,36 @@ let equipmentPrice = 0;
 let discount = 0;
 let appliedPromo = null;
 
+function getConvenienceFee(){
+
+    switch(basePrice){
+
+        case 75:
+            return 3;
+
+        case 129:
+            return 4;
+
+        case 199:
+            return 5;
+
+        case 349:
+            return 6;
+
+        default:
+            return 0;
+
+    }
+
+}
+
 function updateSummary(){
 
-    const total = basePrice + equipmentPrice - discount;
+    const subtotal = basePrice + equipmentPrice - discount;
+
+    const convenienceFee = getConvenienceFee(subtotal);
+
+    const total = subtotal + convenienceFee;
 
     if(summaryPlan){
 
@@ -81,9 +110,21 @@ function updateSummary(){
 
     }
 
+    if(gatewayFee){
+
+        gatewayFee.textContent = `₹${convenienceFee}`;
+
+    }
+
     if(summaryTotal){
 
         summaryTotal.textContent = `₹${total}`;
+
+    }
+
+    if(buttonAmount){
+
+        buttonAmount.textContent = `₹${total}`;
 
     }
 
@@ -535,7 +576,11 @@ async function startPayment(){
 
         showPaymentLoader();
 
-        const amount = basePrice + equipmentPrice - discount;
+        const subtotal = basePrice + equipmentPrice - discount;
+
+        const convenienceFee = getConvenienceFee(subtotal);
+
+        const amount = subtotal + convenienceFee;
 
         const response = await fetch(
 
@@ -693,7 +738,9 @@ async function submitBooking(
     // PREPAID ONLY PROMO VALIDATION
     // =====================================
 
-    alert(equipmentCheckbox.checked);
+    const subtotal = basePrice + equipmentPrice - discount;
+
+    const convenienceFee = getConvenienceFee(subtotal);
 
     const data = {
 
@@ -711,7 +758,7 @@ async function submitBooking(
 
         players: 1,
 
-        amount: basePrice + equipmentPrice - discount,
+        amount: subtotal + convenienceFee,
 
         promoCode: promoInput.value.trim(),
 

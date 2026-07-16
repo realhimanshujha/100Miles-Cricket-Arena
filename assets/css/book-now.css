@@ -2330,3 +2330,227 @@ PAYMENT SUCCESS
     cursor:pointer;
 
 }
+
+.payment-summary-card{
+
+    margin-top:20px;
+    padding:22px;
+    border-radius:18px;
+    background:linear-gradient(180deg,#141414,#101010);
+    border:1px solid rgba(255,255,255,.08);
+
+}
+
+.payment-title{
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    margin-bottom:18px;
+
+    color:#00E676;
+
+    font-size:18px;
+
+    font-weight:700;
+
+}
+
+.payment-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:10px 0;
+
+    color:#b8b8b8;
+
+}
+
+.payment-row strong{
+
+    color:#fff;
+
+    font-size:17px;
+
+}
+
+.discount-row strong{
+
+    color:#00E676;
+
+}
+
+.gateway-row strong{
+
+    color:#ffb74d;
+
+}
+
+.payment-divider{
+
+    height:1px;
+
+    margin:18px 0;
+
+    background:rgba(255,255,255,.08);
+
+}
+
+.payment-total{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.payment-total span{
+
+    color:#fff;
+
+    font-size:18px;
+
+    font-weight:600;
+
+}
+
+.payment-total strong{
+
+    color:#00E676;
+
+    font-size:34px;
+
+    font-weight:800;
+
+}
+
+.booking-btn{
+
+    width:100%;
+
+    margin-top:22px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:18px 22px;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:linear-gradient(135deg,#00E676,#00C853);
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.booking-btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 15px 35px rgba(0,230,118,.30);
+
+}
+
+.pay-left{
+
+    display:flex;
+
+    flex-direction:column;
+
+    text-align:left;
+
+}
+
+.pay-price{
+
+    font-size:24px;
+
+    font-weight:800;
+
+    color:#000;
+
+}
+
+.pay-left small{
+
+    color:#0a2b12;
+
+    font-weight:600;
+
+}
+
+.pay-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    color:#000;
+
+}
+
+.checkout-security{
+
+    margin:20px 0;
+
+    padding:16px;
+
+    border-radius:16px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+}
+
+.secure-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin:10px 0;
+
+    color:#ffffff;
+
+    font-size:15px;
+
+    font-weight:500;
+
+}
+
+.secure-item i{
+
+    color:#00E676;
+
+    font-size:18px;
+
+}
+
+.secure-item span{
+
+    color:#ffffff;
+
+}

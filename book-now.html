@@ -403,78 +403,63 @@
 
                 </div>
 
-                <div class="summary-row">
+                <div class="payment-summary-card">
 
-                    <span>
+                    <div class="payment-title">
 
-                        Discount
+                        <i class="fa-solid fa-wallet"></i>
 
-                    </span>
+                        <span>Payment Summary</span>
 
-                    <strong id="summaryDiscount">
+                    </div>
 
-                        ₹0
+                    <div class="payment-row">
+                        <span>Package</span>
+                        <strong id="summaryPrice">₹199</strong>
+                    </div>
 
-                    </strong>
+                    <div class="payment-row">
+                        <span>Equipment</span>
+                        <strong id="summaryEquipment">₹0</strong>
+                    </div>
 
-                </div>
+                    <div class="payment-row discount-row">
+                        <span>Promo Discount</span>
+                        <strong id="summaryDiscount">-₹0</strong>
+                    </div>
 
+                    <div class="payment-row">
+                        <span>Date</span>
+                        <strong id="summaryDate">--</strong>
+                    </div>
 
-                <div class="summary-row">
+                    <div class="payment-row">
+                        <span>Time</span>
+                        <strong id="summarySlot">--</strong>
+                    </div>
 
-                    <span>Equipment</span>
+                    <div id="summarySaving" class="summary-saving">
+                        🎉 You Saved ₹0
+                    </div>
 
-                    <strong id="summaryEquipment">
+                    <div class="payment-divider"></div>
 
-                        ₹0
+                    <!-- Optional -->
+                    <div class="payment-row gateway-row">
+                        <span>
+                            Convenience Fee
+                            <i class="fa-solid fa-circle-info"></i>
+                        </span>
+                        <strong id="gatewayFee">₹0</strong>
+                    </div>
 
-                    </strong>
+                    <div class="payment-total">
 
-                </div>
+                        <span>Total Payable</span>
 
-                <div class="summary-row">
+                        <strong id="summaryTotal">₹199</strong>
 
-                    <span>Date</span>
-
-                    <strong id="summaryDate">
-
-                        --
-
-                    </strong>
-
-                </div>
-
-                <div class="summary-row">
-
-                    <span>Time</span>
-
-                    <strong id="summarySlot">
-
-                        --
-
-                    </strong>
-
-                </div>
-
-                <div class="summary-saving" id="summarySaving">
-
-                    🎉 You Saved <strong>₹0</strong>
-
-                </div>
-
-                <div class="summary-total">
-
-                    <span>
-
-                        Total Amount
-
-                    </span>
-
-                    <strong id="summaryTotal">
-
-                        ₹199
-
-                    </strong>
+                    </div>
 
                 </div>
 
@@ -484,9 +469,51 @@
 
                 </p>
 
-                <button class="btn-primary booking-btn">
+                <div class="checkout-security">
 
-                    Proceed to Payment
+                    <div class="secure-item">
+
+                        <i class="fa-solid fa-shield-halved"></i>
+
+                        <span>100% Secure Payment</span>
+
+                    </div>
+
+                    <div class="secure-item">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                        <span>Instant Confirmation</span>
+
+                    </div>
+
+                </div>
+
+                <button class="booking-btn">
+
+                    <div class="pay-left">
+
+                        <span class="pay-price" id="buttonAmount">
+
+                            ₹199
+
+                        </span>
+
+                        <small>
+
+                            Secure Checkout
+
+                        </small>
+
+                    </div>
+
+                    <div class="pay-right">
+
+                        Pay Now
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </div>
 
                 </button>
 
