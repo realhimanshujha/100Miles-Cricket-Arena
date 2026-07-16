@@ -693,6 +693,8 @@ async function submitBooking(
     // PREPAID ONLY PROMO VALIDATION
     // =====================================
 
+    alert(equipmentCheckbox.checked);
+
     const data = {
 
         bookingType: "Regular",

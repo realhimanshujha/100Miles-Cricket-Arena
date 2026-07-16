@@ -101,38 +101,6 @@
 
       }
 
-      if(data.promoCode){
-
-          const promo = applyPromocode(
-              data.promoCode,
-              Number(data.amount)
-          );
-
-          // Invalid promo
-          if(!promo.success){
-
-              return promo;
-
-          }
-
-          // Prepaid only validation
-          if(
-              promo.paymentRule === "Prepaid Only" &&
-              data.paymentStatus !== "Paid"
-          ){
-
-              return{
-
-                  success:false,
-
-                  message:"This promo code is only valid for prepaid bookings."
-
-              };
-
-          }
-
-      }
-
 
       // ============================
       // Save Booking
@@ -162,7 +130,9 @@
 
           data.loyaltyPoints,        // K
 
-          "Pending",                 // L Booking Status
+          data.paymentStatus === "Paid"
+          ? "Confirmed"
+          : "Pending",                 // L Booking Status
 
           data.paymentMethod,        // M
 
@@ -176,7 +146,15 @@
 
           data.utr || "",            // R
 
-          data.notes || ""           // S
+          data.notes || "",           // S
+
+          data.razorpayOrderId || "",                  // T
+
+          data.razorpayPaymentId || "",                // U
+          
+          data.razorpaySignature || "",                // V
+
+          data.paymentVerified || "No"                 // W
 
       ]);
 
@@ -217,10 +195,16 @@
 
       return {
 
-        success: true,
-        bookingID: bookingID,
-        points: loyaltyPoints,
-        status: "Pending",
+        success:true,
+
+        bookingID:bookingID,
+
+        amount:data.amount,
+
+        points:loyaltyPoints,
+
+        status:"Paid",
+        
         message: "Booking created successfully."
 
       };
