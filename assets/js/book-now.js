@@ -365,14 +365,12 @@ function renderSlots(bookedSlots = []){
             btn.onclick = function(){
 
                 document
-                .querySelectorAll(".slot-btn")
-                .forEach(b=>b.classList.remove("selected"));
+                    .querySelectorAll(".slot-btn")
+                    .forEach(b => b.classList.remove("selected"));
 
                 btn.classList.add("selected");
 
                 summarySlot.textContent = time;
-
-                validateBooking();
 
             };
 
@@ -426,8 +424,6 @@ bookingDate.addEventListener("change", function(){
     document
         .querySelectorAll(".slot-btn")
         .forEach(btn => btn.classList.remove("selected"));
-
-    validateBooking();
 
     loadBookedSlots(this.value);
 
