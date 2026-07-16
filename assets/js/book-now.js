@@ -466,6 +466,8 @@ const PAYMENT_API =
 
 function validateBooking(){
 
+    console.trace("validateBooking");
+
     if(customerName.value.trim().length < 3){
 
         showError(
