@@ -8,18 +8,25 @@ let revenueChart = null;
 // Load Sidebar Component
 // ================================
 
-fetch("../components/sidebar.html")
-.then(response => response.text())
+fetch("./components/sidebar.html")
+.then(response => {
+    console.log("Status:", response.status);
+    console.log("URL:", response.url);
+    return response.text();
+})
 .then(html => {
+    console.log("HTML:", html);
 
     document.getElementById("sidebar-container").innerHTML = html;
 
-    // Load sidebar functionality AFTER sidebar exists
+    console.log("Sidebar:", document.getElementById("sidebar"));
+
     const script = document.createElement("script");
     script.src = "js/sidebar.js";
     document.body.appendChild(script);
-
 })
+.catch(err => console.error(err))
+
 .catch(error => {
 
     console.error("Unable to load sidebar.", error);
