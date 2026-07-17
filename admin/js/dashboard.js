@@ -8,7 +8,7 @@ let revenueChart = null;
 // Load Sidebar Component
 // ================================
 
-fetch("components/sidebar.html")
+fetch("../components/sidebar.html")
 .then(response => response.text())
 .then(html => {
 

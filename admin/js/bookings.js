@@ -22,7 +22,7 @@ if (sessionStorage.getItem("adminLoggedIn") !== "true") {
 // Load Sidebar
 // =======================================
 
-fetch("components/sidebar.html")
+fetch("../components/sidebar.html")
 .then(response => response.text())
 .then(html => {
 
