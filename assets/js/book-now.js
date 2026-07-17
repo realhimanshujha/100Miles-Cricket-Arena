@@ -352,6 +352,15 @@ function updateSlotTiming(){
 
 }
 
+function timeToMinutes(time){
+
+    const [h,m] = time.split(":").map(Number);
+
+    return h * 60 + m;
+
+}
+
+
 function renderSlots(bookedSlots = []){
 
     slotContainer.innerHTML = "";
@@ -372,12 +381,28 @@ function renderSlots(bookedSlots = []){
 
         btn.className = "slot-btn";
 
-        // Convert "16:30" → Date object
         const [hour, minute] = time.split(":").map(Number);
 
         const slotTime = new Date();
 
         slotTime.setHours(hour, minute, 0, 0);
+
+        const booked = bookedSlots.some(booking=>{
+
+            const slotStart = timeToMinutes(time);
+
+            const slotEnd =
+                slotStart +
+                Number(document.querySelector('input[name="plan"]:checked').dataset.duration);
+
+            const bookingStart = timeToMinutes(booking.time);
+
+            const bookingEnd = bookingStart + booking.duration;
+
+            return slotStart < bookingEnd &&
+                slotEnd > bookingStart;
+
+        });
 
         // =====================================
         // GREY → Time Passed
@@ -395,7 +420,7 @@ function renderSlots(bookedSlots = []){
         // RED → Booked
         // =====================================
 
-        else if(bookedSlots.includes(time)){
+        else if(booked){
 
             btn.classList.add("booked");
 
