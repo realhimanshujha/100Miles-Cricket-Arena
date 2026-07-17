@@ -512,6 +512,8 @@ function loadBookings(){
     .then(res=>res.json())
     .then(data=>{
 
+        console.table(data.bookings);
+
         const tbody = document.getElementById("bookingTable");
 
         tbody.innerHTML = "";
