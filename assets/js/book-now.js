@@ -143,6 +143,8 @@ planInputs.forEach(input=>{
 
         resetPromo();
 
+        updateSlotTiming();
+
     });
 
 });
@@ -302,45 +304,53 @@ const slotContainer = document.getElementById("slotContainer");
 const bookingDate = document.getElementById("bookingDate");
 const summarySlot = document.getElementById("summarySlot");
 
-const slotTimings = [
+let slotTimings = [];
 
-    "06:00","06:30",
+function generateSlots(interval){
 
-    "07:00","07:30",
+    const slots = [];
 
-    "08:00","08:30",
+    let hour = 6;
+    let minute = 0;
 
-    "09:00","09:30",
+    while(hour < 22){
 
-    "10:00","10:30",
+        slots.push(
+            `${String(hour).padStart(2,"0")}:${String(minute).padStart(2,"0")}`
+        );
 
-    "11:00","11:30",
+        minute += interval;
 
-    "12:00","12:30",
+        if(minute >= 60){
 
-    "13:00","13:30",
+            minute = 0;
+            hour++;
 
-    "14:00","14:30",
+        }
 
-    "15:00","15:30",
+    }
 
-    "16:00","16:30",
+    return slots;
 
-    "17:00","17:30",
+}
 
-    "18:00","18:30",
+function updateSlotTiming(){
 
-    "19:00","19:30",
+    const selectedPlan =
+        document.querySelector('input[name="plan"]:checked');
 
-    "20:00","20:30",
+    if(!selectedPlan) return;
 
-    "21:00","21:30",
+    const duration =
+        Number(selectedPlan.dataset.duration);
 
-    "22:00"
+    slotTimings = generateSlots(duration);
 
-];
+    summarySlot.textContent = "--";
 
-renderSlots();
+    loadBookedSlots(bookingDate.value);
+
+}
 
 function renderSlots(bookedSlots = []){
 
@@ -448,7 +458,7 @@ bookingDate.value = today;
 summaryDate.textContent = today;
 
 // Load today's booked slots automatically
-loadBookedSlots(today);
+updateSlotTiming();
 
 /*==========================================
 DATE CHANGE
@@ -755,6 +765,10 @@ async function submitBooking(
         time: summarySlot.textContent,
 
         plan: summaryPlan.textContent,
+
+        duration: Number(
+            document.querySelector('input[name="plan"]:checked').dataset.duration
+        ),
 
         players: 1,
 
