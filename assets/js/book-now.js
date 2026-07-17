@@ -76,7 +76,7 @@ function updateSummary(){
 
     const subtotal = basePrice + equipmentPrice - discount;
 
-    const convenienceFee = getConvenienceFee(subtotal);
+    const convenienceFee = getConvenienceFee();
 
     const total = subtotal + convenienceFee;
 
@@ -578,7 +578,7 @@ async function startPayment(){
 
         const subtotal = basePrice + equipmentPrice - discount;
 
-        const convenienceFee = getConvenienceFee(subtotal);
+        const convenienceFee = getConvenienceFee();
 
         const amount = subtotal + convenienceFee;
 
@@ -740,7 +740,7 @@ async function submitBooking(
 
     const subtotal = basePrice + equipmentPrice - discount;
 
-    const convenienceFee = getConvenienceFee(subtotal);
+    const convenienceFee = getConvenienceFee();
 
     const data = {
 
