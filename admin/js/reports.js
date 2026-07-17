@@ -5,7 +5,7 @@ const API =
 let revenueChart;
 
 // Load Sidebar
-fetch("../components/sidebar.html")
+fetch("components/sidebar.html")
 .then(r => r.text())
 .then(html => {
 
