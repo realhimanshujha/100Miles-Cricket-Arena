@@ -1,5 +1,5 @@
 const API =
-"https://script.google.com/macros/s/AKfycbzKYU5RY-sg7KZoF8PAmM04-OzHrY_BOVzxWkFrUcFUk-mOQxBhkCtvvp9Dw9HsVYne/exec";
+"https://script.google.com/macros/s/AKfycbztFMvnMxcazCy79YYYwz3lIig-6Pq4d9X0Oi5AxVg--P4cXtNLqC9e8gYRIXedxYVW/exec";
 
 let allBookings = [];
 let currentFilter = "All";
@@ -116,6 +116,29 @@ function updatePrice(){
             players.value = 1;
     }
 
+    const duration = document.getElementById("slotDuration");
+
+    switch (overs.value) {
+        case "3 Overs":
+            duration.textContent = "3 Overs = 10 Minutes";
+            break;
+
+        case "5 Overs":
+            duration.textContent = "5 Overs = 10 Minutes";
+            break;
+
+        case "10 Overs":
+            duration.textContent = "10 Overs = 20 Minutes";
+            break;
+
+        case "20 Overs":
+            duration.textContent = "20 Overs = 30 Minutes";
+            break;
+
+        default:
+            duration.textContent = "";
+    }
+
     document.getElementById("discount").value = 0;
 
     document.getElementById("finalAmount").value =
@@ -143,9 +166,16 @@ players.addEventListener("input", () => {
 
 });
 
-overs.addEventListener("change", updatePrice);
+overs.addEventListener("change", () => {
+
+    updatePrice();
+    generateSlots();
+
+});
 
 updatePrice();
+generateBookingID();
+generateSlots();
 
 // =======================================
 // Slot Selection
@@ -278,6 +308,8 @@ document.getElementById("bookingForm").addEventListener("submit", function(e){
                 }, 500);
 
                 document.getElementById("bookingForm").reset();
+
+                generateSlots();
 
                 document.getElementById("slot").value = "";
 
@@ -449,6 +481,71 @@ loadBookedSlots();
 loadBookings();
 
 loadBookingStats();
+
+
+function generateSlots() {
+
+    const grid = document.getElementById("slotGrid");
+    grid.innerHTML = "";
+
+    const plan = document.getElementById("overs").value;
+
+    let interval = 10;
+
+    if (plan === "10 Overs") interval = 20;
+    if (plan === "20 Overs") interval = 30;
+
+    let hour = 6;
+    let minute = 0;
+
+    while (hour < 22 || (hour === 21 && minute === 30)) {
+
+        const time =
+            String(hour).padStart(2, "0") +
+            ":" +
+            String(minute).padStart(2, "0");
+
+        const btn = document.createElement("button");
+
+        btn.type = "button";
+        btn.className = "slot available";
+        btn.dataset.slot = time;
+        btn.textContent = time;
+
+        btn.onclick = () => {
+
+            if (
+                btn.classList.contains("booked") ||
+                btn.classList.contains("expired")
+            ) return;
+
+            document.querySelectorAll(".slot").forEach(s =>
+                s.classList.remove("selected")
+            );
+
+            btn.classList.add("selected");
+
+            selectedSlot = time;
+            document.getElementById("slot").value = time;
+
+        };
+
+        grid.appendChild(btn);
+
+        minute += interval;
+
+        while (minute >= 60) {
+            minute -= 60;
+            hour++;
+        }
+
+    }
+
+    // Update slot states
+    updateExpiredSlots();
+    loadBookedSlots();
+
+}
 
 // =======================================
 // Load Booked Slots
@@ -678,6 +775,41 @@ document.querySelector(".complete-btn").onclick = function(){
 
     if(!booking) return;
 
+    // Already paid → Complete directly
+    if(booking.paymentStatus === "Paid"){
+
+        fetch(
+            `${API}?action=updateBookingStatus`
+            + `&bookingID=${currentBookingID}`
+            + `&status=Completed`
+        )
+        .then(r => r.json())
+        .then(data => {
+
+            if(data.success){
+
+                showToast("Booking Completed");
+
+                document
+                    .getElementById("bookingModal")
+                    .classList.remove("active");
+
+                loadBookings();
+                loadBookedSlots();
+                loadBookingStats();
+
+            }else{
+
+                showToast(data.message,"error");
+
+            }
+
+        });
+
+        return;
+    }
+
+    // Payment Pending → Show payment popup
     document.getElementById("payBookingID").textContent =
         booking.bookingID;
 
@@ -688,8 +820,8 @@ document.querySelector(".complete-btn").onclick = function(){
         booking.amount;
 
     document
-    .getElementById("paymentModal")
-    .classList.add("active");
+        .getElementById("paymentModal")
+        .classList.add("active");
 
 };
 
@@ -718,7 +850,7 @@ document
 
         + `&bookingID=${currentBookingID}`
 
-        + `&status=Completed`
+        + `&status=Confirmed`
 
         + `&paymentMethod=${encodeURIComponent(paymentMethod)}`
 
@@ -930,7 +1062,7 @@ function renderBookings(bookings){
                     class="action-btn complete"
                     title="Complete Booking"
                     onclick='quickComplete("${b.bookingID}")'
-                    ${b.status !== "Pending" ? "disabled" : ""}>
+                    ${(b.status === "Pending" || b.status === "Confirmed") ? "" : "disabled"}>
 
                         <i class="fa-solid fa-check"></i>
 
@@ -1542,3 +1674,15 @@ function applyPromo(){
     });
 
 }
+
+// =======================================
+// Auto Refresh Every Minute
+// =======================================
+
+setInterval(() => {
+
+    loadBookings();
+    loadBookingStats();
+    loadBookedSlots();
+
+}, 60000);

@@ -44,9 +44,9 @@
 
       for (let i = 1; i < rows.length; i++) {
 
-          const bookingDate = String(rows[i][3]).trim();
-          const bookingTime = String(rows[i][4]).trim();
-          const status = String(rows[i][10]).trim();
+          const bookingDate = String(rows[i][4]).trim();
+          const bookingTime = String(rows[i][5]).trim();
+          const status = String(rows[i][12]).trim();
 
           if (
               bookingDate === formattedDate &&
@@ -122,39 +122,41 @@
 
           data.plan,                 // G
 
-          data.players,              // H
+          data.duration,             // H
 
-          data.amount,               // I
+          data.players,              // I
 
-          data.promoCode,            // J
+          data.amount,               // J
 
-          data.loyaltyPoints,        // K
+          data.promoCode,            // K
+
+          data.loyaltyPoints,        // L
 
           data.paymentStatus === "Paid"
           ? "Confirmed"
-          : "Pending",                 // L Booking Status
+          : "Pending",                 // M Booking Status
 
-          data.paymentMethod,        // M
+          data.paymentMethod,        // N
 
-          data.paymentStatus,        // N
+          data.paymentStatus,        // O
 
-          new Date(),                // O
+          new Date(),                // P
 
-          data.discount || 0,        // P
+          data.discount || 0,        // Q
 
-          data.equipment ? "Yes" : "No", // Q
+          String(data.equipment) === "true" ? "Yes" : "No", // R
 
-          data.utr || "",            // R
+          data.utr || "",            // S
 
-          data.notes || "",           // S
+          data.notes || "",           // T
 
-          data.razorpayOrderId || "",                  // T
+          data.razorpayOrderId || "",                  // U
 
-          data.razorpayPaymentId || "",                // U
+          data.razorpayPaymentId || "",                // V
           
-          data.razorpaySignature || "",                // V
+          data.razorpaySignature || "",                // W
 
-          data.paymentVerified || "No"                 // W
+          data.paymentVerified || "No"                 // X
 
       ]);
 
@@ -237,37 +239,53 @@ function getBookings() {
 
       bookingID: rows[i][0],
       bookingType: rows[i][1],
-
       name: rows[i][2],
       phone: rows[i][3],
-
-      date: rows[i][4].trim(),
-      time: rows[i][5].trim(),
-
+      date: rows[i][4],
+      time: rows[i][5],
       plan: rows[i][6],
-      players: rows[i][7],
 
-      amount: rows[i][8],
+      duration: rows[i][7],
 
-      promoCode: rows[i][9],
-      loyaltyPoints: rows[i][10],
+      players: rows[i][8],
 
-      status: rows[i][11],
+      amount: rows[i][9],
 
-      paymentMethod: rows[i][12],
-      paymentStatus: rows[i][13],
+      promoCode: rows[i][10],
 
-      createdAt: rows[i][14]
+      loyaltyPoints: rows[i][11],
+
+      status: rows[i][12],
+
+      paymentMethod: rows[i][13],
+
+      paymentStatus: rows[i][14],
+
+      createdAt: rows[i][15],
+
+      discount: rows[i][16],
+
+      equipment: rows[i][17],
+
+      utr: rows[i][18],
+
+      notes: rows[i][19],
+
+      razorpayOrderId: rows[i][20],
+
+      razorpayPaymentId: rows[i][21],
+
+      razorpaySignature: rows[i][22],
+
+      paymentVerified: rows[i][23]
 
     });
 
   }
 
   return {
-
     success: true,
-    bookings: bookings
-
+    bookings
   };
 
 }
@@ -286,13 +304,22 @@ function getBookedSlots(date) {
 
     const bookingDate = rows[i][4].trim();
     const bookingTime = rows[i][5].trim();
-    const status = rows[i][11].trim();
+    const duration = Number(rows[i][7]) || 10;
+    const status = rows[i][12].trim();
 
     if (
-      bookingDate === date &&
-      status !== "Cancelled"
-    ) {
-      slots.push(bookingTime);
+        bookingDate === date &&
+        status !== "Cancelled"
+    ){
+
+        slots.push({
+
+            time: bookingTime,
+
+            duration: duration
+
+        });
+
     }
 
   }
@@ -313,7 +340,7 @@ function updateBookingStatus(bookingID, status, paymentMethod){
 
     if(String(rows[i][0]).trim() === bookingID){
 
-        if(rows[i][11] === "Completed"){
+        if(rows[i][12] === "Completed"){
 
             return{
 
@@ -325,27 +352,27 @@ function updateBookingStatus(bookingID, status, paymentMethod){
 
         }
 
-        // Column L = Status
-        sheet.getRange(i+1,12).setValue(status);
+        // Column M = Status
+        sheet.getRange(i+1,13).setValue(status);
 
         // =========================
         // CANCELLED
         // =========================
         if(status === "Cancelled"){
 
-            const paymentStatus = rows[i][13];
+            const paymentStatus = rows[i][14];
 
             if(paymentStatus === "Paid"){
 
                 // Paid booking → Refund
-                sheet.getRange(i + 1, 14).setValue("Refunded");
+                sheet.getRange(i + 1, 15).setValue("Refunded");
 
             }else{
 
                 // Pending booking → Void
-                sheet.getRange(i + 1, 13).setValue("-");
+                sheet.getRange(i + 1, 14).setValue("-");
 
-                sheet.getRange(i + 1, 14).setValue("Void");
+                sheet.getRange(i + 1, 15).setValue("Void");
 
             }
 
@@ -357,10 +384,10 @@ function updateBookingStatus(bookingID, status, paymentMethod){
             if(paymentMethod){
 
                 // Column M = Payment Method
-                sheet.getRange(i+1,13).setValue(paymentMethod);
+                sheet.getRange(i+1,14).setValue(paymentMethod);
 
                 // Column N = Payment Status
-                sheet.getRange(i+1,14).setValue("Paid");
+                sheet.getRange(i+1,15).setValue("Paid");
 
             }
 
@@ -385,7 +412,7 @@ function updateBookingStatus(bookingID, status, paymentMethod){
                 if(loyalty.success){
 
                     // Column K = Loyalty Points
-                    sheet.getRange(i+1,11).setValue(loyalty.points);
+                    sheet.getRange(i+1,12).setValue(loyalty.points);
 
                 }
 
@@ -486,7 +513,7 @@ function updateBooking(data){
     const bookingID = String(rows[i][0]).trim();
     const bookingDate = String(rows[i][4]).trim();
     const bookingTime = String(rows[i][5]).trim();
-    const status = String(rows[i][11]).trim();
+    const status = String(rows[i][12]).trim();
 
     // Ignore the booking being edited
     if(bookingID == data.bookingID){
@@ -526,10 +553,11 @@ function updateBooking(data){
       sheet.getRange(i+1,5).setValue(formattedDate);
       sheet.getRange(i+1,6).setValue(data.time);
       sheet.getRange(i+1,7).setValue(data.plan);
-      sheet.getRange(i+1,8).setValue(data.players);
-      sheet.getRange(i+1,9).setValue(data.amount);
-      sheet.getRange(i+1,13).setValue(data.paymentMethod);
-      sheet.getRange(i+1,14).setValue(data.paymentStatus);
+      sheet.getRange(i+1,8).setValue(data.duration);
+      sheet.getRange(i+1,9).setValue(data.players);
+      sheet.getRange(i+1,10).setValue(data.amount);
+      sheet.getRange(i+1,14).setValue(data.paymentMethod);
+      sheet.getRange(i+1,15).setValue(data.paymentStatus);
 
       return{
 
@@ -571,8 +599,8 @@ function getBookingStats(date){
 
     totalBookings++;
 
-    const amount = Number(rows[i][8]) || 0;
-    const status = rows[i][11].trim();
+    const amount = Number(rows[i][9]) || 0;
+    const status = rows[i][12].trim();
 
     if(status === "Pending") pending++;
 
@@ -617,9 +645,9 @@ function getRecentBookings(){
 
             plan: rows[i][6],
 
-            status: rows[i][11],
+            status: rows[i][12],
 
-            createdAt: rows[i][14]
+            createdAt: rows[i][15]
 
         });
 
@@ -661,8 +689,8 @@ function getDashboardStats(){
   for(let i = 1; i < bookingRows.length; i++){
 
       const date = bookingRows[i][4].trim();
-      const amount = Number(bookingRows[i][8]) || 0;
-      const status = bookingRows[i][11].trim();
+      const amount = Number(bookingRows[i][9]) || 0;
+      const status = bookingRows[i][12].trim();
 
       if(date !== today) continue;
 
@@ -717,8 +745,8 @@ function getRevenueChart(){
   for(let i=1;i<rows.length;i++){
 
     const date = rows[i][4].trim();
-    const amount = Number(rows[i][8]) || 0;
-    const status = rows[i][11].trim();
+    const amount = Number(rows[i][9]) || 0;
+    const status = rows[i][12].trim();
 
     if(status!="Completed") continue;
 
@@ -787,8 +815,8 @@ function getNotifications() {
 
     const name = rows[i][2].trim();
     const plan = rows[i][6].trim();
-    const status = rows[i][11].trim();
-    const createdAt = rows[i][14].trim();
+    const status = rows[i][12].trim();
+    const createdAt = rows[i][15].trim();
     const unread =
     new Date(createdAt) > new Date(lastRead);
 
@@ -838,5 +866,45 @@ function getNotifications() {
       notifications: notifications
 
   };
+
+}
+
+function autoCompleteBookings() {
+
+  const sheet = getSheet("Bookings");
+
+  const data = sheet.getDataRange().getValues();
+
+  const now = new Date();
+
+  for (let i = 1; i < data.length; i++) {
+
+    const row = data[i];
+
+    const status = row[12];
+
+    if (status !== "Confirmed") continue;
+
+    const bookingDate = row[4];
+    const bookingTime = row[5];
+    const duration = Number(row[7]);
+
+    if (!duration) continue;
+
+    const bookingDateTime = new Date(
+      bookingDate + " " + bookingTime
+    );
+
+    const endTime = new Date(
+      bookingDateTime.getTime() + duration * 60000
+    );
+
+    if (now >= endTime) {
+
+      sheet.getRange(i + 1, 13).setValue("Completed");
+
+    }
+
+  }
 
 }

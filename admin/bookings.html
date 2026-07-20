@@ -146,231 +146,102 @@ New Booking
 
 <div class="grid">
 
-<div>
+    <!-- Row 1 -->
+    <div>
+        <label>Booking ID</label>
+        <input type="text" id="bookingId" readonly>
+    </div>
 
-<div>
+    <div>
+        <label>Booking Type</label>
+        <select id="bookingType">
+            <option value="Regular">Regular Booking</option>
+            <option value="Membership">Membership Booking</option>
+        </select>
+    </div>
 
-<label>Booking ID</label>
+    <!-- Membership -->
+    <div id="membershipSection" class="full-width" style="display:none;">
+        <label>Member ID / Phone</label>
+        <input id="memberSearch" type="text" placeholder="Enter Member ID or Phone">
 
-<input
-type="text"
-id="bookingId"
-readonly>
+        <button id="searchMemberBtn" class="search-member-btn">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            Search Member
+        </button>
+    </div>
 
-</div>
+    <div id="memberCard" class="member-card full-width" style="display:none;">
+        <!-- KEEP YOUR EXISTING MEMBER CARD HTML HERE -->
+    </div>
 
-<div>
+    <!-- Row 2 -->
+    <div>
+        <label>Phone Number</label>
+        <input type="text" id="phone" required>
+    </div>
 
-    <label>Booking Type</label>
+    <div>
+        <label>Customer Name</label>
+        <input type="text" id="customerName" required>
+    </div>
 
-    <select id="bookingType">
+    <!-- Row 3 -->
+    <div>
+        <label>Date</label>
+        <input type="date" id="bookingDate" required>
+    </div>
 
-        <option value="Regular">Regular Booking</option>
+<div class="booking-options full-width">
 
-        <option value="Membership">Membership Booking</option>
+    <div>
+        <label>Overs</label>
+        <select id="overs">
+            <option>3 Overs</option>
+            <option>5 Overs</option>
+            <option>10 Overs</option>
+            <option>20 Overs</option>
+        </select>
+    </div>
 
-    </select>
+    <div>
+        <label>Players</label>
+        <input
+            type="number"
+            id="players"
+            min="1"
+            max="3"
+            value="1">
+    </div>
 
-</div>
-
-<div id="membershipSection" style="display:none;">
-
-    <label>Member ID / Phone</label>
-
-    <input
-        id="memberSearch"
-        type="text"
-        placeholder="Enter Member ID or Phone">
-
-    <button id="searchMemberBtn" class="search-member-btn">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        Search Member
-    </button>
-
-</div>
-
-<div
-    id="memberCard"
-    class="member-card"
-    style="display:none;">
-
-    <div class="member-card-header">
-
-        <div class="member-avatar">
-
-            <i class="fa-solid fa-id-card"></i>
-
-        </div>
+    <div class="duration-card">
+        <i class="fa-solid fa-clock"></i>
 
         <div>
+            <small>Session Duration</small>
 
-            <h3 id="mName"></h3>
-
-            <p id="mPlan"></p>
-
+            <span id="slotDuration">
+                3 Overs = 10 Minutes
+            </span>
         </div>
-
-    </div>
-
-    <div class="member-grid">
-
-        <div class="member-item">
-
-            <span>Expiry</span>
-
-            <strong id="mExpiry"></strong>
-
-        </div>
-
-        <div class="member-item">
-
-            <span>Remaining Overs</span>
-
-            <strong id="mRemaining"></strong>
-
-        </div>
-
-        <div class="member-item">
-
-            <span>Today's Used</span>
-
-            <strong id="mTodayUsed"></strong>
-
-        </div>
-
-        <div class="member-item">
-
-            <span>Daily Limit</span>
-
-            <strong id="mDailyLimit"></strong>
-
-        </div>
-
     </div>
 
 </div>
 
-<label>Customer Name</label>
+<div class="full-width slot-section">
 
-<input
-type="text"
-id="customerName"
-required>
+    <div class="slot-header">
 
-</div>
+        <h3>
+            <i class="fa-solid fa-calendar-days"></i>
+            Select Time Slot
+        </h3>
 
-<div>
+    </div>
 
-<label>Phone Number</label>
+    <div class="slot-grid" id="slotGrid"></div>
 
-<input
-type="text"
-id="phone"
-required>
-
-</div>
-
-<div>
-
-<label>Date</label>
-
-<input
-type="date"
-id="bookingDate"
-required>
-
-</div>
-
-<div class="full-width">
-
-<label>Select Time Slot</label>
-
-<div class="slot-grid" id="slotGrid">
-
-<button type="button" class="slot available" data-slot="06:00">06:00</button>
-<button type="button" class="slot available" data-slot="06:30">06:30</button>
-
-<button type="button" class="slot available" data-slot="07:00">07:00</button>
-<button type="button" class="slot available" data-slot="07:30">07:30</button>
-
-<button type="button" class="slot available" data-slot="08:00">08:00</button>
-<button type="button" class="slot available" data-slot="08:30">08:30</button>
-
-<button type="button" class="slot available" data-slot="09:00">09:00</button>
-<button type="button" class="slot available" data-slot="09:30">09:30</button>
-
-<button type="button" class="slot available" data-slot="10:00">10:00</button>
-<button type="button" class="slot available" data-slot="10:30">10:30</button>
-
-<button type="button" class="slot available" data-slot="11:00">11:00</button>
-<button type="button" class="slot available" data-slot="11:30">11:30</button>
-
-<button type="button" class="slot available" data-slot="12:00">12:00</button>
-<button type="button" class="slot available" data-slot="12:30">12:30</button>
-
-<button type="button" class="slot available" data-slot="13:00">13:00</button>
-<button type="button" class="slot available" data-slot="13:30">13:30</button>
-
-<button type="button" class="slot available" data-slot="14:00">14:00</button>
-<button type="button" class="slot available" data-slot="14:30">14:30</button>
-
-<button type="button" class="slot available" data-slot="15:00">15:00</button>
-<button type="button" class="slot available" data-slot="15:30">15:30</button>
-
-<button type="button" class="slot available" data-slot="16:00">16:00</button>
-<button type="button" class="slot available" data-slot="16:30">16:30</button>
-
-<button type="button" class="slot available" data-slot="17:00">17:00</button>
-<button type="button" class="slot available" data-slot="17:30">17:30</button>
-
-<button type="button" class="slot available" data-slot="18:00">18:00</button>
-<button type="button" class="slot available" data-slot="18:30">18:30</button>
-
-<button type="button" class="slot available" data-slot="19:00">19:00</button>
-<button type="button" class="slot available" data-slot="19:30">19:30</button>
-
-<button type="button" class="slot available" data-slot="20:00">20:00</button>
-<button type="button" class="slot available" data-slot="20:30">20:30</button>
-
-<button type="button" class="slot available" data-slot="21:00">21:00</button>
-<button type="button" class="slot available" data-slot="21:30">21:30</button>
-
-<button type="button" class="slot available" data-slot="22:00">22:00</button>
-
-</div>
-
-<input type="hidden" id="slot">
-
-</div>
-
-<div>
-
-<label>Overs</label>
-
-<select id="overs">
-
-<option>3 Overs</option>
-
-<option>5 Overs</option>
-
-<option>10 Overs</option>
-
-<option>20 Overs</option>
-
-</select>
-
-</div>
-
-<div>
-
-<label>Players</label>
-
-<input
-type="number"
-id="players"
-min="1"
-max="3"
-value="1">
+    <input type="hidden" id="slot">
 
 </div>
 

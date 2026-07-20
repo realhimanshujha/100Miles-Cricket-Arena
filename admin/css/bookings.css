@@ -2034,3 +2034,125 @@ td:last-child{
     border-radius:8px;
 
 }
+
+/* ===========================
+   Booking Form Upgrade
+=========================== */
+
+.booking-options{
+
+    display:grid;
+
+    grid-template-columns:220px 220px 1fr;
+
+    gap:24px;
+
+    align-items:end;
+
+    margin:20px 0;
+
+}
+
+.duration-card{
+
+    height:55px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+    padding:0 22px;
+
+    border-radius:14px;
+
+    background:#202020;
+
+    border:1px solid rgba(255,255,255,.08);
+
+}
+
+.duration-card span{
+
+    font-size:18px;
+
+    font-weight:700;
+
+}
+
+
+.duration-card i{
+
+    font-size:28px;
+
+    color:#FFC107;
+
+}
+
+.duration-card small{
+
+    display:block;
+
+    font-size:12px;
+
+    color:#9ca3af;
+
+    margin-bottom:2px;
+
+}
+
+.slot-section{
+
+    margin-top:10px;
+
+}
+
+.slot-header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:18px;
+
+}
+
+.slot-header h3{
+
+    font-size:18px;
+    font-weight:600;
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+}
+
+.slot-header i{
+
+    color:#FFC107;
+
+}
+
+.slot-grid{
+
+    background:#111;
+
+    padding:20px;
+
+    border-radius:18px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+}
+
+@media(max-width:900px){
+
+.booking-options{
+
+    grid-template-columns:1fr;
+
+}
+
+}
