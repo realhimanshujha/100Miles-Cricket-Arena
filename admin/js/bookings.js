@@ -1,5 +1,4 @@
-const API =
-"https://script.google.com/macros/s/AKfycbztFMvnMxcazCy79YYYwz3lIig-6Pq4d9X0Oi5AxVg--P4cXtNLqC9e8gYRIXedxYVW/exec";
+const API = CONFIG.API_URL;
 
 let allBookings = [];
 let currentFilter = "All";
@@ -220,6 +219,12 @@ document.getElementById("bookingForm").addEventListener("submit", function(e){
 
     e.preventDefault();
 
+    const saveBtn = document.querySelector(".save-btn");
+
+    if (saveBtn.disabled) return;
+
+    saveBtn.disabled = true;
+
     const booking = {
 
         bookingType: document.getElementById("bookingType").value,
@@ -358,14 +363,19 @@ document.getElementById("bookingForm").addEventListener("submit", function(e){
                 const now = new Date();
 
                 const yyyy = now.getFullYear();
-                const mm = String(now.getMonth() + 1).padStart(2, "0");
-                const dd = String(now.getDate()).padStart(2, "0");
+                const mm = String(now.getMonth()+1).padStart(2,"0");
+                const dd = String(now.getDate()).padStart(2,"0");
 
-                const today = `${yyyy}-${mm}-${dd}`;
+                document.getElementById("bookingDate").value =
+                `${yyyy}-${mm}-${dd}`;
 
-                document.getElementById("bookingDate").value = today;
+                generateBookingID();
 
                 updatePrice();
+
+                generateSlots();     // <-- IMPORTANT
+
+                loadBookedSlots();   // <-- IMPORTANT
 
                 document.getElementById("slot").value = "";
 
@@ -373,17 +383,18 @@ document.getElementById("bookingForm").addEventListener("submit", function(e){
                     btn.classList.remove("selected");
                 });
 
-                generateBookingID();
-
-                updatePrice();
+                saveBtn.disabled = false;
 
             }else{
+
+                saveBtn.disabled = false;
 
                 showToast(data.message,"error");
 
             }
 
         });
+        
 
     }
 
@@ -575,6 +586,8 @@ function loadBookedSlots(){
         document.querySelectorAll(".slot").forEach(button=>{
 
             button.classList.remove("booked");
+            button.classList.add("available");
+            button.disabled = false;
 
         });
 
@@ -587,12 +600,14 @@ function loadBookedSlots(){
         data.slots.forEach(slot=>{
 
             const btn = document.querySelector(
-                `.slot[data-slot="${slot}"]`
+                `.slot[data-slot="${slot.time}"]`
             );
 
             if(btn){
 
+                btn.classList.remove("available");
                 btn.classList.add("booked");
+                btn.disabled = true;
 
             }
 

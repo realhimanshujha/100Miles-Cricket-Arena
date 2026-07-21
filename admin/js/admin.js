@@ -1,5 +1,5 @@
+const API = CONFIG.API_URL;
 
-const API = "https://script.google.com/macros/s/AKfycbzKYU5RY-sg7KZoF8PAmM04-OzHrY_BOVzxWkFrUcFUk-mOQxBhkCtvvp9Dw9HsVYne/exec";
 
 const loginForm = document.getElementById("loginForm");
 const togglePassword = document.getElementById("togglePassword");
