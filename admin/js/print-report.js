@@ -326,36 +326,47 @@ function renderTable(){
     .slice(start,end)
     .forEach(row=>{
 
+        let originalAmount = Number(row[9]) || 0;
+
+        switch(row[6]){
+            case "3 Overs":
+                originalAmount = 75;
+                break;
+
+            case "5 Overs":
+                originalAmount = 129;
+                break;
+
+            case "10 Overs":
+                originalAmount = 199;
+                break;
+
+            case "20 Overs":
+                originalAmount = 349;
+                break;
+        }
+
+        const finalAmount = Number(row[9]) || 0;
+        const discount = originalAmount - finalAmount;
+
         tbody.innerHTML += `
-
         <tr>
-
             <td>${row[0]}</td>
-
+            <td>${row[1]}</td>
             <td>${row[2]}</td>
-
             <td>${row[3]}</td>
-
             <td>${row[4]}</td>
-
             <td>${row[5]}</td>
-
             <td>${row[6]}</td>
-
-            <td>₹${row[8]}</td>
-
+            <td>₹${originalAmount}</td>
+            <td>₹${discount}</td>
+            <td>₹${finalAmount}</td>
             <td>
-
-                <span class="status ${row[11]}">
-
-                    ${row[11]}
-
+                <span class="status ${row[12].toLowerCase()}">
+                    ${row[12]}
                 </span>
-
             </td>
-
         </tr>
-
         `;
 
     });
