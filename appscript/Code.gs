@@ -137,15 +137,15 @@
 
     return output(createPromocode({
 
-      code: e.parameter.code,
-      type: e.parameter.type,
-      value: Number(e.parameter.value),
-      minBooking: Number(e.parameter.minBooking),
-      maxDiscount: Number(e.parameter.maxDiscount),
-      usageLimit: Number(e.parameter.usageLimit),
-      expiry: e.parameter.expiry,
-      status: e.parameter.status,
-      paymentRule:e.parameter.paymentRule
+        code:e.parameter.code,
+        type:e.parameter.type,
+        value:Number(e.parameter.value),
+        minBooking:Number(e.parameter.minBooking),
+        maxDiscount:Number(e.parameter.maxDiscount),
+        usageLimit:Number(e.parameter.usageLimit),
+        expiry:e.parameter.expiry,
+        status:e.parameter.status,
+        paymentRule:e.parameter.paymentRule
 
     }));
     }
@@ -196,9 +196,7 @@
 
                 expiry:e.parameter.expiry,
 
-                status:e.parameter.status,
-
-                paymentRule:e.parameter.paymentRule
+                status:e.parameter.status
 
             })
 

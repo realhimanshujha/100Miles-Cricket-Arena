@@ -576,6 +576,8 @@ function loadBookedSlots(){
 
     .then(data=>{
 
+        console.table(data.slots);
+
         console.log("API Response:", data);
 
         console.log(data);
@@ -597,18 +599,65 @@ function loadBookedSlots(){
 
         }
 
-        data.slots.forEach(slot=>{
+        const selectedPlan = document.getElementById("overs").value;
 
-            const btn = document.querySelector(
-                `.slot[data-slot="${slot.time}"]`
-            );
+        let selectedDuration = 10;
 
-            if(btn){
+        if (selectedPlan === "10 Overs") selectedDuration = 20;
+        if (selectedPlan === "20 Overs") selectedDuration = 30;
+
+        function toMinutes(time) {
+            const [h, m] = time.split(":").map(Number);
+            return h * 60 + m;
+        }
+
+        document.querySelectorAll(".slot").forEach(btn => {
+
+            const buttonStart = toMinutes(btn.dataset.slot);
+            const buttonEnd = buttonStart + selectedDuration;
+
+            let blocked = false;
+
+            data.slots.forEach(slot => {
+
+                const bookingStart = toMinutes(slot.time);
+                const bookingEnd = bookingStart + Number(slot.duration);
+
+                console.log(
+                    "BTN:", btn.dataset.slot,
+                    "BOOKING:", slot.time,
+                    "DURATION:", slot.duration,
+                    "buttonStart:", buttonStart,
+                    "buttonEnd:", buttonEnd,
+                    "bookingStart:", bookingStart,
+                    "bookingEnd:", bookingEnd
+                );
+
+                if (
+                    buttonStart < bookingEnd &&
+                    buttonEnd > bookingStart
+                ) {
+                    blocked = true;
+                }
+
+            });
+
+            console.log({
+                button: btn.dataset.slot,
+                buttonStart,
+                buttonEnd,
+                bookings: data.slots
+            });
+
+            if (blocked) {
+                console.log("BLOCKING:", btn.dataset.slot);
+
+                btn.style.background = "red";
+                btn.style.color = "white";
 
                 btn.classList.remove("available");
                 btn.classList.add("booked");
                 btn.disabled = true;
-
             }
 
         });

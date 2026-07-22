@@ -101,6 +101,20 @@
 
       }
 
+      let duration = 10;
+
+      switch(data.plan){
+
+          case "10 Overs":
+              duration = 20;
+              break;
+
+          case "20 Overs":
+              duration = 30;
+              break;
+
+      }
+
 
       // ============================
       // Save Booking
@@ -122,7 +136,7 @@
 
           data.plan,                 // G
 
-          data.duration,             // H
+          duration,             // H
 
           data.players,              // I
 
@@ -294,31 +308,41 @@ function getBookings() {
 function getBookedSlots(date) {
 
   const sheet = getSheet("Bookings");
-
-  // Read the DISPLAYED values exactly as they appear in Google Sheets
-  const rows = sheet.getDataRange().getDisplayValues();
+  const rows = sheet.getDataRange().getValues();
 
   const slots = [];
 
+  const requestDate = Utilities.formatDate(
+    new Date(date),
+    Session.getScriptTimeZone(),
+    "yyyy-MM-dd"
+  );
+
   for (let i = 1; i < rows.length; i++) {
 
-    const bookingDate = rows[i][4].trim();
-    const bookingTime = rows[i][5].trim();
-    const duration = Number(rows[i][7]) || 10;
-    const status = rows[i][12].trim();
+    const bookingDate = Utilities.formatDate(
+      new Date(rows[i][4]),
+      Session.getScriptTimeZone(),
+      "yyyy-MM-dd"
+    );
+
+    const bookingTime = Utilities.formatDate(
+      new Date(rows[i][5]),
+      Session.getScriptTimeZone(),
+      "HH:mm"
+    );
+
+    const status = String(rows[i][12]).trim();
 
     if (
-        bookingDate === date &&
-        status !== "Cancelled"
-    ){
+      bookingDate === requestDate &&
+      status !== "Cancelled"
+    ) {
 
-        slots.push({
-
-            time: bookingTime,
-
-            duration: duration
-
-        });
+      slots.push({
+        time: bookingTime,
+        duration: Number(rows[i][7]) || 10
+      });
 
     }
 
@@ -378,7 +402,7 @@ function updateBookingStatus(bookingID, status, paymentMethod){
 
         }
 
-        if(status === "Completed"){
+        if(status === "Confirmed"){
 
             // Update Payment Method & Payment Status
             if(paymentMethod){
