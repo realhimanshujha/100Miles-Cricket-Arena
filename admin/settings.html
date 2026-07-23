@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Settings | 100 Miles Arena</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/settings.css">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- ================= Sidebar ================= -->
+
+<div id="sidebar-container"></div>
+
+<!-- ================= Main ================= -->
+
+<main class="main-content">
+
+    <!-- ================= Topbar ================= -->
+
+    <header class="topbar">
+
+        <div class="left">
+
+            <button id="menuToggle">
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+            <h2>Settings</h2>
+
+        </div>
+
+        <div class="right">
+
+            <div class="profile">
+
+                <div class="avatar">
+
+                    <i class="fa-solid fa-user"></i>
+
+                </div>
+
+                <div>
+
+                    <h4 id="adminName">Admin</h4>
+
+                    <span>Administrator</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <!-- ================= Page Header ================= -->
+
+    <section class="page-header">
+
+        <div>
+
+            <h1>
+
+                Arena Settings
+
+            </h1>
+
+            <p>
+
+                Configure your arena, booking, loyalty and membership settings.
+
+            </p>
+
+        </div>
+
+        <button id="saveBtn" class="save-btn">
+
+            <i class="fa-solid fa-floppy-disk"></i>
+
+            Save Settings
+
+        </button>
+
+    </section>
+
+    <!-- ================= Arena ================= -->
+
+    <section class="settings-card">
+
+        <div class="card-title">
+
+            <i class="fa-solid fa-building"></i>
+
+            <span>Arena Settings</span>
+
+        </div>
+
+        <div class="settings-grid">
+
+            <div class="form-group">
+
+                <label>Arena Name</label>
+
+                <input
+                id="ArenaName"
+                type="text">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Arena Status</label>
+
+                <select id="ArenaStatus">
+
+                    <option value="OPEN">OPEN</option>
+
+                    <option value="CLOSED">CLOSED</option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Maximum Players</label>
+
+                <input
+                id="MaxPlayers"
+                type="number">
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= Booking ================= -->
+
+    <section class="settings-card">
+
+        <div class="card-title">
+
+            <i class="fa-solid fa-calendar-check"></i>
+
+            <span>Booking Settings</span>
+
+        </div>
+
+        <div class="settings-grid">
+
+            <div class="form-group">
+
+                <label>Booking Prefix</label>
+
+                <input
+                id="BookingPrefix"
+                type="text">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Next Booking ID</label>
+
+                <input
+                id="NextBookingID"
+                type="number">
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= Loyalty ================= -->
+
+    <section class="settings-card">
+
+        <div class="card-title">
+
+            <i class="fa-solid fa-star"></i>
+
+            <span>Loyalty Settings</span>
+
+        </div>
+
+        <div class="settings-grid">
+
+            <div class="form-group">
+
+                <label>Loyalty Per Over</label>
+
+                <input
+                id="LoyaltyPerOver"
+                type="number">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>3 Overs</label>
+
+                <input
+                id="Loyalty3Overs"
+                type="number">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>5 Overs</label>
+
+                <input
+                id="Loyalty5Overs"
+                type="number">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>10 Overs</label>
+
+                <input
+                id="Loyalty10Overs"
+                type="number">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>20 Overs</label>
+
+                <input
+                id="Loyalty20Overs"
+                type="number">
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= Membership ================= -->
+
+    <section class="settings-card">
+
+        <div class="card-title">
+
+            <i class="fa-solid fa-crown"></i>
+
+            <span>Membership Settings</span>
+
+        </div>
+
+        <div class="settings-grid">
+
+            <div class="form-group">
+
+                <label>Membership Prefix</label>
+
+                <input
+                id="MembershipPrefix"
+                type="text">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Next Member ID</label>
+
+                <input
+                id="NextMemberID"
+                type="number">
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= Notifications ================= -->
+
+    <section class="settings-card">
+
+        <div class="card-title">
+
+            <i class="fa-solid fa-bell"></i>
+
+            <span>Notification Settings</span>
+
+        </div>
+
+        <div class="settings-grid">
+
+            <div class="form-group full">
+
+                <label>Last Notification Read</label>
+
+                <input
+                id="LastNotificationRead"
+                type="text"
+                readonly>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<!-- Scripts -->
+
+<script src="../assets/js/config.js"></script>
+
+<script src="js/settings.js"></script>
+
+</body>
+
+</html>
