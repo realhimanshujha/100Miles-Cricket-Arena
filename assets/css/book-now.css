@@ -2554,3 +2554,122 @@ PAYMENT SUCCESS
     color:#ffffff;
 
 }
+
+.player-group{
+
+    margin:20px 0;
+
+}
+
+.player-group label{
+
+    display:block;
+
+    margin-bottom:10px;
+
+    color:#d1d5db;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    font-family:'Poppins',sans-serif;
+
+}
+
+#players{
+
+    width:100%;
+
+    height:58px;
+
+    border:1px solid #3d3d3d;
+
+    border-radius:18px;
+
+    padding:0 18px;
+
+    font-size:16px;
+
+    background:#242424;
+
+    color:#fff;
+
+}
+
+#players:disabled{
+
+    background:#2b2b2b;
+
+    color:#ffffff;
+
+    cursor:not-allowed;
+
+    opacity:1;
+
+    appearance:none;
+
+    -webkit-appearance:none;
+
+    -moz-appearance:none;
+
+    background-image:none;
+
+}
+
+.player-group select{
+
+    width:100%;
+
+    height:56px;
+
+    padding:0 18px;
+
+    border:1px solid #343434;
+
+    border-radius:16px;
+
+    background:#232323;
+
+    color:#fff;
+
+    font-size:16px;
+
+    font-family:'Poppins',sans-serif;
+
+    outline:none;
+
+    transition:.3s;
+
+}
+
+.player-group select:focus{
+
+    border-color:#FFC107;
+
+}
+
+
+.player-group select:disabled{
+
+    cursor:not-allowed;
+
+    background:#1d1d1d;
+
+    color:#ffffff;
+
+    border-color:#343434;
+
+    opacity:1;
+
+    appearance:none;
+
+    -webkit-appearance:none;
+
+    -moz-appearance:none;
+
+    background-image:none;
+
+    padding-right:18px;
+
+}

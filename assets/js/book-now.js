@@ -31,6 +31,20 @@ document.getElementById("closePromo");
 
 const planInputs = document.querySelectorAll('input[name="plan"]');
 
+planInputs.forEach(radio=>{
+
+    radio.addEventListener("change",()=>{
+
+        updateSummary();
+
+        updateSlotTiming();
+
+        updatePlayerSelector();
+
+    });
+
+});
+
 const summaryPlan = document.getElementById("summaryPlan");
 const summaryPrice = document.getElementById("summaryPrice");
 const summaryEquipment = document.getElementById("summaryEquipment");
@@ -795,7 +809,7 @@ async function submitBooking(
             document.querySelector('input[name="plan"]:checked').dataset.duration
         ),
 
-        players: 1,
+        players: document.getElementById("players").value,
 
         amount: subtotal + convenienceFee,
 
@@ -1102,3 +1116,35 @@ document
     location.reload();
 
 };
+
+function updatePlayerSelector(){
+
+    const plan = document.querySelector('input[name="plan"]:checked').dataset.plan;
+
+    const players = document.getElementById("players");
+
+    if(plan === "20 Overs"){
+
+        players.innerHTML=`
+            <option value="1">1 Player</option>
+            <option value="2">2 Players</option>
+            <option value="3">3 Players</option>
+        `;
+
+        players.disabled=false;
+
+    }else{
+
+        players.innerHTML=`
+            <option value="1">1 Player</option>
+        `;
+
+        players.value="1";
+
+        players.disabled=true;
+
+    }
+
+}
+
+updatePlayerSelector();
