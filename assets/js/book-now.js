@@ -1,5 +1,6 @@
 const API_URL = CONFIG.API_URL;
 
+let arenaOpen = true;
 
 const bookingButton =
 document.querySelector(".booking-btn");
@@ -485,19 +486,130 @@ function getLocalDate() {
 
 }
 
-const today = getLocalDate();
+/*==========================================
+ARENA STATUS
+==========================================*/
 
-// Prevent previous dates
-bookingDate.min = today;
+async function checkArenaStatus(){
 
-// Auto-select today's date
-bookingDate.value = today;
+    try{
 
-// Show today's date in booking summary
-summaryDate.textContent = today;
+        const response = await fetch(`${API_URL}?action=getSettings`);
 
-// Load today's booked slots automatically
-updateSlotTiming();
+        const result = await response.json();
+
+        if(!result.success) return;
+
+        const settings = result.settings;
+
+        if(settings.ArenaStatus === "OPEN"){
+
+            arenaOpen = true;
+
+            return;
+
+        }
+
+        arenaOpen = false;
+
+        document.querySelector(".booking-steps").style.display = "none";
+
+        document.querySelector(".booking-section").style.display = "none";
+
+        const statusSection =
+            document.getElementById("arenaStatusSection");
+
+        statusSection.classList.add("show");
+
+        const title =
+            document.getElementById("arenaStatusTitle");
+
+        const message =
+            document.getElementById("arenaStatusMessage");
+
+        const icon =
+            document.getElementById("arenaStatusIcon");
+
+        message.textContent =
+            settings.ArenaStatusMessage ||
+            "Bookings are temporarily unavailable.";
+
+        switch(settings.ArenaStatus){
+
+            case "CLOSED":
+
+                title.textContent="Arena Closed";
+
+                icon.innerHTML =
+                '<i class="fa-solid fa-circle-xmark"></i>';
+
+                icon.style.background="#401010";
+
+                icon.style.color="#ff4d4d";
+
+            break;
+
+            case "MAINTENANCE":
+
+                title.textContent="Under Maintenance";
+
+                icon.innerHTML =
+                '<i class="fa-solid fa-screwdriver-wrench"></i>';
+
+                icon.style.background="#3f3100";
+
+                icon.style.color="#FFC107";
+
+            break;
+
+            case "PRIVATE EVENT":
+
+                title.textContent="Private Event";
+
+                icon.innerHTML =
+                '<i class="fa-solid fa-trophy"></i>';
+
+                icon.style.background="#3d2d00";
+
+                icon.style.color="#ff9800";
+
+            break;
+
+        }
+
+    }
+
+    catch(err){
+
+        console.error(err);
+
+    }
+
+}
+
+async function initializeBookingPage(){
+
+    await checkArenaStatus();
+
+    if(!arenaOpen){
+
+        return;
+
+    }
+
+    const today = getLocalDate();
+
+    bookingDate.min = today;
+
+    bookingDate.value = today;
+
+    summaryDate.textContent = today;
+
+    updateSlotTiming();
+
+}
+
+initializeBookingPage();
 
 /*==========================================
 DATE CHANGE

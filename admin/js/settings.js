@@ -205,6 +205,9 @@ function fillForm(settings){
     document.getElementById("MaxPlayers").value =
         settings.MaxPlayers || "";
 
+    document.getElementById("ArenaStatusMessage").value =
+        settings.ArenaStatusMessage || "";
+
     document.getElementById("BookingPrefix").value =
         settings.BookingPrefix || "";
 
@@ -252,6 +255,8 @@ async function saveSettings(){
         ArenaStatus:document.getElementById("ArenaStatus").value,
 
         MaxPlayers:document.getElementById("MaxPlayers").value,
+
+        ArenaStatusMessage:document.getElementById("ArenaStatusMessage").value.trim(),
 
         BookingPrefix:document.getElementById("BookingPrefix").value.trim(),
 
