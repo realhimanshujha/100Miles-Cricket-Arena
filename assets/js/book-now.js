@@ -945,6 +945,9 @@ async function submitBooking(
 
         bookingButton.textContent="Finalizing Booking...";
 
+        console.log(data);
+        console.log("Email:", data.email);
+
         const params = new URLSearchParams({
 
             action: "saveBooking",
