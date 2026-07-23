@@ -147,21 +147,47 @@ function updatePrice(){
 
     document.getElementById("promoCode").value = "";
 
+    updatePlayers();
+
 }
 
 const players = document.getElementById("players");
 
-players.addEventListener("input", () => {
+function updatePlayers() {
 
-    let maxPlayers = overs.value === "20 Overs" ? 3 : 1;
+    const players = document.getElementById("players");
 
-    if (players.value < 1) {
-        players.value = 1;
+    if (overs.value === "20 Overs") {
+
+        players.innerHTML = `
+            <option value="1">1 Player</option>
+            <option value="2">2 Players</option>
+            <option value="3">3 Players</option>
+        `;
+
+    } else {
+
+        players.innerHTML = `
+            <option value="1">1 Player</option>
+        `;
+
     }
 
-    if (players.value > maxPlayers) {
-        players.value = maxPlayers;
-    }
+    players.value = "1";
+
+}
+
+players.addEventListener("change", () => {
+
+    let value = parseInt(players.value) || 1;
+
+    const maxPlayers = overs.value === "20 Overs" ? 3 : 1;
+
+    if (value < 1) value = 1;
+
+    if (value > maxPlayers) value = maxPlayers;
+
+    players.value = value;
 
 });
 
