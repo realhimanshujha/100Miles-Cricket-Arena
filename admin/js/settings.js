@@ -5,6 +5,19 @@
 
 const API = CONFIG.API_URL;
 
+const DEFAULT_MESSAGES = {
+
+    MAINTENANCE:
+        "Our team is carrying out scheduled maintenance to ensure the best playing experience. We'll reopen as soon as the work is complete.",
+
+    "PRIVATE EVENT":
+        "The arena has been reserved for a private event. Online bookings are temporarily unavailable. We look forward to welcoming you once the event concludes.",
+
+    CLOSED:
+        "Online bookings are temporarily unavailable. Please check back later or contact us for assistance."
+
+};
+
 /* ===========================================
    DOM
 =========================================== */
@@ -141,6 +154,39 @@ function attachEvents(){
 
 }
 
+document
+.querySelectorAll('input[name="ArenaStatus"]')
+.forEach(radio=>{
+
+    radio.addEventListener("change",toggleStatusMessage);
+
+});
+
+
+
+function toggleStatusMessage(){
+
+    const status = document.querySelector(
+        'input[name="ArenaStatus"]:checked'
+    )?.value;
+
+    const box = document.getElementById("customStatusBox");
+    const textarea = document.getElementById("ArenaStatusMessage");
+
+    if(status === "CUSTOM"){
+
+        box.style.display = "block";
+
+    }else{
+
+        box.style.display = "none";
+
+        textarea.value = DEFAULT_MESSAGES[status] || "";
+
+    }
+
+}
+
 
 /* ===========================================
    LOAD SETTINGS
@@ -199,8 +245,18 @@ function fillForm(settings){
     document.getElementById("ArenaName").value =
         settings.ArenaName || "";
 
-    document.getElementById("ArenaStatus").value =
+    const status =
         settings.ArenaStatus || "OPEN";
+
+    const radio = document.querySelector(
+        `input[name="ArenaStatus"][value="${status}"]`
+    );
+
+    if(radio){
+
+        radio.checked = true;
+
+    }
 
     document.getElementById("MaxPlayers").value =
         settings.MaxPlayers || "";
@@ -238,6 +294,8 @@ function fillForm(settings){
     document.getElementById("LastNotificationRead").value =
         settings.LastNotificationRead || "";
 
+    toggleStatusMessage();
+
 }
 
 /* ===========================================
@@ -252,7 +310,7 @@ async function saveSettings(){
 
         ArenaName:document.getElementById("ArenaName").value.trim(),
 
-        ArenaStatus:document.getElementById("ArenaStatus").value,
+        ArenaStatus:document.querySelector('input[name="ArenaStatus"]:checked')?.value || "OPEN",
 
         MaxPlayers:document.getElementById("MaxPlayers").value,
 

@@ -129,21 +129,102 @@
 
             </div>
 
-            <div class="form-group">
+            <div class="form-group full">
 
                 <label>Arena Status</label>
 
-                <select id="ArenaStatus">
+                <div class="status-options">
 
-                    <option value="OPEN">🟢 OPEN</option>
+                    <label class="status-card">
 
-                    <option value="MAINTENANCE">🟡 MAINTENANCE</option>
+                        <input type="radio" name="ArenaStatus" value="OPEN">
 
-                    <option value="PRIVATE EVENT">🟠 PRIVATE EVENT</option>
+                        <div class="status-content">
 
-                    <option value="CLOSED">🔴 CLOSED</option>
+                            <h4>🟢 OPEN</h4>
 
-                </select>
+                            <p>Arena is accepting bookings.</p>
+
+                        </div>
+
+                    </label>
+
+                    <label class="status-card">
+
+                        <input type="radio" name="ArenaStatus" value="MAINTENANCE">
+
+                        <div class="status-content">
+
+                            <h4>🟡 MAINTENANCE</h4>
+
+                            <p>Temporary maintenance work.</p>
+
+                        </div>
+
+                    </label>
+
+                    <label class="status-card">
+
+                        <input type="radio" name="ArenaStatus" value="PRIVATE EVENT">
+
+                        <div class="status-content">
+
+                            <h4>🟠 PRIVATE EVENT</h4>
+
+                            <p>Arena reserved for a private event.</p>
+
+                        </div>
+
+                    </label>
+
+                    <label class="status-card">
+
+                        <input type="radio" name="ArenaStatus" value="CLOSED">
+
+                        <div class="status-content">
+
+                            <h4>🔴 CLOSED</h4>
+
+                            <p>Bookings unavailable.</p>
+
+                        </div>
+
+                    </label>
+
+                    <label class="status-card">
+
+                        <input type="radio" name="ArenaStatus" value="CUSTOM">
+
+                        <div class="status-content">
+
+                            <h4>✏️ CUSTOM MESSAGE</h4>
+
+                            <p>Create your own announcement.</p>
+
+                        </div>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+            <div
+                class="form-group full"
+                id="customStatusBox"
+                style="display:none;">
+
+                    <label>Custom Status Message</label>
+
+                    <textarea
+
+                        id="ArenaStatusMessage"
+
+                        rows="5"
+
+                        placeholder="Type your own announcement...">
+
+                    </textarea>
 
             </div>
 
@@ -155,19 +236,7 @@
                 id="MaxPlayers"
                 type="number">
 
-            </div>
-
-            <div class="form-group full">
-
-                <label>Status Message</label>
-
-                <textarea
-                    id="ArenaStatusMessage"
-                    rows="4"
-                    placeholder="Example: We are closed today due to maintenance.">
-                </textarea>
-
-            </div>
+            </div>  
 
         </div>
 

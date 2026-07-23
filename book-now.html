@@ -30,736 +30,771 @@
     <!-- Navbar -->
     <div id="navbar"></div>
 
-    <!-- Main -->
+    <!-- Main -->   
 
 <main>
+    <div id="bookingContent">
+        <section class="booking-hero">
 
-    <section class="booking-hero">
+            <div class="booking-overlay"></div>
 
-        <div class="booking-overlay"></div>
+            <div class="booking-content">
 
-        <div class="booking-content">
+                <span class="section-tag">
 
-            <span class="section-tag">
+                    BOOK YOUR SESSION
 
-                BOOK YOUR SESSION
+                </span>
 
-            </span>
+                <h1>
 
-            <h1>
+                    Book Your
+                    <span>Practice Net.</span>
 
-                Book Your
-                <span>Practice Net.</span>
+                </h1>
 
-            </h1>
+                <p>
+
+                    Reserve your preferred practice slot in just a few steps.
+                    Choose your plan, select your time and get ready to play.
+
+                </p>
+
+                <div class="booking-buttons">
+
+                    <a href="#booking-form" class="btn-primary">
+
+                        Start Booking
+
+                    </a>
+
+                    <a href="pricing.html" class="btn-outline">
+
+                        View Pricing
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <div id="availabilityLoader" class="availability-loader">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+            <span>Checking Arena Availability...</span>
+        </div>
+
+        <div id="bookingBody" style="display:none;">
+
+        <section class="booking-steps">
+
+            <div class="steps-container">
+
+            <div class="step">
+
+            <div class="step-number">
+
+            1
+
+            </div>
+
+            <i class="fa-solid fa-list-check"></i>
+
+            <h3>
+
+            Choose Plan
+
+            </h3>
 
             <p>
 
-                Reserve your preferred practice slot in just a few steps.
-                Choose your plan, select your time and get ready to play.
+            Select 3, 5, 10 or 20 Overs.
 
             </p>
 
-            <div class="booking-buttons">
+            </div>
 
-                <a href="#booking-form" class="btn-primary">
+            <div class="step">
 
-                    Start Booking
+            <div class="step-number">
 
-                </a>
-
-                <a href="pricing.html" class="btn-outline">
-
-                    View Pricing
-
-                </a>
+            2
 
             </div>
 
-        </div>
+            <i class="fa-solid fa-calendar-days"></i>
 
-    </section>
+            <h3>
 
-    <section id="arenaStatusSection" class="arena-status-section">
+            Choose Slot
 
-        <div class="arena-status-card">
+            </h3>
 
-            <div id="arenaStatusIcon" class="arena-status-icon">
-                <i class="fa-solid fa-circle-xmark"></i>
-            </div>
+            <p>
 
-            <h1 id="arenaStatusTitle">
-                Arena Closed
-            </h1>
+            Select your preferred date and available time.
 
-            <p id="arenaStatusMessage">
-                We are currently not accepting bookings.
             </p>
 
-            <a href="index.html" class="arena-status-btn">
-                <i class="fa-solid fa-house"></i>
-                Back to Home
-            </a>
+            </div>
 
-        </div>
+            <div class="step">
 
-    </section>
+            <div class="step-number">
 
-    <section class="booking-steps">
-
-        <div class="steps-container">
-
-        <div class="step">
-
-        <div class="step-number">
-
-        1
-
-        </div>
-
-        <i class="fa-solid fa-list-check"></i>
-
-        <h3>
-
-        Choose Plan
-
-        </h3>
-
-        <p>
-
-        Select 3, 5, 10 or 20 Overs.
-
-        </p>
-
-        </div>
-
-        <div class="step">
-
-        <div class="step-number">
-
-        2
-
-        </div>
-
-        <i class="fa-solid fa-calendar-days"></i>
-
-        <h3>
-
-        Choose Slot
-
-        </h3>
-
-        <p>
-
-        Select your preferred date and available time.
-
-        </p>
-
-        </div>
-
-        <div class="step">
-
-        <div class="step-number">
-
-        3
-
-        </div>
-
-        <i class="fa-solid fa-circle-check"></i>
-
-        <h3>
-
-        Proceed to Payment
-
-        </h3>
-
-        <p>
-
-        Complete your booking instantly.
-
-        </p>
-
-        </div>
-
-        </div>
-
-    </section>
-
-    <section class="booking-section" id="booking-form">
-
-        <div class="booking-container">
-
-            <!-- LEFT -->
-            <div class="booking-left">
-
-                <!-- PLAN -->
-                <div class="booking-card">
-
-                    <h3>1. Choose Your Plan</h3>
-
-                    <div class="plan-grid">
-
-                        <label class="plan-option">
-                            <input
-                                type="radio"
-                                name="plan"
-                                data-price="199"
-                                data-plan="10 Overs"
-                                data-duration="20"
-                                checked>
-                            <span><strong>10 Overs ⭐</strong> ₹199 <br> (1 Player) <br><br> (20 mins)</span>
-                        </label>
-
-                        <label class="plan-option">
-                            <input
-                                type="radio"
-                                name="plan"
-                                data-price="75"
-                                data-plan="3 Overs"
-                                data-duration="10">
-                            <span><strong>3 Overs</strong> ₹75 <br> (1 Player) <br><br> (10 mins)</span>
-                        </label>
-
-                        <label class="plan-option">
-                            <input
-                                type="radio"
-                                name="plan"
-                                data-price="129"
-                                data-plan="5 Overs"
-                                data-duration="10">
-                            <span><strong>5 Overs</strong> ₹129 <br> (1 Player) <br><br> (10 mins)</span>
-                        </label>
-
-                        <label class="plan-option">
-                            <input
-                                type="radio"
-                                name="plan"
-                                data-price="349"
-                                data-plan="20 Overs"
-                                data-duration="30">
-                            <span><strong>20 Overs</strong> ₹349 <br> (Max 3 Players) <br><br> (30 mins)</span>
-                        </label>
-
-                    </div>
-
-                </div>
-
-                <!-- DATE -->
-                <div class="booking-card">
-
-                    <h3>2. Select Date</h3>
-
-                    <input type="date" id="bookingDate">
-
-                </div>
-
-                <!-- SLOT -->
-                <div class="booking-card">
-
-                    <h3>3. Available Time Slots</h3>
-
-                    <div id="slotContainer"></div>
-
-                </div>
-
-                <!-- CUSTOMER -->
-                <div class="booking-card">
-
-                    <h3>Customer Details</h3>
-
-                    <input
-                        type="text"
-                        id="customerName"
-                        placeholder="Full Name">
-
-                    <input
-                        type="tel"
-                        id="customerPhone"
-                        placeholder="Phone Number">
-
-                    <div class="player-group">
-
-                        <label for="players">
-                            Number of Players
-                        </label>
-
-                        <select id="players">
-
-                            <option value="1" selected>1 Player</option>
-
-                            <option value="2" disabled>2 Players</option>
-
-                            <option value="3" disabled>3 Players</option>
-
-                        </select>
-
-                    </div>
-
-                    <textarea
-                        id="customerNotes"
-                        placeholder="Special Request (Optional)"></textarea>
-
-                </div>
+            3
 
             </div>
 
-            <!-- RIGHT -->
-            <aside class="booking-summary">
+            <i class="fa-solid fa-circle-check"></i>
 
-                <h2>
+            <h3>
 
-                    Booking Summary
+            Proceed to Payment
 
-                </h2>
+            </h3>
 
-                <div class="summary-row">
+            <p>
 
-                    <span>Plan</span>
+            Complete your booking instantly.
 
-                    <strong id="summaryPlan">
+            </p>
 
-                        10 Overs
+            </div>
 
-                    </strong>
+            </div>
 
-                </div>
+        </section>
 
-                <div class="summary-row">
+        <section class="booking-section" id="booking-form">
 
-                    <span>Price</span>
+            <div class="booking-container">
 
-                    <strong id="summaryPrice">
+                <!-- LEFT -->
+                <div class="booking-left">
 
-                        ₹199
+                    <!-- PLAN -->
+                    <div class="booking-card">
 
-                    </strong>
+                        <h3>1. Choose Your Plan</h3>
 
-                </div>
+                        <div class="plan-grid">
 
-                <div class="promo-box">
+                            <label class="plan-option">
+                                <input
+                                    type="radio"
+                                    name="plan"
+                                    data-price="199"
+                                    data-plan="10 Overs"
+                                    data-duration="20"
+                                    checked>
+                                <span><strong>10 Overs ⭐</strong> ₹199 <br> (1 Player) <br><br> (20 mins)</span>
+                            </label>
 
-                    <label>
+                            <label class="plan-option">
+                                <input
+                                    type="radio"
+                                    name="plan"
+                                    data-price="75"
+                                    data-plan="3 Overs"
+                                    data-duration="10">
+                                <span><strong>3 Overs</strong> ₹75 <br> (1 Player) <br><br> (10 mins)</span>
+                            </label>
 
-                        Promo Code
+                            <label class="plan-option">
+                                <input
+                                    type="radio"
+                                    name="plan"
+                                    data-price="129"
+                                    data-plan="5 Overs"
+                                    data-duration="10">
+                                <span><strong>5 Overs</strong> ₹129 <br> (1 Player) <br><br> (10 mins)</span>
+                            </label>
 
-                    </label>
+                            <label class="plan-option">
+                                <input
+                                    type="radio"
+                                    name="plan"
+                                    data-price="349"
+                                    data-plan="20 Overs"
+                                    data-duration="30">
+                                <span><strong>20 Overs</strong> ₹349 <br> (Max 3 Players) <br><br> (30 mins)</span>
+                            </label>
 
-                    <div class="promo-input">
+                        </div>
+
+                    </div>
+
+                    <!-- DATE -->
+                    <div class="booking-card">
+
+                        <h3>2. Select Date</h3>
+
+                        <input type="date" id="bookingDate">
+
+                    </div>
+
+                    <!-- SLOT -->
+                    <div class="booking-card">
+
+                        <h3>3. Available Time Slots</h3>
+
+                        <div id="slotContainer"></div>
+
+                    </div>
+
+                    <!-- CUSTOMER -->
+                    <div class="booking-card">
+
+                        <h3>Customer Details</h3>
 
                         <input
                             type="text"
-                            id="promoCode"
-                            placeholder="Enter Promo Code">
+                            id="customerName"
+                            placeholder="Full Name">
 
-                        <button
-                            type="button"
-                            id="applyPromo">
+                        <input
+                            type="tel"
+                            id="customerPhone"
+                            placeholder="Phone Number">
 
-                            Apply
+                        <div class="player-group">
 
-                        </button>
+                            <label for="players">
+                                Number of Players
+                            </label>
 
-                    </div>
+                            <select id="players">
 
-                    <small id="promoMessage">
+                                <option value="1" selected>1 Player</option>
 
-                        Have a promo code? Apply it here.
+                                <option value="2" disabled>2 Players</option>
 
-                    </small>
+                                <option value="3" disabled>3 Players</option>
 
-                    <div class="promo-available">
-
-                        <div class="promo-info">
-
-                            <i class="fa-solid fa-tags"></i>
-
-                            <span id="promoCount">
-
-                                Loading Offers...
-
-                            </span>
+                            </select>
 
                         </div>
 
-                        <button
-                            type="button"
-                            id="viewPromos">
-
-                            View Offers
-
-                        </button>
+                        <textarea
+                            id="customerNotes"
+                            placeholder="Special Request (Optional)"></textarea>
 
                     </div>
 
                 </div>
 
-                <div class="booking-card">
+                <!-- RIGHT -->
+                <aside class="booking-summary">
 
-                    <div class="booking-card-header">
+                    <h2>
 
-                        <div>
+                        Booking Summary
 
-                            <h3>Equipment Rental</h3>
+                    </h2>
 
-                            <p class="booking-subtitle">
+                    <div class="summary-row">
 
-                                Safety equipment is compulsory while using the bowling machine.
+                        <span>Plan</span>
 
-                            </p>
+                        <strong id="summaryPlan">
 
-                        </div>
+                            10 Overs
 
-                        <span class="equipment-badge">
-
-                            OPTIONAL
-
-                        </span>
+                        </strong>
 
                     </div>
 
-                    <label class="equipment-card">
+                    <div class="summary-row">
 
-                        <input type="checkbox" id="equipment">
+                        <span>Price</span>
 
-                        <div class="equipment-left">
+                        <strong id="summaryPrice">
 
-                            <div class="equipment-check">
+                            ₹199
 
-                                <i class="fa-solid fa-check"></i>
+                        </strong>
+
+                    </div>
+
+                    <div class="promo-box">
+
+                        <label>
+
+                            Promo Code
+
+                        </label>
+
+                        <div class="promo-input">
+
+                            <input
+                                type="text"
+                                id="promoCode"
+                                placeholder="Enter Promo Code">
+
+                            <button
+                                type="button"
+                                id="applyPromo">
+
+                                Apply
+
+                            </button>
+
+                        </div>
+
+                        <small id="promoMessage">
+
+                            Have a promo code? Apply it here.
+
+                        </small>
+
+                        <div class="promo-available">
+
+                            <div class="promo-info">
+
+                                <i class="fa-solid fa-tags"></i>
+
+                                <span id="promoCount">
+
+                                    Loading Offers...
+
+                                </span>
 
                             </div>
 
-                            <div class="equipment-details">
+                            <button
+                                type="button"
+                                id="viewPromos">
 
-                                <h4>
+                                View Offers
 
-                                    Complete Safety Kit
+                            </button>
 
-                                </h4>
+                        </div>
 
-                                <p>
+                    </div>
 
-                                    Helmet • Gloves • Pads • Thigh Pad • L Guard
+                    <div class="booking-card">
+
+                        <div class="booking-card-header">
+
+                            <div>
+
+                                <h3>Equipment Rental</h3>
+
+                                <p class="booking-subtitle">
+
+                                    Safety equipment is compulsory while using the bowling machine.
 
                                 </p>
 
                             </div>
 
+                            <span class="equipment-badge">
+
+                                OPTIONAL
+
+                            </span>
+
                         </div>
 
-                        <div class="equipment-right">
+                        <label class="equipment-card">
 
+                            <input type="checkbox" id="equipment">
+
+                            <div class="equipment-left">
+
+                                <div class="equipment-check">
+
+                                    <i class="fa-solid fa-check"></i>
+
+                                </div>
+
+                                <div class="equipment-details">
+
+                                    <h4>
+
+                                        Complete Safety Kit
+
+                                    </h4>
+
+                                    <p>
+
+                                        Helmet • Gloves • Pads • Thigh Pad • L Guard
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                            <div class="equipment-right">
+
+                                <span>
+
+                                    ₹50
+
+                                </span>
+
+                                <small>
+
+                                    Per Session
+
+                                </small>
+
+                            </div>
+
+                        </label>
+
+                    </div>
+
+                    <div class="payment-summary-card">
+
+                        <div class="payment-title">
+
+                            <i class="fa-solid fa-wallet"></i>
+
+                            <span>Payment Summary</span>
+
+                        </div>
+
+                        <div class="payment-row">
+                            <span>Package</span>
+                            <strong id="summaryPrice">₹199</strong>
+                        </div>
+
+                        <div class="payment-row">
+                            <span>Equipment</span>
+                            <strong id="summaryEquipment">₹0</strong>
+                        </div>
+
+                        <div class="payment-row discount-row">
+                            <span>Promo Discount</span>
+                            <strong id="summaryDiscount">-₹0</strong>
+                        </div>
+
+                        <div class="payment-row">
+                            <span>Date</span>
+                            <strong id="summaryDate">--</strong>
+                        </div>
+
+                        <div class="payment-row">
+                            <span>Time</span>
+                            <strong id="summarySlot">--</strong>
+                        </div>
+
+                        <div id="summarySaving" class="summary-saving">
+                            🎉 You Saved ₹0
+                        </div>
+
+                        <div class="payment-divider"></div>
+
+                        <!-- Optional -->
+                        <div class="payment-row gateway-row">
                             <span>
+                                Convenience Fee
+                                <i class="fa-solid fa-circle-info"></i>
+                            </span>
+                            <strong id="gatewayFee">₹0</strong>
+                        </div>
 
-                                ₹50
+                        <div class="payment-total">
+
+                            <span>Total Payable</span>
+
+                            <strong id="summaryTotal">₹199</strong>
+
+                        </div>
+
+                    </div>
+
+                    <p class="summary-note">
+
+                        ✔ Taxes included. Final amount will be shown before payment.
+
+                    </p>
+
+                    <div class="checkout-security">
+
+                        <div class="secure-item">
+
+                            <i class="fa-solid fa-shield-halved"></i>
+
+                            <span>100% Secure Payment</span>
+
+                        </div>
+
+                        <div class="secure-item">
+
+                            <i class="fa-solid fa-circle-check"></i>
+
+                            <span>Instant Confirmation</span>
+
+                        </div>
+
+                    </div>
+
+                    <button class="booking-btn">
+
+                        <div class="pay-left">
+
+                            <span class="pay-price" id="buttonAmount">
+
+                                ₹199
 
                             </span>
 
                             <small>
 
-                                Per Session
+                                Secure Checkout
 
                             </small>
 
                         </div>
 
-                    </label>
+                        <div class="pay-right">
 
-                </div>
+                            Pay Now
 
-                <div class="payment-summary-card">
+                            <i class="fa-solid fa-arrow-right"></i>
 
-                    <div class="payment-title">
+                        </div>
 
-                        <i class="fa-solid fa-wallet"></i>
-
-                        <span>Payment Summary</span>
-
-                    </div>
-
-                    <div class="payment-row">
-                        <span>Package</span>
-                        <strong id="summaryPrice">₹199</strong>
-                    </div>
-
-                    <div class="payment-row">
-                        <span>Equipment</span>
-                        <strong id="summaryEquipment">₹0</strong>
-                    </div>
-
-                    <div class="payment-row discount-row">
-                        <span>Promo Discount</span>
-                        <strong id="summaryDiscount">-₹0</strong>
-                    </div>
-
-                    <div class="payment-row">
-                        <span>Date</span>
-                        <strong id="summaryDate">--</strong>
-                    </div>
-
-                    <div class="payment-row">
-                        <span>Time</span>
-                        <strong id="summarySlot">--</strong>
-                    </div>
-
-                    <div id="summarySaving" class="summary-saving">
-                        🎉 You Saved ₹0
-                    </div>
-
-                    <div class="payment-divider"></div>
-
-                    <!-- Optional -->
-                    <div class="payment-row gateway-row">
-                        <span>
-                            Convenience Fee
-                            <i class="fa-solid fa-circle-info"></i>
-                        </span>
-                        <strong id="gatewayFee">₹0</strong>
-                    </div>
-
-                    <div class="payment-total">
-
-                        <span>Total Payable</span>
-
-                        <strong id="summaryTotal">₹199</strong>
-
-                    </div>
-
-                </div>
-
-                <p class="summary-note">
-
-                    ✔ Taxes included. Final amount will be shown before payment.
-
-                </p>
-
-                <div class="checkout-security">
-
-                    <div class="secure-item">
-
-                        <i class="fa-solid fa-shield-halved"></i>
-
-                        <span>100% Secure Payment</span>
-
-                    </div>
-
-                    <div class="secure-item">
-
-                        <i class="fa-solid fa-circle-check"></i>
-
-                        <span>Instant Confirmation</span>
-
-                    </div>
-
-                </div>
-
-                <button class="booking-btn">
-
-                    <div class="pay-left">
-
-                        <span class="pay-price" id="buttonAmount">
-
-                            ₹199
-
-                        </span>
-
-                        <small>
-
-                            Secure Checkout
-
-                        </small>
-
-                    </div>
-
-                    <div class="pay-right">
-
-                        Pay Now
-
-                        <i class="fa-solid fa-arrow-right"></i>
-
-                    </div>
-
-                </button>
+                    </button>
 
 
-            </aside>
-
-        </div>
-
-        <!-- PAYMENT INFO -->
-        <div class="booking-card payment-info-card">
-
-            <div class="payment-info-icon">
-
-                <i class="fa-solid fa-shield-halved"></i>
+                </aside>
 
             </div>
 
-            <h3>Secure Online Payment</h3>
+            <!-- PAYMENT INFO -->
+            <div class="booking-card payment-info-card">
 
-            <p>
-
-                All bookings are confirmed only after successful online payment through our secure Razorpay payment gateway.
-
-            </p>
-
-            <ul class="payment-features">
-
-                <li>
-                    <i class="fa-solid fa-circle-check"></i>
-                    Instant Booking Confirmation
-                </li>
-
-                <li>
-                    <i class="fa-solid fa-circle-check"></i>
-                    100% Secure Payment
-                </li>
-
-                <li>
-                    <i class="fa-solid fa-circle-check"></i>
-                    UPI • Cards • Net Banking • Wallets
-                </li>
-
-                <li>
-                    <i class="fa-solid fa-circle-check"></i>
-                    GST Included
-                </li>
-
-            </ul>
-
-        </div>
-
-        <!-- BOOKING POLICY -->
-        <div class="booking-card booking-policy-card">
-
-            <h3>Booking Policy</h3>
-
-            <div class="policy-grid">
-
-                <div class="policy-item">
-
-                    <div class="policy-icon">
-
-                        <i class="fa-solid fa-clock"></i>
-
-                    </div>
-
-                    <div>
-
-                        <h4>Arrive Early</h4>
-
-                        <p>Reach the arena at least 10 minutes before your booking.</p>
-
-                    </div>
-
-                </div>
-
-                <div class="policy-item">
-
-                    <div class="policy-icon">
-
-                        <i class="fa-solid fa-helmet-safety"></i>
-
-                    </div>
-
-                    <div>
-
-                        <h4>Safety First</h4>
-
-                        <p>Safety equipment is compulsory while using the bowling machine.</p>
-
-                    </div>
-
-                </div>
-
-                <div class="policy-item">
-
-                    <div class="policy-icon">
-
-                        <i class="fa-solid fa-calendar-check"></i>
-
-                    </div>
-
-                    <div>
-
-                        <h4>Reschedule</h4>
-
-                        <p>Rescheduling is subject to slot availability.</p>
-
-                    </div>
-
-                </div>
-
-                <div class="policy-item">
-
-                    <div class="policy-icon">
-
-                        <i class="fa-solid fa-star"></i>
-
-                    </div>
-
-                    <div>
-
-                        <h4>Loyalty Rewards</h4>
-
-                        <p>Loyalty points are credited after every successful booking.</p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- WHY BOOK WITH US -->
-        <div class="booking-card trust-card">
-
-            <div class="trust-header">
-
-                <span>WHY BOOK WITH US</span>
-
-                <h3>Trusted by Thousands of Cricket Players</h3>
-
-            </div>
-
-            <div class="trust-grid">
-
-                <div class="trust-box">
+                <div class="payment-info-icon">
 
                     <i class="fa-solid fa-shield-halved"></i>
 
-                    <h4>Secure Booking</h4>
-
-                    <p>Safe and secure online payments powered by Razorpay.</p>
-
                 </div>
 
-                <div class="trust-box">
+                <h3>Secure Online Payment</h3>
 
-                    <i class="fa-solid fa-bolt"></i>
+                <p>
 
-                    <h4>Instant Confirmation</h4>
+                    All bookings are confirmed only after successful online payment through our secure Razorpay payment gateway.
 
-                    <p>Your booking is confirmed immediately after successful payment.</p>
+                </p>
 
-                </div>
+                <ul class="payment-features">
 
-                <div class="trust-box">
+                    <li>
+                        <i class="fa-solid fa-circle-check"></i>
+                        Instant Booking Confirmation
+                    </li>
 
-                    <i class="fa-solid fa-users"></i>
+                    <li>
+                        <i class="fa-solid fa-circle-check"></i>
+                        100% Secure Payment
+                    </li>
 
-                    <h4>5000+ Happy Players</h4>
+                    <li>
+                        <i class="fa-solid fa-circle-check"></i>
+                        UPI • Cards • Net Banking • Wallets
+                    </li>
 
-                    <p>Trusted by thousands of cricketers across Guwahati.</p>
+                    <li>
+                        <i class="fa-solid fa-circle-check"></i>
+                        GST Included
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <!-- BOOKING POLICY -->
+            <div class="booking-card booking-policy-card">
+
+                <h3>Booking Policy</h3>
+
+                <div class="policy-grid">
+
+                    <div class="policy-item">
+
+                        <div class="policy-icon">
+
+                            <i class="fa-solid fa-clock"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h4>Arrive Early</h4>
+
+                            <p>Reach the arena at least 10 minutes before your booking.</p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="policy-item">
+
+                        <div class="policy-icon">
+
+                            <i class="fa-solid fa-helmet-safety"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h4>Safety First</h4>
+
+                            <p>Safety equipment is compulsory while using the bowling machine.</p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="policy-item">
+
+                        <div class="policy-icon">
+
+                            <i class="fa-solid fa-calendar-check"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h4>Reschedule</h4>
+
+                            <p>Rescheduling is subject to slot availability.</p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="policy-item">
+
+                        <div class="policy-icon">
+
+                            <i class="fa-solid fa-star"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h4>Loyalty Rewards</h4>
+
+                            <p>Loyalty points are credited after every successful booking.</p>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
             </div>
 
-        </div>
+            <!-- WHY BOOK WITH US -->
+            <div class="booking-card trust-card">
 
-    </section>
+                <div class="trust-header">
+
+                    <span>WHY BOOK WITH US</span>
+
+                    <h3>Trusted by Thousands of Cricket Players</h3>
+
+                </div>
+
+                <div class="trust-grid">
+
+                    <div class="trust-box">
+
+                        <i class="fa-solid fa-shield-halved"></i>
+
+                        <h4>Secure Booking</h4>
+
+                        <p>Safe and secure online payments powered by Razorpay.</p>
+
+                    </div>
+
+                    <div class="trust-box">
+
+                        <i class="fa-solid fa-bolt"></i>
+
+                        <h4>Instant Confirmation</h4>
+
+                        <p>Your booking is confirmed immediately after successful payment.</p>
+
+                    </div>
+
+                    <div class="trust-box">
+
+                        <i class="fa-solid fa-users"></i>
+
+                        <h4>5000+ Happy Players</h4>
+
+                        <p>Trusted by thousands of cricketers across Guwahati.</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+        </div>
+    </div>
+
+        <section id="arenaStatusSection" class="arena-status-section">
+
+            <div class="arena-status-card">
+
+                <div id="arenaStatusIcon" class="arena-status-icon">
+
+                    <img
+                        src="assets/images/logo.jpeg"
+                        alt="100Miles Cricket Arena">
+
+                </div>
+
+                <span class="arena-status-badge">
+                    100Miles Cricket Arena
+                </span>
+
+                <h1 id="arenaStatusTitle">
+                    Arena Closed
+                </h1>
+
+                <p id="arenaStatusMessage">
+                    We are currently not accepting online bookings.
+                </p>
+
+                <div class="arena-status-buttons">
+
+                    <a href="index.html" class="arena-status-btn home">
+
+                        <i class="fa-solid fa-house"></i>
+
+                        Back to Home
+
+                    </a>
+
+                    <a
+                        href="https://wa.me/91XXXXXXXXXX"
+                        target="_blank"
+                        class="arena-status-btn call">
+
+                        <i class="fa-brands fa-whatsapp"></i>
+
+                        WhatsApp Us
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
 
 
 </main>

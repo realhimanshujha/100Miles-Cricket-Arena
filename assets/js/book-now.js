@@ -494,41 +494,47 @@ async function checkArenaStatus(){
 
     try{
 
-        const response = await fetch(`${API_URL}?action=getSettings`);
+        const response = await fetch(`${API_URL}?action=getSettings&t=${Date.now()}`);
 
         const result = await response.json();
 
-        if(!result.success) return;
+        if(!result.success){
 
-        const settings = result.settings;
-
-        if(settings.ArenaStatus === "OPEN"){
-
-            arenaOpen = true;
-
+            document.getElementById("pageLoader").style.display="none";
             return;
 
         }
 
+        const settings = result.settings;
+
+        // =========================
+        // OPEN
+        // =========================
+        if (settings.ArenaStatus === "OPEN") {
+
+            arenaOpen = true;
+
+            document.getElementById("availabilityLoader").style.display = "none";
+
+            document.getElementById("bookingBody").style.display = "block";
+
+            return;
+        }
+
+        // =========================
+        // CLOSED / MAINTENANCE / PRIVATE EVENT
+        // =========================
+
         arenaOpen = false;
 
-        document.querySelector(".booking-steps").style.display = "none";
+        document.getElementById("availabilityLoader").style.display = "none";
 
-        document.querySelector(".booking-section").style.display = "none";
+        document.getElementById("bookingBody").style.display = "none";
 
-        const statusSection =
-            document.getElementById("arenaStatusSection");
+        document.getElementById("arenaStatusSection").classList.add("show");
 
-        statusSection.classList.add("show");
-
-        const title =
-            document.getElementById("arenaStatusTitle");
-
-        const message =
-            document.getElementById("arenaStatusMessage");
-
-        const icon =
-            document.getElementById("arenaStatusIcon");
+        const title = document.getElementById("arenaStatusTitle");
+        const message = document.getElementById("arenaStatusMessage");
 
         message.textContent =
             settings.ArenaStatusMessage ||
@@ -537,51 +543,26 @@ async function checkArenaStatus(){
         switch(settings.ArenaStatus){
 
             case "CLOSED":
-
-                title.textContent="Arena Closed";
-
-                icon.innerHTML =
-                '<i class="fa-solid fa-circle-xmark"></i>';
-
-                icon.style.background="#401010";
-
-                icon.style.color="#ff4d4d";
-
-            break;
+                title.textContent = "Arena Closed";
+                break;
 
             case "MAINTENANCE":
-
-                title.textContent="Under Maintenance";
-
-                icon.innerHTML =
-                '<i class="fa-solid fa-screwdriver-wrench"></i>';
-
-                icon.style.background="#3f3100";
-
-                icon.style.color="#FFC107";
-
-            break;
+                title.textContent = "Under Maintenance";
+                break;
 
             case "PRIVATE EVENT":
-
-                title.textContent="Private Event";
-
-                icon.innerHTML =
-                '<i class="fa-solid fa-trophy"></i>';
-
-                icon.style.background="#3d2d00";
-
-                icon.style.color="#ff9800";
-
-            break;
-
+                title.textContent = "Private Event";
+                break;
         }
 
     }
-
     catch(err){
 
         console.error(err);
+
+        document.getElementById("availabilityLoader").style.display = "none";
+
+        document.getElementById("bookingBody").style.display = "block";
 
     }
 
@@ -589,24 +570,17 @@ async function checkArenaStatus(){
 
 async function initializeBookingPage(){
 
-    await checkArenaStatus();
-
-    if(!arenaOpen){
-
-        return;
-
-    }
+    document.getElementById("bookingContent").style.display = "block";
 
     const today = getLocalDate();
 
     bookingDate.min = today;
-
     bookingDate.value = today;
-
     summaryDate.textContent = today;
 
     updateSlotTiming();
 
+    checkArenaStatus();
 }
 
 initializeBookingPage();
