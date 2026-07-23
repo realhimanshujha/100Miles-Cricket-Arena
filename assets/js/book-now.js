@@ -11,6 +11,9 @@ document.getElementById("customerName");
 const customerPhone =
 document.getElementById("customerPhone");
 
+const customerEmail =
+document.getElementById("customerEmail");
+
 const customerNotes =
 document.getElementById("customerNotes");
 
@@ -672,6 +675,17 @@ function validateBooking(){
 
     }
 
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customerEmail.value.trim())){
+
+        showError(
+            "Invalid Email",
+            "Please enter a valid email address."
+        );
+
+        customerEmail.focus();
+        return false;
+    }
+
     if(!bookingDate.value){
 
         showError(
@@ -884,6 +898,8 @@ async function submitBooking(
         name: customerName.value.trim(),
 
         phone: customerPhone.value.trim(),
+
+        email: customerEmail.value.trim(),
 
         date: bookingDate.value,
 
