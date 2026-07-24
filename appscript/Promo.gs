@@ -1,6 +1,6 @@
 function createPromocode(data){
 
-  Logger.log(data);
+  Logger.log(JSON.stringify(data));
 
   const sheet = getSheet("Promocodes");
 
@@ -30,18 +30,20 @@ function createPromocode(data){
   }
 
   sheet.appendRow([
-    data.code,
-    data.type,
-    data.value,
-    data.minBooking,
-    data.maxDiscount,
-    data.usage,
-    data.usageLimit,
-    data.expiry,
-    data.status,
-    new Date(),
-    "Admin",
-    data.paymentRule
+
+      data.code,
+      data.type,
+      data.value,
+      data.minBooking,
+      data.maxDiscount,
+      0,
+      data.usageLimit,
+      data.expiry,
+      data.status,
+      new Date(),
+      "Admin",
+      data.paymentRule || "Any"
+
   ]);
 
   return {
@@ -78,8 +80,7 @@ function getPromocodes() {
       expiry: data[i][7],
       status: data[i][8],
       createdAt: data[i][9],
-      createdBy: data[i][10],
-      paymentRule: data[i][11]
+      createdBy: data[i][10]
 
     });
 
@@ -136,7 +137,6 @@ function updatePromocode(data){
   sheet.getRange(data.row,7).setValue(data.usageLimit);
   sheet.getRange(data.row,8).setValue(data.expiry);
   sheet.getRange(data.row,9).setValue(data.status);
-  sheet.getRange(data.row,12).setValue(data.paymentRule);
 
   return{
 
@@ -224,8 +224,6 @@ function applyPromocode(code, amount){
 
     const status = String(rows[i][8]).trim();
 
-    const paymentRule = String(rows[i][11]).trim();
-
     if(status !== "Active"){
 
       return{
@@ -284,15 +282,17 @@ function applyPromocode(code, amount){
 
     return{
 
-      success:true,
+        success:true,
 
-      discount:discount,
+        discount:Number(discount.toFixed(2)),
 
-      finalAmount:finalAmount,
+        finalAmount:Number(finalAmount.toFixed(2)),
 
-      paymentRule:paymentRule,
+        paymentRule:String(rows[i][11]).trim() || "Any",
 
-      message:"Promo Applied Successfully"
+        isRewardCoupon:false,
+
+        message:"Promo Applied Successfully"
 
     };
 
@@ -390,17 +390,17 @@ function applyPromocode(code, amount){
 
       return{
 
-          success:true,
+        success:true,
 
           isRewardCoupon:true,
 
-          row:i+1,
-
           reward:reward,
 
-          discount:discount,
+          paymentRule:"Any",
 
-          finalAmount:Math.max(0,finalAmount),
+          discount:Number(discount.toFixed(2)),
+
+          finalAmount:Number(finalAmount.toFixed(2)),
 
           message:"Reward Coupon Applied"
 

@@ -378,6 +378,37 @@
 
     }
 
+    if(action=="getSettings"){
+
+        return output({
+
+            success:true,
+
+            settings:getSettings()
+
+        });
+
+    }
+
+    if(action=="saveSettings"){
+
+        const data = JSON.parse(e.parameter.data);
+
+        Object.keys(data).forEach(key=>{
+
+            setSetting(key,data[key]);
+
+        });
+
+        return output({
+
+            success:true,
+            message:"Settings Saved"
+
+        });
+
+    }
+
     // ==========================
     // Invalid Action
     // ==========================
@@ -783,7 +814,7 @@ return ContentService
 
 function searchCard(e){
 
-  const cardNo = String(e.parameter.cardNo).trim();
+  const keyword = String(e.parameter.cardNo).trim();
 
   const sheet =
   SpreadsheetApp
@@ -797,7 +828,10 @@ function searchCard(e){
 
   for(let i=1;i<data.length;i++){
 
-    if(String(data[i][0]).trim()==cardNo){
+    const cardNumber = String(data[i][0]).trim();
+    const phone = String(data[i][2]).trim();
+
+    if(cardNumber === keyword || phone === keyword){
 
       let status = String(data[i][5]).trim();
 
@@ -1294,21 +1328,38 @@ function renewCard(e){
 
 function addLoyaltyPointsByPhone(phone, plan){
 
-  const sheet = getSheet("Loyalty");
-  const rows = sheet.getDataRange().getValues();
+  const settings = getSettings();
 
   const pointsMap = {
-    "3 Overs": 1,
-    "5 Overs": 2,
-    "10 Overs": 4,
-    "20 Overs": 8
+
+    "3 Overs": Number(settings.Loyalty3Overs || 1),
+
+    "5 Overs": Number(settings.Loyalty5Overs || 2),
+
+    "10 Overs": Number(settings.Loyalty10Overs || 4),
+
+    "20 Overs": Number(settings.Loyalty20Overs || 8)
+
   };
 
   const points = pointsMap[plan] || 0;
 
   if(points === 0){
-    return;
+
+    return {
+
+      success:false,
+
+      points:0,
+
+      message:"Invalid plan."
+
+    };
+
   }
+
+  const sheet = getSheet("Loyalty");
+  const rows = sheet.getDataRange().getValues();
 
   for(let i = 1; i < rows.length; i++){
 
@@ -1323,13 +1374,17 @@ function addLoyaltyPointsByPhone(phone, plan){
       const currentPoints = Number(rows[i][3]) || 0;
       const totalEarned = Number(rows[i][4]) || 0;
 
-      sheet.getRange(i+1,4).setValue(currentPoints + points);
-      sheet.getRange(i+1,5).setValue(totalEarned + points);
+      sheet.getRange(i + 1, 4).setValue(currentPoints + points);
+      sheet.getRange(i + 1, 5).setValue(totalEarned + points);
 
       return {
-          success: true,
-          points: points,
-          message: `${points} loyalty points added.`
+
+        success:true,
+
+        points:points,
+
+        message:`${points} loyalty points added.`
+
       };
 
     }
@@ -1337,9 +1392,13 @@ function addLoyaltyPointsByPhone(phone, plan){
   }
 
   return {
-      success: false,
-      points: 0,
-      message: "No active loyalty card found."
+
+    success:false,
+
+    points:0,
+
+    message:"No active loyalty card found."
+
   };
 
 }
