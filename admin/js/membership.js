@@ -128,12 +128,13 @@ function saveMembership(){
 
     const name = document.getElementById("memberName").value.trim();
     const phone = document.getElementById("memberPhone").value.trim();
+    const email = document.getElementById("memberEmail").value.trim();
     const plan = document.getElementById("memberPlan").value;
     const joinDate = document.getElementById("memberJoinDate").value;
     const expiryDate = document.getElementById("memberExpiryDate").value;
     const amount = document.getElementById("memberAmount").value;
 
-    if(!name || !phone || !plan || !joinDate){
+    if(!name || !phone || !email || !plan || !joinDate){
 
         Swal.fire(
             "Missing Details",
@@ -151,7 +152,8 @@ function saveMembership(){
         `&plan=${encodeURIComponent(plan)}` +
         `&joinDate=${joinDate}` +
         `&expiryDate=${expiryDate}` +
-        `&amount=${amount}`;
+        `&amount=${amount}` +
+        `&email=${encodeURIComponent(email)}`;
 
     fetch(url)
 
@@ -203,6 +205,7 @@ function clearMembershipForm(){
     document.getElementById("memberOversPerDay").value="";
     document.getElementById("memberTotalOvers").value="";
     document.getElementById("memberStatus").value="Active";
+    document.getElementById("memberEmail").value = "";
 
 }
 
