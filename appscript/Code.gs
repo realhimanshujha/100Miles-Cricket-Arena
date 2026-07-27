@@ -158,7 +158,9 @@
 
                 e.parameter.code,
 
-                Number(e.parameter.amount)
+                Number(e.parameter.amount),
+                
+                e.parameter.plan
 
             )
 
@@ -248,6 +250,7 @@
 
                 name:e.parameter.name,
                 phone:e.parameter.phone,
+                email:e.parameter.email,
                 plan:e.parameter.plan,
                 joinDate:e.parameter.joinDate,
                 expiryDate:e.parameter.expiryDate,
@@ -406,6 +409,22 @@
             message:"Settings Saved"
 
         });
+
+    }
+
+    if(action=="verifyMembership"){
+
+        return output(
+
+            verifyMembership(
+
+                e.parameter.memberID,
+
+                e.parameter.phone
+
+            )
+
+        );
 
     }
 
@@ -572,6 +591,9 @@ function redeemReward(data){
 
         }
 
+        const customerName = rows[i][1];
+        const customerEmail = rows[i][9];
+
         let currentPoints = Number(rows[i][3]);
 
         if(currentPoints < requiredPoints){
@@ -617,6 +639,17 @@ function redeemReward(data){
             ""
 
         ]);
+
+        if (customerEmail) {
+            sendRewardEmail(
+                customerEmail,
+                customerName,
+                cardNo,
+                couponCode,
+                reward,
+                expiry
+            );
+        }
 
         return{
 
@@ -690,6 +723,482 @@ function generateCouponCode(){
     }
 
     return code;
+
+}
+
+function sendRewardEmail(email, customerName, cardNo, couponCode, reward, expiry){
+
+  const expiryDate = Utilities.formatDate(
+    expiry,
+    Session.getScriptTimeZone(),
+    "dd MMM yyyy"
+  );
+
+  const rewardName = {
+    "OFF15":"15% OFF on One Booking",
+    "FREE5":"FREE 5 Overs Session",
+    "FREE10":"FREE 10 Overs Session",
+    "FREE20":"FREE 20 Overs Session"
+  }[reward] || reward;
+
+  const subject = "🎉 Your 100Miles Cricket Arena Reward Coupon";
+
+  const html = `
+  <!DOCTYPE html>
+  <html>
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  </head>
+
+  <body style="margin:0;padding:0;background:#f2f4f7;font-family:Arial,Helvetica,sans-serif;">
+
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f2f4f7;padding:25px 10px;">
+  <tr>
+  <td align="center">
+
+  <table role="presentation" cellpadding="0" cellspacing="0"
+  style="
+  max-width:700px;
+  width:100%;
+  background:#ffffff;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 8px 25px rgba(0,0,0,.12);
+  ">
+
+  <!-- HEADER -->
+
+  <tr>
+
+  <td
+  style="
+  background:#111111;
+  padding:40px 20px;
+  text-align:center;
+  ">
+
+  <img
+  src="https://raw.githubusercontent.com/realhimanshujha/100Miles-Cricket-Arena/main/assets/images/logo.jpeg"
+  alt="100Miles Cricket Arena"
+  style="
+  display:block;
+  margin:auto;
+  width:170px;
+  max-width:65%;
+  height:auto;
+  border-radius:16px;
+  background:#fff;
+  padding:8px;
+  ">
+
+  <h1 style="
+  margin:25px 0 10px;
+  color:#FFC107;
+  font-size:34px;
+  font-weight:bold;
+  ">
+
+  100Miles Cricket Arena
+
+  </h1>
+
+  <p style="
+  margin:0;
+  color:#dddddd;
+  font-size:16px;
+  line-height:28px;
+  ">
+
+  Train Hard. Play Better.
+
+  </p>
+
+  </td>
+
+  </tr>
+
+  <!-- HERO -->
+
+  <tr>
+
+  <td style="padding:40px 30px;">
+
+  <div style="
+  background:linear-gradient(135deg,#FFFDF2,#FFF2C6);
+  border-left:6px solid #FFC107;
+  border-radius:14px;
+  padding:28px;
+  ">
+
+  <h2 style="
+  margin:0;
+  color:#111;
+  font-size:30px;
+  ">
+
+  🎉 Congratulations ${customerName}!
+
+  </h2>
+
+  <p style="
+  margin-top:15px;
+  font-size:17px;
+  line-height:30px;
+  color:#555;
+  ">
+
+  You've successfully redeemed your loyalty reward.
+
+  Thank you for choosing <strong>100Miles Cricket Arena</strong>.
+
+  Your dedication on the pitch has earned you an exclusive reward.
+
+  Keep practicing and keep collecting loyalty points for even bigger rewards!
+
+  </p>
+
+  </div>
+
+  <!-- COUPON -->
+
+  <div
+  style="
+  margin-top:35px;
+  background:#111111;
+  border:3px dashed #FFC107;
+  border-radius:18px;
+  padding:35px;
+  text-align:center;
+  ">
+
+  <div style="
+  color:#FFC107;
+  font-size:15px;
+  letter-spacing:3px;
+  font-weight:bold;
+  ">
+
+  LOYALTY REWARD
+
+  </div>
+
+  <div style="
+  margin-top:15px;
+  color:#ffffff;
+  font-size:24px;
+  font-weight:bold;
+  ">
+
+  ${rewardName}
+
+  </div>
+
+  <div style="
+  margin:25px 0;
+  font-size:42px;
+  font-weight:900;
+  letter-spacing:5px;
+  color:#FFC107;
+  word-break:break-word;
+  ">
+
+  ${couponCode}
+
+  </div>
+
+  <div style="
+  display:inline-block;
+  padding:12px 26px;
+  background:#ffffff;
+  border-radius:40px;
+  font-size:17px;
+  font-weight:bold;
+  color:#111;
+  ">
+
+  Valid Until • ${expiryDate}
+
+  </div>
+
+  </div>
+
+  <!-- DETAILS -->
+
+  <table
+  width="100%"
+  cellpadding="0"
+  cellspacing="0"
+  style="
+  margin-top:35px;
+  border-collapse:collapse;
+  ">
+
+  <tr>
+
+  <td style="padding:16px;border-bottom:1px solid #ececec;">
+  🏏 <strong>Reward</strong>
+  </td>
+
+  <td
+  align="right"
+  style="padding:16px;border-bottom:1px solid #ececec;">
+
+  ${rewardName}
+
+  </td>
+
+  </tr>
+
+  <tr>
+
+  <td style="padding:16px;border-bottom:1px solid #ececec;">
+  🪪 <strong>Loyalty Card</strong>
+  </td>
+
+  <td
+  align="right"
+  style="padding:16px;border-bottom:1px solid #ececec;">
+
+  ${cardNo}
+
+  </td>
+
+  </tr>
+
+  <tr>
+
+  <td style="padding:16px;border-bottom:1px solid #ececec;">
+  📅 <strong>Expiry Date</strong>
+  </td>
+
+  <td
+  align="right"
+  style="
+  padding:16px;
+  border-bottom:1px solid #ececec;
+  color:#d32f2f;
+  font-weight:bold;
+  ">
+
+  ${expiryDate}
+
+  </td>
+
+  </tr>
+
+  </table>
+
+  <!-- NEXT STEPS -->
+
+  <div style="
+  margin-top:35px;
+  background:#fafafa;
+  padding:28px;
+  border-radius:14px;
+  ">
+
+  <h3 style="
+  margin-top:0;
+  color:#111;
+  ">
+
+  🏏 What's Next?
+
+  </h3>
+
+  <p style="
+  color:#555;
+  line-height:30px;
+  margin-bottom:0;
+  ">
+
+  ✅ Book your next cricket session
+
+  <br>
+
+  ✅ Apply this coupon during booking
+
+  <br>
+
+  ✅ Continue earning loyalty points
+
+  <br>
+
+  ✅ Unlock more exciting rewards
+
+  </p>
+
+  </div>
+
+  <!-- BUTTON -->
+
+  <div
+  style="
+  text-align:center;
+  margin:45px 0;
+  ">
+
+  <a
+  href="https://realhimanshujha.github.io/100Miles-Cricket-Arena/book-now.html"
+
+  style="
+  display:inline-block;
+  background:#FFC107;
+  color:#111111;
+  padding:18px 42px;
+  font-size:20px;
+  font-weight:bold;
+  text-decoration:none;
+  border-radius:50px;
+  ">
+
+  🏏 BOOK YOUR SESSION
+
+  </a>
+
+  </div>
+
+  <!-- TERMS -->
+
+  <div style="
+  background:#FFF8E1;
+  padding:28px;
+  border-radius:14px;
+  ">
+
+  <h3 style="
+  margin-top:0;
+  color:#111;
+  ">
+
+  📜 Terms & Conditions
+
+  </h3>
+
+  <ul style="
+  padding-left:22px;
+  line-height:30px;
+  color:#555;
+  margin-bottom:0;
+  ">
+
+  <li>Coupon is valid for one-time use only.</li>
+
+  <li>Coupon expires 7 days after issue.</li>
+
+  <li>Coupon cannot be exchanged for cash.</li>
+
+  <li>Coupon is non-transferable.</li>
+
+  <li>Present this coupon while booking.</li>
+
+  <li>Management reserves the right to refuse invalid coupons.</li>
+
+  </ul>
+
+  </div>
+
+  </td>
+
+  </tr>
+
+  <!-- FOOTER -->
+
+  <tr>
+
+  <td
+  style="
+  background:#111111;
+  padding:40px 25px;
+  text-align:center;
+  ">
+
+  <img
+  src="https://raw.githubusercontent.com/realhimanshujha/100Miles-Cricket-Arena/main/assets/images/logo.jpeg"
+
+  style="
+  width:90px;
+  height:auto;
+  border-radius:12px;
+  background:#ffffff;
+  padding:6px;
+  display:block;
+  margin:auto;
+  ">
+
+  <h2 style="
+  color:#FFC107;
+  margin:20px 0 10px;
+  ">
+
+  100Miles Cricket Arena
+
+  </h2>
+
+  <p style="
+  color:#dddddd;
+  line-height:28px;
+  margin:0;
+  ">
+
+  Train Hard. Play Better.
+
+  <br><br>
+
+  📍 Guwahati, Assam
+
+  <br>
+
+  🌐 realhimanshujha.github.io/100Miles-Cricket-Arena
+
+  </p>
+
+  <hr
+  style="
+  margin:30px 0;
+  border:none;
+  border-top:1px solid #333;
+  ">
+
+  <p style="
+  color:#888888;
+  font-size:13px;
+  line-height:24px;
+  margin:0;
+  ">
+
+  Thank you for being a valued member of the
+  <strong style="color:#FFC107;">
+  100Miles Cricket Arena
+  </strong> family.
+
+  <br><br>
+
+  © 2026 100Miles Cricket Arena.
+  All Rights Reserved.
+
+  </p>
+
+  </td>
+
+  </tr>
+
+  </table>
+
+  </td>
+  </tr>
+  </table>
+
+  </body>
+  </html>
+  `;
+
+  MailApp.sendEmail({
+    to: email,
+    subject: subject,
+    htmlBody: html
+  });
 
 }
 
@@ -972,6 +1481,7 @@ function createCard(e){
   const cardNo = String(e.parameter.cardNo).trim();
   const name = String(e.parameter.name).trim();
   const phone = String(e.parameter.phone).trim();
+  const email = String(e.parameter.email).trim();
 
   const sheet =
   SpreadsheetApp
@@ -1040,7 +1550,11 @@ function createCard(e){
 
     issueDate,
 
-    expiryDate
+    expiryDate,
+
+    "",
+
+    email
 
   ]);
 
@@ -1160,53 +1674,68 @@ message:"Card not found."
 
 }
 
-function getCouponHistory(e){
+function getCouponHistory(e) {
 
-const cardNo = e.parameter.cardNo;
+  const cardNo = String(e.parameter.cardNo || "").trim();
 
-const sheet =
-SpreadsheetApp
-.getActiveSpreadsheet()
-.getSheetByName("PromoCodes");
+  const sheet = SpreadsheetApp
+    .getActiveSpreadsheet()
+    .getSheetByName("RedeemedCoupons");
 
-const data =
-sheet.getDataRange().getValues();
+  if (!sheet) {
+    return ContentService
+      .createTextOutput(JSON.stringify([]))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
 
-const history=[];
+  const data = sheet.getDataRange().getValues();
+  const history = [];
 
-for(let i=1;i<data.length;i++){
+  for (let i = 1; i < data.length; i++) {
 
-if(String(data[i][1]).trim()==cardNo){
+    if (String(data[i][1]).trim() === cardNo) {
 
-history.push({
+      history.push({
 
-    coupon: data[i][0],
+        coupon: data[i][0],          // Coupon Code
+        reward: data[i][3],          // Reward
+        status: data[i][5],          // Used / Unused
 
-    reward: data[i][4],      // Reward Name
+        created: data[i][6]
+          ? Utilities.formatDate(
+              new Date(data[i][6]),
+              Session.getScriptTimeZone(),
+              "dd-MMM-yyyy HH:mm"
+            )
+          : "",
 
-    status: data[i][5],      // Unused / Used
+        expiry: data[i][7]
+          ? Utilities.formatDate(
+              new Date(data[i][7]),
+              Session.getScriptTimeZone(),
+              "dd-MMM-yyyy HH:mm"
+            )
+          : "",
 
-    date: Utilities.formatDate(
+        usedAt: data[i][8]
+          ? Utilities.formatDate(
+              new Date(data[i][8]),
+              Session.getScriptTimeZone(),
+              "dd-MMM-yyyy HH:mm"
+            )
+          : ""
 
-        new Date(data[i][6]),
+      });
 
-        Session.getScriptTimeZone(),
+    }
 
-        "dd-MMM-yyyy HH:mm"
+  }
 
-    )
+  history.reverse();
 
-});
-
-}
-
-}
-
-return ContentService
-
-.createTextOutput(JSON.stringify(history))
-
-.setMimeType(ContentService.MimeType.JSON);
+  return ContentService
+    .createTextOutput(JSON.stringify(history))
+    .setMimeType(ContentService.MimeType.JSON);
 
 }
 

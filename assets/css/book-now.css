@@ -3171,3 +3171,88 @@ ARENA STATUS - MOBILE FIX
         border-radius:18px;
     }
 }
+
+
+/*==========================================
+MEMBERSHIP VERIFY
+==========================================*/
+
+.membership-text{
+
+color:#bdbdbd;
+
+margin-bottom:20px;
+
+line-height:1.7;
+
+}
+
+.verify-member-btn{
+
+width:100%;
+
+padding:16px;
+
+border:none;
+
+border-radius:14px;
+
+background:#00E676;
+
+color:#000;
+
+font-size:16px;
+
+font-weight:700;
+
+cursor:pointer;
+
+transition:.3s;
+
+margin-top:8px;
+
+}
+
+.verify-member-btn:hover{
+
+transform:translateY(-3px);
+
+box-shadow:0 12px 30px rgba(0,230,118,.25);
+
+}
+
+.member-success{
+
+margin-top:25px;
+
+padding:20px;
+
+border-radius:16px;
+
+background:rgba(0,230,118,.10);
+
+border:1px solid rgba(0,230,118,.25);
+
+}
+
+.member-success h4{
+
+margin:0 0 12px;
+
+color:#00E676;
+
+}
+
+.member-success p{
+
+margin:10px 0;
+
+color:#fff;
+
+}
+
+.member-success strong{
+
+color:#00E676;
+
+}

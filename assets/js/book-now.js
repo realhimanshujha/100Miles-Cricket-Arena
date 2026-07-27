@@ -32,6 +32,12 @@ document.getElementById("viewPromos");
 const closePromo =
 document.getElementById("closePromo");
 
+const promoBox = document.getElementById("promoBox");
+
+const equipmentCard = document.getElementById("equipmentCard");
+
+const paymentCard = document.getElementById("paymentCard");
+
 
 const planInputs = document.querySelectorAll('input[name="plan"]');
 
@@ -61,6 +67,20 @@ const promoInput = document.getElementById("promoCode");
 const applyPromo = document.getElementById("applyPromo");
 const promoMessage = document.getElementById("promoMessage");
 const summarySaving = document.getElementById("summarySaving");
+
+const memberID = document.getElementById("memberID");
+const memberPhone = document.getElementById("memberPhone");
+const verifyMembership = document.getElementById("verifyMembership");
+
+const memberResult = document.getElementById("memberResult");
+const memberName = document.getElementById("memberName");
+const memberPlan = document.getElementById("memberPlan");
+const memberOvers = document.getElementById("memberOvers");
+const memberDaily = document.getElementById("memberDaily");
+
+let verifiedMember = null;
+
+verifyMembership.addEventListener("click", verifyMember);
 
 let basePrice = 199;
 let equipmentPrice = 0;
@@ -1257,3 +1277,123 @@ function updatePlayerSelector(){
 }
 
 updatePlayerSelector();
+
+async function verifyMember(){
+
+    const id = memberID.value.trim();
+    const phone = memberPhone.value.trim();
+
+    if(!id || !phone){
+
+        alert("Enter Membership ID and Phone Number");
+
+        return;
+
+    }
+
+    try{
+
+        const response = await fetch(
+
+            `${API_URL}?action=verifyMembership`
+            + `&memberID=${encodeURIComponent(id)}`
+            + `&phone=${encodeURIComponent(phone)}`
+
+        );
+
+        const result = await response.json();
+
+        if(result.success){
+
+            verifiedMember = result.member;
+
+            enableMembershipMode(result.member);
+
+            memberResult.style.display = "block";
+
+            memberName.textContent = result.member.name;
+
+            memberPlan.textContent = result.member.plan;
+
+            memberOvers.textContent =
+                result.member.remainingOvers;
+
+            memberDaily.textContent =
+                result.member.oversPerDay;
+
+            // Auto-fill customer details
+            customerName.value = result.member.name;
+            customerPhone.value = result.member.phone;
+            customerEmail.value = result.member.email || "";
+
+            // Lock the fields
+            customerName.readOnly = true;
+            customerPhone.readOnly = true;
+            customerEmail.readOnly = true;
+
+        }else{
+
+            verifiedMember = null;
+
+            memberResult.style.display = "none";
+
+            alert(result.message);
+
+        }
+
+    }catch(err){
+
+        console.error(err);
+
+        alert("Unable to verify membership.");
+
+    }
+
+}
+
+function enableMembershipMode(member){
+
+    // Hide payment-related sections
+    promoBox.style.display = "none";
+    equipmentCard.style.display = "none";
+    paymentCard.style.display = "none";
+
+    // Disable plan selection
+    planInputs.forEach(radio => radio.disabled = true);
+
+    // Select correct plan automatically
+    let requiredPlan = "";
+
+    switch(member.plan){
+
+        case "Beginner":
+            requiredPlan = "5 Overs";
+            break;
+
+        case "Advanced":
+            requiredPlan = "10 Overs";
+            break;
+
+        case "Professional":
+            requiredPlan = "20 Overs";
+            break;
+
+    }
+
+    planInputs.forEach(radio=>{
+
+        if(radio.dataset.plan===requiredPlan){
+
+            radio.checked=true;
+
+            basePrice=Number(radio.dataset.price);
+
+        }
+
+    });
+
+    updateSummary();
+    updateSlotTiming();
+
+    bookingButton.innerHTML="🏏 Book Using Membership";
+}
