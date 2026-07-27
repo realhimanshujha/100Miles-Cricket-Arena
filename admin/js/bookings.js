@@ -1606,6 +1606,27 @@ document.getElementById("searchMemberBtn").onclick = function(){
 
         currentMember = data.member;
 
+        const overs = document.getElementById("overs");
+
+        switch(data.member.plan){
+
+            case "Beginner":
+                overs.value = "5 Overs";
+                break;
+
+            case "Advanced":
+                overs.value = "10 Overs";
+                break;
+
+            case "Professional":
+                overs.value = "20 Overs";
+                break;
+        }
+
+        updatePrice();
+        generateSlots();
+        loadBookedSlots();
+
         lockOversForMember();
 
         document.getElementById("customerName").value =
