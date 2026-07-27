@@ -224,10 +224,14 @@ async function applyPromoCode() {
 
     try {
 
+        const selectedPlan =
+            document.querySelector('input[name="plan"]:checked').dataset.plan;
+
         const response = await fetch(
-
-            `${API_URL}?action=applyPromocode&code=${encodeURIComponent(code)}&amount=${bookingAmount}`
-
+            `${API_URL}?action=applyPromocode`
+            + `&code=${encodeURIComponent(code)}`
+            + `&amount=${bookingAmount}`
+            + `&plan=${encodeURIComponent(selectedPlan)}`
         );
 
         const text = await response.text();

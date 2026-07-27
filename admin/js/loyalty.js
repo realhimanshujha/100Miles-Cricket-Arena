@@ -228,6 +228,9 @@ document.getElementById("newCustomerName").value.trim();
 const phone =
 document.getElementById("newPhone").value.trim();
 
+const email =
+document.getElementById("newEmail").value.trim();
+
 const pattern=/^100M-\d{4}$/;
 
 if(!pattern.test(card)){
@@ -238,7 +241,13 @@ return;
 
 }
 
-fetch(`${API}?action=createCard&cardNo=${encodeURIComponent(card)}&name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}`)
+fetch(
+    `${API}?action=createCard`
+    + `&cardNo=${encodeURIComponent(card)}`
+    + `&name=${encodeURIComponent(name)}`
+    + `&phone=${encodeURIComponent(phone)}`
+    + `&email=${encodeURIComponent(email)}`
+)
 
 .then(res=>res.json())
 
@@ -253,6 +262,7 @@ closeNewCard();
 document.getElementById("newCardNumber").value="";
 document.getElementById("newCustomerName").value="";
 document.getElementById("newPhone").value="";
+document.getElementById("newEmail").value = "";
 
 }else{
 
@@ -435,7 +445,7 @@ table.innerHTML+=`
 
 <td>${item.status}</td>
 
-<td>${item.date}</td>
+<td>${item.created}</td>
 
 </tr>
 

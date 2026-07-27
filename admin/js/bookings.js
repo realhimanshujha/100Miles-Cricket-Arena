@@ -1720,11 +1720,18 @@ function applyPromo(){
     const amount =
         Number(document.getElementById("amount").value);
 
+    const plan =
+        document.getElementById("overs").value;
+
     fetch(
 
         `${API}?action=applyPromocode`
+
         + `&code=${encodeURIComponent(code)}`
+
         + `&amount=${amount}`
+
+        + `&plan=${encodeURIComponent(plan)}`
 
     )
 
