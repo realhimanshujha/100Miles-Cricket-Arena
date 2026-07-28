@@ -859,6 +859,50 @@ async function startPayment(){
 
 }
 
+async function startMembershipEquipmentPayment() {
+
+    try {
+
+        showPaymentLoader();
+
+        const amount = 52;
+
+        const response = await fetch(
+            `${PAYMENT_API}/create-order`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    amount: amount
+                })
+            }
+        );
+
+        const result = await response.json();
+
+        hidePaymentLoader();
+
+        if (!result.success) {
+            throw new Error(result.message);
+        }
+
+        openMembershipRazorpay(result.order);
+
+    } catch (err) {
+
+        hidePaymentLoader();
+
+        showError(
+            "Payment Error",
+            err.message
+        );
+
+    }
+
+}
+
 async function submitMembershipBooking(){
 
     const data = {
