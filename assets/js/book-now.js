@@ -923,7 +923,7 @@ async function submitMembershipBooking(
 
         time: summarySlot.textContent,
 
-        plan: summaryPlan.textContent,
+        plan: summaryPlan.textContent,   // ✅ use this
 
         players: 1,
 
@@ -949,6 +949,8 @@ async function submitMembershipBooking(
         paymentVerified: equipmentCheckbox.checked ? "Yes" : "No",
 
     };
+
+    console.log("Membership Data:", data);
 
     const params = new URLSearchParams({
 
@@ -1606,6 +1608,8 @@ function enableMembershipMode(member){
         }
 
     });
+
+    summaryPlan.textContent = requiredPlan;
 
     updateSummary();
     updateSlotTiming();
