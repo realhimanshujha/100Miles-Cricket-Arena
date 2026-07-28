@@ -1428,55 +1428,94 @@ All Rights Reserved.
 
 function verifyMembership(memberID, phone){
 
-    const sheet = SpreadsheetApp.getActive()
-        .getSheetByName("Membership");
+  const sheet = getSheet("Memberships");
 
-    const data = sheet.getDataRange().getValues();
+  const data = sheet.getDataRange().getValues();
 
-    for(let i=1;i<data.length;i++){
+  for(let i = 1; i < data.length; i++){
 
-        if(
+    if(
+      String(data[i][0]).trim() === String(memberID).trim() &&
+      String(data[i][2]).trim() === String(phone).trim() &&
+      String(data[i][7]).trim() === "Active"
+    ){
 
-            data[i][0] == memberID &&
-            data[i][2] == phone &&
-            data[i][7] == "Active"
+      return{
 
-        ){
+        success:true,
 
-            return{
+        member:{
 
-                success:true,
-
-                member:{
-
-                    memberID:data[i][0],
-
-                    name:data[i][1],
-
-                    plan:data[i][3],
-
-                    oversPerDay:data[i][8],
-
-                    totalOvers:data[i][9],
-
-                    usedOvers:data[i][10],
-
-                    remainingOvers:data[i][11]
-
-                }
-
-            };
+          memberID:data[i][0],
+          name:data[i][1],
+          phone:data[i][2],
+          plan:data[i][3],
+          joinDate:data[i][4],
+          expiryDate:data[i][5],
+          amount:data[i][6],
+          status:data[i][7],
+          oversPerDay:data[i][8],
+          totalOvers:data[i][9],
+          usedOvers:data[i][10],
+          remainingOvers:data[i][11],
+          todayUsedOvers:data[i][12],
+          email:data[i][15]
 
         }
 
+      };
+
     }
 
-    return{
+  }
 
-        success:false,
+  return{
 
-        message:"Invalid Membership ID or Phone Number."
+    success:false,
+    message:"Invalid Membership ID or Phone Number."
+
+  };
+
+}
+
+function updateMembershipUsage(phone, plan, bookingDate){
+
+    const sheet = getSheet("Memberships");
+
+    const rows = sheet.getDataRange().getValues();
+
+    const oversMap = {
+
+        "5 Overs":5,
+        "10 Overs":10,
+        "20 Overs":20
 
     };
+
+    const bookedOvers = oversMap[plan] || 0;
+
+    for(let i=1;i<rows.length;i++){
+
+        if(String(rows[i][2]).trim() !== String(phone).trim()){
+            continue;
+        }
+
+        const usedOvers = Number(rows[i][10]) || 0;
+        const remainingOvers = Number(rows[i][11]) || 0;
+        const todayUsedOvers = Number(rows[i][12]) || 0;
+
+        sheet.getRange(i+1,11).setValue(usedOvers + bookedOvers);
+
+        sheet.getRange(i+1,12).setValue(
+            Math.max(remainingOvers - bookedOvers,0)
+        );
+
+        sheet.getRange(i+1,13).setValue(todayUsedOvers + bookedOvers);
+
+        sheet.getRange(i+1,14).setValue(bookingDate);
+
+        return;
+
+    }
 
 }

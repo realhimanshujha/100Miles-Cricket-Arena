@@ -234,6 +234,12 @@ function timeToMinutes(time) {
 
       ]);
 
+      if(data.bookingType === "Membership"){
+
+          updateMembershipUsage(data.phone, data.plan, data.date);
+
+      }
+
       // ============================
       // Send Booking Confirmation Email
       // ============================
@@ -752,6 +758,19 @@ function timeToMinutes(time) {
       }
 
   }
+      if(data.bookingType === "Membership"){
+
+          updateMembershipUsage(
+
+              data.phone,
+
+              data.plan,
+
+              data.date
+
+          );
+
+      }
 
       return {
 

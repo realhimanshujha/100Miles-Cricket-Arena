@@ -2,6 +2,30 @@ const API_URL = CONFIG.API_URL;
 
 let arenaOpen = true;
 
+const membershipSuccessModal =
+document.getElementById("membershipSuccessModal");
+
+const membershipBookingID =
+document.getElementById("membershipBookingID");
+
+const paymentSummaryTitle =
+document.getElementById("paymentSummaryTitle");
+const membershipMemberName = document.getElementById("successMemberName");
+const membershipPlan = document.getElementById("successPlan");
+const membershipDate = document.getElementById("successDate");
+const membershipTime = document.getElementById("successTime");
+const membershipOvers = document.getElementById("successOvers");
+
+document
+.getElementById("successDoneBtn")
+.onclick = ()=>{
+
+    membershipSuccessModal.style.display="none";
+
+    location.reload();
+
+};
+
 const bookingButton =
 document.querySelector(".booking-btn");
 
@@ -111,6 +135,28 @@ function getConvenienceFee(){
 }
 
 function updateSummary(){
+
+    if (verifiedMember) {
+
+        const equipmentCharge = equipmentCheckbox.checked ? 50 : 0;
+        const convenienceFee = equipmentCheckbox.checked ? 2 : 0;
+        const total = equipmentCharge + convenienceFee;
+
+        summaryPrice.textContent = "₹0";                  // Membership covers booking
+        summaryEquipment.textContent = `₹${equipmentCharge}`;
+        gatewayFee.textContent = `₹${convenienceFee}`;
+        summaryDiscount.textContent = "₹0";
+        summaryTotal.textContent = `₹${total}`;
+
+        buttonAmount.textContent = `₹${total}`;
+
+        bookingButton.textContent =
+            total === 0
+                ? "🏏 Book Using Membership"
+                : `Pay ₹${total} & Book`;
+
+        return;
+    }
 
     const subtotal = basePrice + equipmentPrice - discount;
 
@@ -813,6 +859,100 @@ async function startPayment(){
 
 }
 
+async function submitMembershipBooking(){
+
+    const data = {
+
+        bookingType: "Membership",
+
+        name: customerName.value.trim(),
+
+        phone: customerPhone.value.trim(),
+
+        email: customerEmail.value.trim(),
+
+        date: bookingDate.value,
+
+        time: summarySlot.textContent,
+
+        plan: summaryPlan.textContent,
+
+        players: 1,
+
+        amount: equipmentCheckbox.checked ? 52 : 0,
+
+        promoCode: "",
+
+        loyaltyPoints: 0,
+
+        paymentMethod: equipmentCheckbox.checked ? "Razorpay" : "Membership",
+
+        paymentStatus: "Paid",
+
+        discount: 0,
+
+        equipment: equipmentCheckbox.checked,
+
+        notes: "Booked using membership"
+
+    };
+
+    const params = new URLSearchParams({
+
+        action: "saveBooking",
+
+        ...data
+
+    });
+
+    try{
+
+        const response = await fetch(
+            `${API_URL}?${params.toString()}`
+        );
+
+        const result = await response.json();
+
+        console.log("Membership Result:", result);
+
+        console.log(result);
+
+        if(result.success){
+
+            membershipBookingID.textContent = result.bookingID;
+            membershipMemberName.textContent = verifiedMember.name;
+            const formattedDate = new Date(bookingDate.value).toLocaleDateString(
+                "en-GB",
+                {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric"
+                }
+            );
+            membershipPlan.textContent = summaryPlan.textContent;
+            membershipDate.textContent = formattedDate;
+            membershipTime.textContent = summarySlot.textContent;
+            membershipOvers.textContent =
+                verifiedMember.remainingOvers - verifiedMember.oversPerDay;
+
+            membershipSuccessModal.style.display = "flex";
+
+        }else{
+
+            alert(result.message);
+
+        }
+
+    }catch(err){
+
+        console.error(err);
+
+        alert(err);
+
+    }
+
+}
+
 function openRazorpay(order){
 
     const options={
@@ -1028,15 +1168,29 @@ async function submitBooking(
 
 }
 
-bookingButton.addEventListener("click",()=>{
+bookingButton.addEventListener("click", () => {
 
-    if(!validateBooking()){
-
+    if (!validateBooking()) {
         return;
-
     }
 
-    startPayment();
+    if (verifiedMember) {
+
+        if (equipmentCheckbox.checked) {
+
+            startMembershipEquipmentPayment();
+
+        } else {
+
+            submitMembershipBooking();
+
+        }
+
+    } else {
+
+        startPayment();
+
+    }
 
 });
 
@@ -1353,10 +1507,12 @@ async function verifyMember(){
 
 function enableMembershipMode(member){
 
+    paymentSummaryTitle.textContent = "Membership Summary";
+
     // Hide payment-related sections
     promoBox.style.display = "none";
-    equipmentCard.style.display = "none";
-    paymentCard.style.display = "none";
+    equipmentCard.style.display = "block";
+    paymentCard.style.display = "block";
 
     // Disable plan selection
     planInputs.forEach(radio => radio.disabled = true);
@@ -1394,6 +1550,10 @@ function enableMembershipMode(member){
 
     updateSummary();
     updateSlotTiming();
+
+    summaryPrice.textContent = "₹0";
+    summaryTotal.textContent = "₹0";
+    buttonAmount.textContent = "₹0";
 
     bookingButton.innerHTML="🏏 Book Using Membership";
 }

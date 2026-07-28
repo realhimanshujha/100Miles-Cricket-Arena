@@ -519,7 +519,7 @@
 
                             <i class="fa-solid fa-wallet"></i>
 
-                            <span>Payment Summary</span>
+                            <span id="paymentSummaryTitle">Payment Summary</span>
 
                         </div>
 
@@ -1036,6 +1036,63 @@ PAYMENT SUCCESS
 
             Done
 
+        </button>
+
+    </div>
+
+</div>
+
+<!-- Membership Success Modal -->
+<div id="membershipSuccessModal" class="membership-success-modal">
+
+    <div class="membership-success-card">
+
+        <div class="success-icon">🏏</div>
+
+        <div class="booking-badge">
+            ✓ MEMBERSHIP SESSION CONFIRMED
+        </div>
+
+        <h2>Booking Confirmed</h2>
+
+        <p>Your membership session has been booked successfully.</p>
+
+        <div class="success-details">
+
+            <div>
+                <span>Booking ID</span>
+                <strong id="membershipBookingID">--</strong>
+            </div>
+
+            <div>
+                <span>Member</span>
+                <strong id="successMemberName">--</strong>
+            </div>
+
+            <div>
+                <span>Plan</span>
+                <strong id="successPlan">--</strong>
+            </div>
+
+            <div>
+                <span>Date</span>
+                <strong id="successDate">--</strong>
+            </div>
+
+            <div>
+                <span>Time</span>
+                <strong id="successTime">--</strong>
+            </div>
+
+            <div>
+                <span>Remaining Overs</span>
+                <strong id="successOvers">--</strong>
+            </div>
+
+        </div>
+
+        <button id="successDoneBtn" class="success-btn">
+            Done
         </button>
 
     </div>
