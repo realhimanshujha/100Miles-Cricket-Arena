@@ -888,7 +888,7 @@ async function startMembershipEquipmentPayment() {
             throw new Error(result.message);
         }
 
-        openMembershipRazorpay(result.order);
+        openRazorpay(result.order, true);
 
     } catch (err) {
 
@@ -903,7 +903,11 @@ async function startMembershipEquipmentPayment() {
 
 }
 
-async function submitMembershipBooking(){
+async function submitMembershipBooking(
+    paymentId = "",
+    orderId = "",
+    signature = ""
+){
 
     const data = {
 
@@ -937,7 +941,12 @@ async function submitMembershipBooking(){
 
         equipment: equipmentCheckbox.checked,
 
-        notes: "Booked using membership"
+        notes: "Booked using membership",
+
+        razorpayOrderId: orderId,
+        razorpayPaymentId: paymentId,
+        razorpaySignature: signature,
+        paymentVerified: equipmentCheckbox.checked ? "Yes" : "No",
 
     };
 
@@ -997,7 +1006,7 @@ async function submitMembershipBooking(){
 
 }
 
-function openRazorpay(order){
+function openRazorpay(order, membership = false){
 
     const options={
 
@@ -1043,17 +1052,23 @@ function openRazorpay(order){
 
         handler:function(response){
 
-            console.log(response);
+            if(membership){
 
-            submitBooking(
+                submitMembershipBooking(
+                    response.razorpay_payment_id,
+                    response.razorpay_order_id,
+                    response.razorpay_signature
+                );
 
-                response.razorpay_payment_id,
+            }else{
 
-                response.razorpay_order_id,
+                submitBooking(
+                    response.razorpay_payment_id,
+                    response.razorpay_order_id,
+                    response.razorpay_signature
+                );
 
-                response.razorpay_signature
-
-            );
+            }
 
         }
 
