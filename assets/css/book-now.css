@@ -1,21 +1,33 @@
+:root{
+    --primary:#FF6B00;
+    --primary-dark:#E65100;
+    --primary-light:#FF8A26;
+
+    --primary-bg:rgba(255,107,0,.12);
+    --primary-border:rgba(255,107,0,.35);
+
+    --text:#ffffff;
+    --card:#111111;
+}
+
 /*==========================================
 BOOKING HERO
 ==========================================*/
 
 .booking-hero{
+    position:relative;
+    min-height:75vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 
-position:relative;
+    background-image:
+        linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
+        url("../images/hero.png");
 
-min-height:75vh;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-background:url("../images/booking-bg.jpg") center/cover no-repeat;
-
+    background-position:center top;
+    background-repeat:no-repeat;
+    background-size:cover;
 }
 
 .booking-overlay{
@@ -42,6 +54,10 @@ text-align:center;
 
 }
 
+.booking-content span{
+    color: white;
+}
+
 .booking-content h1{
 
 font-size:72px;
@@ -53,9 +69,10 @@ margin:20px 0;
 }
 
 .booking-content h1 span{
-
-color:#00E676;
-
+    color:#FF6B00;
+    text-shadow:
+        0 0 10px rgba(255,107,0,.8),
+        0 0 25px rgba(255,107,0,.5);
 }
 
 .booking-content p{
@@ -86,11 +103,16 @@ flex-wrap:wrap;
 
 @media(max-width:768px){
 
-.booking-hero{
+    .booking-hero{
 
-min-height:65vh;
+        background-size:contain;
 
-}
+        background-position:center top;
+
+        background-repeat:no-repeat;
+
+        min-height:100vh;
+    }
 
 .booking-content h1{
 
@@ -168,7 +190,7 @@ position:relative;
 
 transform:translateY(-10px);
 
-border-color:#00E676;
+border-color:#FF6B00;
 
 }
 
@@ -186,7 +208,7 @@ height:40px;
 
 border-radius:50%;
 
-background:#00E676;
+background:#FF6B00;
 
 color:#000;
 
@@ -203,8 +225,8 @@ font-weight:700;
 .step i{
 
 font-size:42px;
-
-color:#00E676;
+    color:#FF6B00;
+    text-shadow:0 0 18px rgba(255,107,0,.5);
 
 margin-bottom:20px;
 
@@ -282,6 +304,13 @@ BOOKING FORM
 
     border:1px solid rgba(255,255,255,.08);
 
+    transition:.35s;
+
+}
+
+.booking-card:hover{
+    border-color:#FF6B00;
+    box-shadow:0 15px 40px rgba(255,107,0,.18);
 }
 
 .booking-card h3{
@@ -335,11 +364,10 @@ BOOKING FORM
 }
 
 .plan-option input:checked + span{
-
-    border-color:#00E676;
-
-    background:rgba(0,230,118,.12);
-
+    border:2px solid #FF6B00;
+    background:linear-gradient(135deg,#2B1205,#4A1D08);
+    box-shadow:0 0 30px rgba(255,107,0,.35);
+    transform:translateY(-4px);
 }
 
 .booking-card input,
@@ -367,6 +395,15 @@ BOOKING FORM
 
     resize:none;
 
+}
+
+.booking-card input,
+.booking-card textarea,
+.booking-card select{
+    width:100%;
+    max-width:100%;
+    box-sizing:border-box;
+    display:block;
 }
 
 .booking-summary{
@@ -415,7 +452,7 @@ BOOKING FORM
 
 .summary-row strong{
 
-    color:#00E676;
+    color:#FF6B00;
 
 }
 
@@ -456,6 +493,58 @@ grid-template-columns:1fr;
 padding:90px 20px;
 
 }
+
+}
+
+@media (max-width:768px){
+
+    .booking-card{
+        padding:24px 18px;
+        overflow:hidden;
+    }
+
+    #membershipCard input{
+        width:100%;
+        margin-bottom:16px;
+    }
+
+    .verify-member-btn{
+        width:100%;
+    }
+
+}
+
+.payment-info-card,
+.booking-policy-card,
+.trust-card{
+    max-width:1400px;
+    margin:35px auto;
+}
+
+@media (max-width:768px){
+
+    .payment-info-card,
+    .booking-policy-card,
+    .trust-card{
+        margin:25px 18px;
+        width:auto;
+    }
+
+}
+
+@media (max-width:768px){
+
+    .booking-section{
+        padding:80px 16px;
+    }
+
+    .trust-grid{
+        gap:18px;
+    }
+
+    .trust-box{
+        padding:28px 20px;
+    }
 
 }
 
@@ -509,7 +598,7 @@ PROMO CODE
 
 .promo-input input:focus{
 
-    border-color:#00E676;
+    border-color:#FF6B00;
 
 }
 
@@ -521,7 +610,7 @@ PROMO CODE
 
     border-radius:12px;
 
-    background:#00E676;
+    background:#FF6B00;
 
     color:#000;
 
@@ -582,8 +671,8 @@ TOTAL
 }
 
 .summary-total strong{
-
-    color:#00E676;
+    color:#FFA726;
+    text-shadow:0 0 18px rgba(255,107,0,.45);
 
     font-size:34px;
 
@@ -631,9 +720,9 @@ BOOKING CARD HEADER
 
 .equipment-badge{
 
-    background:rgba(0,230,118,.12);
+    background:rgba(255,107,0,.12);
 
-    color:#00E676;
+    color:#FF6B00;
 
     padding:8px 16px;
 
@@ -675,7 +764,7 @@ EQUIPMENT CARD
 
 .equipment-card:hover{
 
-    border-color:#00E676;
+    border-color:#FF6B00;
 
     transform:translateY(-4px);
 
@@ -729,9 +818,9 @@ EQUIPMENT CARD
 
 .equipment-card input:checked ~ .equipment-left .equipment-check{
 
-    background:#00E676;
+    background:#FF6B00;
 
-    border-color:#00E676;
+    border-color:#FF6B00;
 
 }
 
@@ -769,7 +858,7 @@ EQUIPMENT CARD
 
     display:block;
 
-    color:#00E676;
+    color:#FF6B00;
 
     font-size:32px;
 
@@ -784,18 +873,15 @@ EQUIPMENT CARD
 }
 
 .equipment-card input:checked ~ .equipment-right span{
-
-    color:#00ff84;
-
+    color:#FF6B00;
+    text-shadow:0 0 15px rgba(255,107,0,.45);
 }
 
 .equipment-card:has(input:checked){
 
-    border-color:#00E676;
-
-    background:rgba(0,230,118,.08);
-
-    box-shadow:0 15px 35px rgba(0,230,118,.15);
+    border-color:#FF6B00;
+    background:linear-gradient(135deg,#2B1205,#1A1A1A);
+    box-shadow:0 0 35px rgba(255,107,0,.4);
 
 }
 
@@ -885,9 +971,9 @@ padding-left:66px;
 
     border-radius:12px;
 
-    background:rgba(0,230,118,.12);
+    background:rgba(255,107,0,.12);
 
-    color:#00E676;
+    color:#FF6B00;
 
     text-align:center;
 
@@ -945,23 +1031,21 @@ PAYMENT
 
 .payment-card div:hover{
 
-    border-color:#00E676;
+    border-color:#FF6B00;
 
 }
 
 .payment-card input:checked + div{
-
-    border-color:#00E676;
-
-    background:rgba(0,230,118,.10);
-
+    border-color:#FF6B00;
+    background:rgba(255,107,0,.12);
+    box-shadow:0 0 25px rgba(255,107,0,.25);
 }
 
 .payment-card i{
 
     font-size:34px;
 
-    color:#00E676;
+    color:#FF6B00;
 
     margin-bottom:15px;
 
@@ -1027,7 +1111,7 @@ BOOKING POLICY
 
 .policy-item:hover{
 
-    border-color:#00E676;
+    border-color:#FF6B00;
 
     transform:translateY(-5px);
 
@@ -1041,7 +1125,7 @@ BOOKING POLICY
 
     border-radius:16px;
 
-    background:rgba(0,230,118,.12);
+    background:rgba(255,107,0,.12);
 
     display:flex;
 
@@ -1055,7 +1139,7 @@ BOOKING POLICY
 
 .policy-icon i{
 
-    color:#00E676;
+    color:#FF6B00;
 
     font-size:22px;
 
@@ -1091,7 +1175,7 @@ TRUST
 
 .trust-header span{
 
-    color:#00E676;
+    color:#FF6B00;
 
     letter-spacing:2px;
 
@@ -1141,7 +1225,7 @@ TRUST
 
     transform:translateY(-8px);
 
-    border-color:#00E676;
+    border-color:#FF6B00;
 
 }
 
@@ -1163,9 +1247,9 @@ TRUST
 
     margin-bottom:20px;
 
-    background:rgba(0,230,118,.12);
+    background:rgba(255,107,0,.12);
 
-    color:#00E676;
+    color:#FF6B00;
 
     font-size:30px;
 
@@ -1211,7 +1295,7 @@ grid-template-columns:1fr;
 
 .summary-row strong.updated{
 
-    color:#00E676;
+    color:#FF6B00;
 
     transform:scale(1.15);
 
@@ -1257,9 +1341,9 @@ TIME SLOTS
 
 .slot-btn:hover{
 
-    border-color:#00E676;
+    border-color:#FF6B00;
 
-    color:#00E676;
+    color:#FF6B00;
 
 }
 
@@ -1267,9 +1351,9 @@ TIME SLOTS
 
     background:#103d22;
 
-    border:1px solid #00E676;
+    border:1px solid #FF6B00;
 
-    color:#00E676;
+    color:#FF6B00;
 
 }
 
@@ -1305,12 +1389,9 @@ AVAILABLE
 
 .slot-btn.available{
 
-    background:#12381f;
-
-    border-color:#00E676;
-
-    color:#00E676;
-
+    background:#241103;
+    color:#FFB74D;
+    border:2px solid #FF6B00;
     cursor:pointer;
 
 }
@@ -1319,7 +1400,7 @@ AVAILABLE
 
     transform:translateY(-3px);
 
-    box-shadow:0 8px 20px rgba(0,230,118,.25);
+    box-shadow:0 8px 20px rgba(255,107,0,.25);
 
 }
 
@@ -1328,13 +1409,10 @@ SELECTED
 ========================= */
 
 .slot-btn.selected{
-
-    background:#00E676;
-
-    color:#000;
-
-    border-color:#00E676;
-
+    background:linear-gradient(135deg,#FF8A00,#FF6B00);
+    color:#fff;
+    border:2px solid #FF6B00;
+    box-shadow:0 0 25px rgba(255,107,0,.5);
 }
 
 /* =========================
@@ -1409,7 +1487,7 @@ TIME PASSED
 
 .upi-section h3{
 
-    color:#00E676;
+    color:#FF6B00;
 
     margin-bottom:12px;
 
@@ -1450,7 +1528,7 @@ TIME PASSED
 
 .upi-id span{
 
-    color:#00E676;
+    color:#FF6B00;
 
     font-weight:600;
 
@@ -1470,7 +1548,7 @@ TIME PASSED
 
     border-radius:10px;
 
-    background:#00E676;
+    background:#FF6B00;
 
     color:#000;
 
@@ -1502,7 +1580,7 @@ width:20px;
 
 height:20px;
 
-accent-color:#00E676;
+accent-color:#FF6B00;
 
 }
 
@@ -1532,7 +1610,7 @@ font-size:14px;
 
 margin-top:10px;
 
-color:#00E676;
+color:#FF6B00;
 
 font-size:36px;
 
@@ -1591,7 +1669,7 @@ PROMO OFFERS
 
 .promo-info i{
 
-    color:#00E676;
+    color:#FF6B00;
 
 }
 
@@ -1599,7 +1677,7 @@ PROMO OFFERS
 
     border:none;
 
-    background:#00E676;
+    background:#FF6B00;
 
     color:#000;
 
@@ -1769,7 +1847,7 @@ opacity:1;
 
 .promo-card h3{
 
-    color:#00E676;
+    color:#FF6B00;
 
     margin-bottom:8px;
 
@@ -1799,7 +1877,7 @@ opacity:1;
 
     border-radius:12px;
 
-    background:#00E676;
+    background:#FF6B00;
 
     color:#000;
 
@@ -1847,7 +1925,7 @@ width:100%;
 
     background:linear-gradient(135deg,#0d1524,#101b31);
 
-    border:1px solid rgba(0,230,118,.15);
+    border:1px solid rgba(255,107,0,.15);
 
     border-radius:22px;
 
@@ -1863,7 +1941,7 @@ width:100%;
 
     border-radius:50%;
 
-    background:rgba(0,230,118,.15);
+    background:rgba(255,107,0,.15);
 
     display:flex;
 
@@ -1879,7 +1957,7 @@ width:100%;
 
     font-size:32px;
 
-    color:#00E676;
+    color:#FF6B00;
 
 }
 
@@ -1929,7 +2007,7 @@ width:100%;
 
 .payment-features i{
 
-    color:#00E676;
+    color:#FF6B00;
 
 }
 
@@ -2028,7 +2106,7 @@ ERROR POPUP
     border:none;
     border-radius:14px;
 
-    background:#00E676;
+    background:#FF6B00;
 
     color:#000;
 
@@ -2107,7 +2185,7 @@ PAYMENT LOADER
 
     border-radius:50%;
 
-    background:rgba(0,230,118,.08);
+    background:rgba(255,107,0,.08);
 
     display:flex;
 
@@ -2127,7 +2205,7 @@ PAYMENT LOADER
 
     border:4px solid rgba(255,255,255,.15);
 
-    border-top:4px solid #00E676;
+    border-top:4px solid #FF6B00;
 
     animation:spin .8s linear infinite;
 
@@ -2221,7 +2299,7 @@ PAYMENT SUCCESS
 
     border-radius:50%;
 
-    background:rgba(0,230,118,.12);
+    background:rgba(255,107,0,.12);
 
     display:flex;
 
@@ -2237,7 +2315,7 @@ PAYMENT SUCCESS
 
     font-size:40px;
 
-    color:#00E676;
+    color:#FF6B00;
 
 }
 
@@ -2305,7 +2383,7 @@ PAYMENT SUCCESS
 
 .paid-status{
 
-    color:#00E676 !important;
+    color:#FF6B00 !important;
 
 }
 
@@ -2319,7 +2397,7 @@ PAYMENT SUCCESS
 
     border-radius:14px;
 
-    background:#00E676;
+    background:#FF6B00;
 
     color:#000;
 
@@ -2349,7 +2427,7 @@ PAYMENT SUCCESS
 
     margin-bottom:18px;
 
-    color:#00E676;
+    color:#FF6B00;
 
     font-size:18px;
 
@@ -2381,7 +2459,7 @@ PAYMENT SUCCESS
 
 .discount-row strong{
 
-    color:#00E676;
+    color:#FF6B00;
 
 }
 
@@ -2423,7 +2501,7 @@ PAYMENT SUCCESS
 
 .payment-total strong{
 
-    color:#00E676;
+    color:#FF6B00;
 
     font-size:34px;
 
@@ -2449,7 +2527,8 @@ PAYMENT SUCCESS
 
     border-radius:18px;
 
-    background:linear-gradient(135deg,#00E676,#00C853);
+    background:linear-gradient(135deg,#FFA726 0%, #FF6B00 45%, #D84315 100%);
+    box-shadow:0 15px 40px rgba(255,107,0,.45);
 
     cursor:pointer;
 
@@ -2459,9 +2538,8 @@ PAYMENT SUCCESS
 
 .booking-btn:hover{
 
-    transform:translateY(-2px);
-
-    box-shadow:0 15px 35px rgba(0,230,118,.30);
+    transform:translateY(-4px) scale(1.02);
+    box-shadow:0 20px 55px rgba(255,107,0,.6);
 
 }
 
@@ -2543,7 +2621,7 @@ PAYMENT SUCCESS
 
 .secure-item i{
 
-    color:#00E676;
+    color:#FF6B00;
 
     font-size:18px;
 
@@ -2741,10 +2819,10 @@ body{
 
     align-items:center;
 
-    border:3px solid rgba(0,230,118,.25);
+    border:3px solid rgba(255,107,0,.25);
 
     box-shadow:
-        0 0 0 8px rgba(0,230,118,.08),
+        0 0 0 8px rgba(255,107,0,.08),
         0 15px 40px rgba(0,0,0,.35);
 
     overflow:hidden;
@@ -2798,7 +2876,7 @@ body{
 
     text-decoration:none;
 
-    background:#00E676;
+    background:#FF6B00;
 
     color:#000;
 
@@ -2850,9 +2928,9 @@ body{
 
     border-radius:50px;
 
-    background:rgba(0,230,118,.12);
+    background:rgba(255,107,0,.12);
 
-    color:#00E676;
+    color:#FF6B00;
 
     font-weight:700;
 
@@ -3024,7 +3102,7 @@ PAGE LOADER
 
     height:100%;
 
-    background:#00E676;
+    background:#FF6B00;
 
     animation:loading 1s infinite linear;
 
@@ -3077,7 +3155,7 @@ transform:scale(1.06);
 }
 
 .availability-loader i{
-    color:#00E676;
+    color:#FF6B00;
     font-size:28px;
 }
 
@@ -3099,7 +3177,7 @@ transform:scale(1.06);
 
 .availability-loader i{
     font-size:28px;
-    color:#00E676;
+    color:#FF6B00;
 }
 
 @media(max-width:768px){
@@ -3172,182 +3250,621 @@ ARENA STATUS - MOBILE FIX
     }
 }
 
+/* ==========================================
+   MEMBERSHIP BOOKING
+========================================== */
 
-/*==========================================
-MEMBERSHIP VERIFY
-==========================================*/
+#membershipCard{
+    background:linear-gradient(145deg,#111,#181818);
+    border:1px solid rgba(255,140,0,.35);
+    border-radius:28px;
+    padding:40px;
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.35),
+        inset 0 1px rgba(255,255,255,.03);
+}
+
+#membershipCard h3{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:28px;
+    color:#fff;
+    margin-bottom:12px;
+}
 
 .membership-text{
+    color:#9ca3af;
+    font-size:16px;
+    line-height:1.8;
+    margin-bottom:28px;
+}
 
-color:#bdbdbd;
+#membershipCard input{
+    width:100%;
+    height:60px;
+    margin-bottom:18px;
+    padding:0 20px;
+    border-radius:16px;
+    border:1px solid rgba(255,255,255,.08);
+    background:#1b1b1b;
+    color:#fff;
+    font-size:16px;
+    transition:.3s;
+}
 
-margin-bottom:20px;
+#membershipCard input::placeholder{
+    color:#777;
+}
 
-line-height:1.7;
-
+#membershipCard input:focus{
+    outline:none;
+    border-color:#ff8c00;
+    box-shadow:0 0 0 4px rgba(255,140,0,.15);
 }
 
 .verify-member-btn{
-
-width:100%;
-
-padding:16px;
-
-border:none;
-
-border-radius:14px;
-
-background:#00E676;
-
-color:#000;
-
-font-size:16px;
-
-font-weight:700;
-
-cursor:pointer;
-
-transition:.3s;
-
-margin-top:8px;
-
+    width:100%;
+    height:58px;
+    border:none;
+    border-radius:16px;
+    cursor:pointer;
+    background:linear-gradient(135deg,#ff8c00,#ff6a00);
+    color:#fff;
+    font-size:17px;
+    font-weight:700;
+    transition:.3s;
 }
 
 .verify-member-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 15px 35px rgba(255,140,0,.35);
+}
 
-transform:translateY(-3px);
+.verify-member-btn:active{
+    transform:scale(.98);
+}
 
-box-shadow:0 12px 30px rgba(0,230,118,.25);
+/* ===============================
+   VERIFIED MEMBER
+================================ */
 
+#memberResult{
+    margin-top:28px;
 }
 
 .member-success{
-
-margin-top:25px;
-
-padding:20px;
-
-border-radius:16px;
-
-background:rgba(0,230,118,.10);
-
-border:1px solid rgba(0,230,118,.25);
-
+    background:linear-gradient(180deg,#131313,#1a1a1a);
+    border:1px solid rgba(0,230,118,.25);
+    border-radius:22px;
+    padding:28px;
+    animation:fadeMember .35s ease;
 }
 
 .member-success h4{
-
-margin:0 0 12px;
-
-color:#00E676;
-
+    margin:0 0 18px;
+    font-size:28px;
+    color:#00E676;
+    font-weight:700;
 }
 
 .member-success p{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:12px 0;
+    padding:14px 0;
+    border-bottom:1px solid rgba(255,255,255,.06);
+    color:#bdbdbd;
+    font-size:16px;
+}
 
-margin:10px 0;
-
-color:#fff;
-
+.member-success p:last-child{
+    border-bottom:none;
 }
 
 .member-success strong{
+    color:#fff;
+    font-size:18px;
+    font-weight:700;
+}
 
-color:#00E676;
+/* ===============================
+   VERIFIED BADGE
+================================ */
+
+.member-success::before{
+    content:"✓ VERIFIED MEMBER";
+    display:inline-block;
+    margin-bottom:18px;
+    padding:8px 14px;
+    border-radius:30px;
+    background:rgba(0,230,118,.15);
+    color:#00E676;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+/* ===============================
+   ANIMATION
+================================ */
+
+@keyframes fadeMember{
+
+    from{
+        opacity:0;
+        transform:translateY(12px);
+    }
+
+    to{
+        opacity:1;
+        transform:none;
+    }
+
 
 }
 
 .membership-success-modal{
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0,0,0,.75);
+    backdrop-filter: blur(8px);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition: .3s;
+    z-index: 99999;
+}
+
+.membership-success-modal.show{
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* ===============================
+   MOBILE
+================================ */
+
+@media(max-width:768px){
+
+    #membershipCard{
+        padding:24px;
+    }
+
+    #membershipCard h3{
+        font-size:22px;
+    }
+
+    .member-success{
+        padding:22px;
+    }
+
+    .member-success p{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:6px;
+    }
+
+}
+
+/* ==========================================
+   MEMBERSHIP SUCCESS MODAL
+========================================== */
+
+.membership-success-modal{
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,.75);
-    display:none;
+    display:flex;
     justify-content:center;
     align-items:center;
-    z-index:9999;
-    backdrop-filter:blur(8px);
+
+    background:rgba(0,0,0,.82);
+    backdrop-filter:blur(10px);
+
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+
+    transition:.3s;
+    z-index:999999;
+}
+
+.membership-success-modal.show{
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
 }
 
 .membership-success-card{
-    width:430px;
-    max-width:92%;
-    background:#111;
-    border:1px solid #00E67633;
-    border-radius:22px;
-    padding:35px;
+    width:92%;
+    max-width:520px;
+
+    background:linear-gradient(180deg,#141414,#101010);
+    border:1px solid rgba(255,140,0,.18);
+    box-shadow:0 30px 80px rgba(255,140,0,.12);
+
+    padding:40px;
     text-align:center;
-    animation:pop .35s ease;
+
+    animation:popup .3s ease;
+    box-shadow:0 25px 70px rgba(0,0,0,.45);
 }
 
-@keyframes pop{
-    from{
-        transform:scale(.85);
-        opacity:0;
-    }
-    to{
-        transform:scale(1);
-        opacity:1;
-    }
+/* .success-icon{
+    width:90px;
+    height:90px;
+    margin:0 auto 20px;
+
+    border-radius:50%;
+    background:linear-gradient(135deg,#2b1708,#3b2109);
+    color:#ff9d1f;
+    box-shadow:
+        0 0 0 8px rgba(255,140,0,.08),
+        0 15px 40px rgba(255,140,0,.15);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:42px;
+} */
+
+.success-icon img{
+    width:60px;
+    height:60px;
+    object-fit:contain;
 }
 
-.success-icon{
-    font-size:55px;
-    margin-bottom:15px;
+.booking-badge{
+    display:inline-block;
+
+    margin-bottom:18px;
+    padding:8px 18px;
+
+    border-radius:50px;
+
+    background:rgba(0,230,118,.12);
+    color:#00E676;
+
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:1px;
 }
 
 .membership-success-card h2{
-    color:#00E676;
-    margin-bottom:8px;
+    color:#fff;
+    font-size:34px;
+    margin-bottom:12px;
 }
 
-.membership-success-card p{
-    color: #bdbdbd;
-    font-size: 16px;
-    line-height: 1.6;
-    margin: 12px 0 25px;
+.membership-success-card>p{
+    color:#9ca3af;
+    line-height:1.7;
+    margin-bottom:30px;
 }
 
 .success-details{
-    margin:28px 0;
-    text-align:left;
+    background:#171717;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:18px;
+
+    padding:22px;
+    margin-bottom:30px;
 }
 
 .success-details div{
     display:flex;
     justify-content:space-between;
-    margin:12px 0;
-    padding-bottom:10px;
-    border-bottom:1px solid rgba(255,255,255,.08);
+    align-items:center;
+
+    padding:14px 0;
+    border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.success-details div:last-child{
+    border-bottom:none;
 }
 
 .success-details span{
-    color:#bbb;
+    color:#9ca3af;
 }
 
 .success-details strong{
     color:#fff;
+    font-weight:700;
 }
 
 .success-btn{
     width:100%;
-    padding:15px;
+    height:56px;
+
     border:none;
-    border-radius:14px;
-    background:#00E676;
+    border-radius:16px;
+
+    background:linear-gradient(135deg,#00E676,#00C853);
     color:#000;
+
+    font-size:16px;
     font-weight:700;
+
     cursor:pointer;
+    transition:.25s;
+}
+
+.success-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 30px rgba(0,230,118,.3);
+}
+
+@media(max-width:768px){
+
+    .membership-success-card{
+        padding:28px;
+    }
+
+    .membership-success-card h2{
+        font-size:28px;
+    }
+
+    .success-details div{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:6px;
+    }
+}
+
+/* ==========================================
+   MEMBERSHIP SUCCESS MODAL
+========================================== */
+
+.membership-success-modal{
+    position:fixed;
+    inset:0;
+    z-index:999999;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:20px;
+
+    background:rgba(0,0,0,.82);
+    backdrop-filter:blur(10px);
+
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+
+    transition:.3s;
+}
+
+.membership-success-modal.show{
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+}
+
+.membership-success-card{
+    width:100%;
+    max-width:560px;
+
+    background:#111;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:28px;
+
+    padding:36px;
+
+    text-align:center;
+
+    max-height:90vh;
+    overflow-y:auto;
+
+    animation:popup .3s ease;
+}
+
+/* Hide scrollbar */
+
+.membership-success-card::-webkit-scrollbar{
+    width:0;
+}
+
+.success-icon{
+    width:90px;
+    height:90px;
+
+    margin:0 auto 20px;
+
+    border-radius:50%;
+    background:rgba(0,230,118,.12);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:44px;
 }
 
 .booking-badge{
-    display:inline-block;
-    padding:8px 18px;
-    background:#00E67622;
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:10px 22px;
+
+    margin-bottom:22px;
+
+    border-radius:999px;
+
+    background:rgba(0,230,118,.12);
     color:#00E676;
-    border:1px solid #00E67655;
-    border-radius:50px;
+
     font-size:13px;
     font-weight:700;
-    letter-spacing:.5px;
-    margin-bottom:18px;
+    letter-spacing:1px;
+}
+
+.membership-success-card h2{
+
+    color:#fff;
+    font-size:48px;
+    margin-bottom:14px;
+}
+
+.membership-success-card>p{
+
+    color:#9ca3af;
+    line-height:1.7;
+
+    margin-bottom:28px;
+}
+
+.success-details{
+
+    background:#181818;
+
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:20px;
+
+    padding:18px 26px;
+
+    margin-bottom:28px;
+}
+
+.success-details div{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:18px 0;
+
+    border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.success-details div:last-child{
+    border-bottom:none;
+}
+
+.success-details span{
+
+    color:#9ca3af;
+    font-size:15px;
+}
+
+.success-details strong{
+
+    color:#fff;
+    font-size:17px;
+    font-weight:700;
+}
+
+.success-btn{
+
+    width:100%;
+    height:58px;
+
+    border:none;
+    border-radius:16px;
+
+    background:linear-gradient(135deg,#00E676,#00C853);
+
+    color:#000;
+    font-size:18px;
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    flex-shrink:0;
+}
+
+.success-btn:hover{
+
+    transform:translateY(-2px);
+    box-shadow:0 15px 35px rgba(0,230,118,.30);
+}
+
+/* ============================
+   MOBILE
+============================ */
+
+@media (max-width:768px){
+
+    .membership-success-modal{
+
+        align-items:flex-start;
+        padding:16px;
+    }
+
+    .membership-success-card{
+
+        margin-top:20px;
+
+        max-height:calc(100vh - 40px);
+
+        padding:26px 20px;
+    }
+
+    .success-icon{
+
+        width:72px;
+        height:72px;
+
+        font-size:34px;
+    }
+
+    .booking-badge{
+
+        font-size:11px;
+        padding:8px 14px;
+    }
+
+    .membership-success-card h2{
+
+        font-size:34px;
+    }
+
+    .membership-success-card>p{
+
+        font-size:15px;
+    }
+
+    .success-details{
+
+        padding:10px 16px;
+    }
+
+    .success-details div{
+
+        padding:14px 0;
+    }
+
+    .success-details span{
+
+        font-size:14px;
+    }
+
+    .success-details strong{
+
+        font-size:15px;
+    }
+
+    .success-btn{
+
+        position:sticky;
+        bottom:0;
+
+        margin-top:10px;
+    }
+
 }

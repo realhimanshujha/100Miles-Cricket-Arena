@@ -14,17 +14,36 @@ LOYALTY HERO
 
     align-items:center;
 
-    background:url("../images/loyalty-bg.jpg") center/cover no-repeat;
+    background:url("../images/hero.png") center/cover no-repeat;
 
+}
+
+.loyalty-hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(255,107,0,.15),
+            transparent 45%
+        );
+
+    pointer-events:none;
 }
 
 .loyalty-overlay{
 
     position:absolute;
-
     inset:0;
 
-    background:rgba(0,0,0,.75);
+    background:
+        linear-gradient(
+            rgba(0,0,0,.80),
+            rgba(28,10,0,.55),
+            rgba(0,0,0,.82)
+        );
 
 }
 
@@ -46,6 +65,9 @@ LOYALTY HERO
 
     color:#fff;
 
+    text-shadow:
+        0 5px 20px rgba(0,0,0,.45);
+
     font-size:72px;
 
     margin:25px 0;
@@ -53,14 +75,16 @@ LOYALTY HERO
 }
 
 .loyalty-content h1 span{
+    color:#FF6B00;
 
-    color:#00E676;
-
+    text-shadow:
+        0 0 18px rgba(255,107,0,.55),
+        0 0 35px rgba(255,107,0,.25);
 }
 
 .loyalty-content p{
 
-    color:#d5d5d5;
+    color:#E0E0E0;
 
     font-size:20px;
 
@@ -125,11 +149,15 @@ LOYALTY ELIGIBILITY
 ==========================================*/
 
 .loyalty-eligibility{
-
     padding:90px 20px;
 
-    background:#080808;
-
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(255,107,0,.06),
+            transparent 45%
+        ),
+        #080808;
 }
 
 .eligibility-container{
@@ -152,14 +180,29 @@ LOYALTY ELIGIBILITY
 
     border-radius:30px;
 
-    background:linear-gradient(
-        135deg,
-        #101010,
-        #18261d
-    );
+    background:
+        linear-gradient(
+            135deg,
+            #171717,
+            #0f0f0f
+        );
 
-    border:1px solid rgba(0,230,118,.2);
+    border:1px solid rgba(255,255,255,.06);
 
+    transition:
+        transform .35s,
+        border-color .35s,
+        box-shadow .35s;
+}
+
+.eligibility-card:hover{
+
+    transform:translateY(-8px);
+
+    border-color:#FF6B00;
+
+    box-shadow:
+        0 22px 50px rgba(255,107,0,.22);
 }
 
 .eligibility-icon{
@@ -168,18 +211,36 @@ LOYALTY ELIGIBILITY
 
     height:90px;
 
-    border-radius:50%;
+    border-radius:24px;
 
-    background:#00E676;
+    background:
+        linear-gradient(
+            135deg,
+            #FFA726,
+            #FF6B00,
+            #D84315
+        );
 
     display:flex;
-
     justify-content:center;
-
     align-items:center;
 
     flex-shrink:0;
 
+    box-shadow:
+        0 15px 35px rgba(255,107,0,.35);
+
+    transition:.35s;
+}
+
+.eligibility-card:hover .eligibility-icon{
+
+    transform:
+        scale(1.08)
+        rotate(6deg);
+
+    box-shadow:
+        0 20px 45px rgba(255,107,0,.45);
 }
 
 .eligibility-icon i{
@@ -192,7 +253,10 @@ LOYALTY ELIGIBILITY
 
 .eligibility-tag{
 
-    color:#00E676;
+    color:#FF6B00;
+
+    text-shadow:
+        0 0 10px rgba(255,107,0,.35);
 
     font-size:13px;
 
@@ -222,7 +286,7 @@ LOYALTY ELIGIBILITY
 
 .eligibility-content strong{
 
-    color:#00E676;
+    color:#FF8A00;
 
 }
 
@@ -240,7 +304,11 @@ LOYALTY ELIGIBILITY
 
 .eligibility-list div{
 
-    background:#111;
+    background:rgba(255,255,255,.06);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(10px);
 
     padding:14px 22px;
 
@@ -248,11 +316,22 @@ LOYALTY ELIGIBILITY
 
     color:#fff;
 
+    transition:.35s;
+}
+
+.eligibility-list div:hover{
+
+    transform:translateY(-3px);
+
+    border-color:#FF6B00;
+
+    box-shadow:
+        0 12px 30px rgba(255,107,0,.25);
 }
 
 .eligibility-list i{
 
-    color:#00E676;
+    color:#FF8A00;
 
     margin-right:8px;
 
@@ -290,10 +369,15 @@ EARN POINTS
 
 .earn-points{
 
-padding:120px 20px;
+    padding:120px 20px;
 
-background:#050505;
-
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255,107,0,.05),
+            transparent 50%
+        ),
+        #050505;
 }
 
 .earn-container{
@@ -320,26 +404,42 @@ gap:28px;
 
 position:relative;
 
-background:#111;
+    background:
+        linear-gradient(
+            180deg,
+            #151515,
+            #0d0d0d
+        );
+
+    border:1px solid rgba(255,255,255,.06);
+
+    transition:
+        transform .35s,
+        border-color .35s,
+        box-shadow .35s,
+        background .35s;
 
 border-radius:24px;
 
 padding:45px 30px;
 
 text-align:center;
-
-border:1px solid rgba(255,255,255,.08);
-
-transition:.35s;
-
 }
 
 .earn-card:hover{
+    transform:translateY(-10px);
 
-transform:translateY(-10px);
+    border-color:#FF6B00;
 
-border-color:#00E676;
+    background:
+        linear-gradient(
+            180deg,
+            #1A1208,
+            #111
+        );
 
+    box-shadow:
+        0 20px 45px rgba(255,107,0,.25);
 }
 
 .earn-card h2{
@@ -356,19 +456,26 @@ font-size:42px;
 
 font-weight:800;
 
-color:#00E676;
+    color:#FF8A00;
+
+    text-shadow:
+        0 0 14px rgba(255,107,0,.25);
 
 }
 
 .featured{
 
-border:2px solid #00E676;
+    border:2px solid #FF6B00;
 
-background:linear-gradient(
-180deg,
-rgba(0,230,118,.12),
-#111
-);
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,107,0,.15),
+            #111
+        );
+
+    box-shadow:
+        0 20px 45px rgba(255,107,0,.18);
 
 }
 
@@ -382,9 +489,17 @@ right:18px;
 
 font-size:12px;
 
-background:#00E676;
+    background:
+        linear-gradient(
+            135deg,
+            #FFA726,
+            #FF6B00
+        );
 
-color:#000;
+    color:#fff;
+
+    box-shadow:
+        0 8px 20px rgba(255,107,0,.30);
 
 padding:6px 12px;
 
@@ -428,28 +543,36 @@ min-width:280px;
 
 }
 
-.section-title {
-    text-align: center;
-    color: #fff;
+.section-title{
+    text-align:center;
+    color:#fff;
 }
 
-.section-title span {
-    color: #00E676;
+.section-title span{
+    color:#FF6B00;
+
+    text-shadow:
+        0 0 10px rgba(255,107,0,.35);
 }
 
-.section-title h2 {
-    color: #fff;
-    margin: 10px 0;
+.section-title h2{
+    color:#fff;
+    margin:10px 0;
 }
 
-.section-title h2 span {
-    color: #00E676;
+.section-title h2 span{
+    color:#FF6B00;
+
+    text-shadow:
+        0 0 15px rgba(255,107,0,.45),
+        0 0 30px rgba(255,107,0,.25);
 }
 
-.section-title p {
-    color: rgba(255, 255, 255, 0.85);
-    max-width: 600px;
-    margin: 0 auto;
+.section-title p{
+    color:#BDBDBD;
+    max-width:600px;
+    margin:0 auto;
+    line-height:1.8;
 }
 
 /*==========================================
@@ -457,11 +580,15 @@ REDEEM REWARDS
 ==========================================*/
 
 .redeem-rewards{
-
     padding:80px 20px 40px;
 
-    background:#080808;
-
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255,107,0,.06),
+            transparent 50%
+        ),
+        #080808;
 }
 
 .redeem-container{
@@ -473,24 +600,27 @@ REDEEM REWARDS
 }
 
 .reward-grid{
-
     display:grid;
-
     grid-template-columns:repeat(4,1fr);
-
     gap:28px;
-
     margin-top:70px;
 
+    padding:20px;
+    overflow:visible;
 }
 
 .reward-card{
 
     position:relative;
 
-    background:#111;
+    background:
+        linear-gradient(
+            180deg,
+            #151515,
+            #0d0d0d
+        );
 
-    border:1px solid rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.06);
 
     border-radius:28px;
 
@@ -498,28 +628,43 @@ REDEEM REWARDS
 
     text-align:center;
 
-    transition:.35s;
-
+    transition:
+        transform .35s,
+        border-color .35s,
+        box-shadow .35s,
+        background .35s;
 }
 
 .reward-card:hover{
 
     transform:translateY(-10px);
 
-    border-color:#00E676;
+    border-color:#FF6B00;
 
+    background:
+        linear-gradient(
+            180deg,
+            #1A1208,
+            #111
+        );
+
+    box-shadow:
+        0 20px 45px rgba(255,107,0,.25);
 }
 
 .reward-card.featured{
 
-    border:2px solid #00E676;
+    border:2px solid #FF6B00;
 
-    background:linear-gradient(
-        180deg,
-        rgba(0,230,118,.12),
-        #111
-    );
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,107,0,.15),
+            #111
+        );
 
+    box-shadow:
+        0 20px 45px rgba(255,107,0,.18);
 }
 
 .reward-points{
@@ -530,9 +675,17 @@ REDEEM REWARDS
 
     border-radius:50px;
 
-    background:#00E676;
+    background:
+        linear-gradient(
+            135deg,
+            #FFA726,
+            #FF6B00
+        );
 
-    color:#000;
+    color:#fff;
+
+    box-shadow:
+        0 10px 24px rgba(255,107,0,.30);
 
     font-weight:700;
 
@@ -544,10 +697,23 @@ REDEEM REWARDS
 
     font-size:48px;
 
-    color:#00E676;
+    color:#FF8A00;
+
+    transition:
+        transform .35s,
+        color .35s;
 
     margin-bottom:25px;
 
+}
+
+.reward-card:hover i{
+
+    color:#FFA726;
+
+    transform:
+        scale(1.12)
+        rotate(6deg);
 }
 
 .reward-card h3{
@@ -582,25 +748,30 @@ REDEEM REWARDS
 
     border-radius:14px;
 
-    background:#00E676;
+    background:
+        linear-gradient(
+            135deg,
+            #FF8A00,
+            #FF6B00
+        );
 
-    color:#000;
+    color:#fff;
 
     font-weight:700;
 
     cursor:pointer;
 
-    transition:.3s;
-
+    transition:.35s;
 }
 
 .reward-card button:hover{
 
-    transform:translateY(-2px);
+    transform:translateY(-3px);
 
-    box-shadow:0 10px 25px rgba(0,230,118,.3);
-
+    box-shadow:
+        0 14px 35px rgba(255,107,0,.35);
 }
+
 
 @media(max-width:1100px){
 
@@ -660,55 +831,43 @@ LOYALTY VALIDITY
 
     align-items:center;
 
-    gap:28px;
-
-    padding:35px;
-
-    border-radius:24px;
-
-    background:linear-gradient(
-        135deg,
-        rgba(0,230,118,.15),
-        rgba(0,230,118,.05)
-    );
-
-    border:1px solid rgba(0,230,118,.35);
-
-    box-shadow:0 15px 40px rgba(0,230,118,.12);
-
-}
-
-.loyalty-note{
-
-    max-width:1000px;
-
-    margin:70px auto 0;
-
-    display:flex;
-
-    align-items:center;
-
     gap:30px;
 
     padding:40px;
 
     border-radius:24px;
 
-    background:linear-gradient(
-        135deg,
-        #0f2a1f,
-        #123826
-    );
+    background:
+        linear-gradient(
+            135deg,
+            #241406,
+            #18110b
+        );
 
-    border:1px solid rgba(0,230,118,.35);
+    border:1px solid rgba(255,107,0,.25);
 
-    box-shadow:0 20px 50px rgba(0,230,118,.15);
+    box-shadow:
+        0 20px 55px rgba(255,107,0,.18);
 
+    transition:
+        transform .35s,
+        border-color .35s,
+        box-shadow .35s;
+}
+
+.loyalty-note:hover{
+
+    transform:translateY(-6px);
+
+    border-color:#FF6B00;
+
+    box-shadow:
+        0 24px 60px rgba(255,107,0,.28);
 }
 
 .loyalty-note h3{
 
-    color:#ffffff;
+    color:#fff;
 
     font-size:30px;
 
@@ -720,7 +879,9 @@ LOYALTY VALIDITY
 
 .loyalty-note p{
 
-    color:#e5e7eb;
+    color:#D7D7D7;
+
+    line-height:1.9;
 
     font-size:18px;
 
@@ -732,7 +893,10 @@ LOYALTY VALIDITY
 
 .loyalty-note strong{
 
-    color:#00E676;
+    color:#FF8A00;
+
+    text-shadow:
+        0 0 10px rgba(255,107,0,.25);
 
     font-weight:700;
 
@@ -754,12 +918,32 @@ LOYALTY VALIDITY
 
     border-radius:50%;
 
-    background:#00E676;
+    background:
+        linear-gradient(
+            135deg,
+            #FFA726,
+            #FF6B00,
+            #D84315
+        );
 
-    color:#000;
+    color:#fff;
 
     font-size:30px;
 
+    box-shadow:
+        0 15px 35px rgba(255,107,0,.35);
+
+    transition:.35s;
+}
+
+.loyalty-note:hover i{
+
+    transform:
+        rotate(8deg)
+        scale(1.08);
+
+    box-shadow:
+        0 20px 45px rgba(255,107,0,.45);
 }
 
 @media(max-width:768px){
@@ -796,8 +980,13 @@ LOYALTY PROCESS
 
     padding:120px 20px;
 
-    background:#050505;
-
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255,107,0,.05),
+            transparent 55%
+        ),
+        #050505;
 }
 
 .process-container{
@@ -839,9 +1028,11 @@ LOYALTY PROCESS
     background:linear-gradient(
         90deg,
         transparent,
-        #00E676,
+        #FF6B00,
         transparent
     );
+
+    opacity:.75;
 
 }
 
@@ -849,11 +1040,24 @@ LOYALTY PROCESS
 
     position:relative;
 
-    background:#111;
+    background:
+        linear-gradient(
+            180deg,
+            #151515,
+            #0d0d0d
+        );
 
-    border:1px solid rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.06);
 
     border-radius:24px;
+
+    transition:
+        transform .35s,
+        border-color .35s,
+        box-shadow .35s,
+        background .35s;
+
+    z-index:2;
 
     padding:40px 25px;
 
@@ -869,8 +1073,17 @@ LOYALTY PROCESS
 
     transform:translateY(-10px);
 
-    border-color:#00E676;
+    border-color:#FF6B00;
 
+    background:
+        linear-gradient(
+            180deg,
+            #1A1208,
+            #111
+        );
+
+    box-shadow:
+        0 20px 45px rgba(255,107,0,.25);
 }
 
 .process-number{
@@ -883,9 +1096,14 @@ LOYALTY PROCESS
 
     border-radius:50%;
 
-    background:#00E676;
+    background:
+        linear-gradient(
+            135deg,
+            #FFA726,
+            #FF6B00
+        );
 
-    color:#000;
+    color:#fff;
 
     display:flex;
 
@@ -897,16 +1115,38 @@ LOYALTY PROCESS
 
     margin-bottom:22px;
 
+    box-shadow:
+        0 10px 25px rgba(255,107,0,.35);
 }
 
 .process-card i{
 
     font-size:42px;
 
-    color:#00E676;
+    color:#FF8A00;
 
     margin-bottom:20px;
 
+    transition:
+        transform .35s,
+        color .35s;
+}
+
+.process-card:hover i{
+
+    color:#FFA726;
+
+    transform:
+        scale(1.12)
+        rotate(6deg);
+}
+
+.process-card:hover .process-number{
+
+    box-shadow:
+        0 15px 35px rgba(255,107,0,.45);
+
+    transform:scale(1.08);
 }
 
 .process-card h3{
@@ -980,15 +1220,29 @@ LOYALTY CTA
 ==========================================*/
 
 .loyalty-cta{
-
     position:relative;
-
     padding:160px 20px;
-
-    background:url("../images/loyalty-cta.jpg") center center/cover no-repeat;
-
     overflow:hidden;
 
+    background:url("../images/hero.png") center/cover no-repeat;
+}
+
+.loyalty-cta::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(255,107,0,.15),
+            transparent 45%
+        );
+
+    pointer-events:none;
 }
 
 .loyalty-cta-overlay{
@@ -997,8 +1251,12 @@ LOYALTY CTA
 
     inset:0;
 
-    background:rgba(0,0,0,.78);
-
+    background:
+        linear-gradient(
+            rgba(0,0,0,.82),
+            rgba(30,10,0,.55),
+            rgba(0,0,0,.82)
+        );
 }
 
 .loyalty-cta-content{
@@ -1013,11 +1271,16 @@ LOYALTY CTA
 
     text-align:center;
 
+    color: white;
+
 }
 
 .loyalty-cta h2{
 
     color:#fff;
+
+    text-shadow:
+        0 5px 20px rgba(0,0,0,.45);
 
     font-size:62px;
 
@@ -1029,13 +1292,16 @@ LOYALTY CTA
 
 .loyalty-cta h2 span{
 
-    color:#00E676;
+    color:#FF6B00;
 
+    text-shadow:
+        0 0 18px rgba(255,107,0,.50),
+        0 0 35px rgba(255,107,0,.25);
 }
 
 .loyalty-cta p{
 
-    color:#d5d5d5;
+    color:#E0E0E0;
 
     font-size:19px;
 
@@ -1063,9 +1329,16 @@ LOYALTY CTA
 
 .benefit-item{
 
-    background:rgba(255,255,255,.08);
+    background:rgba(255,255,255,.06);
 
     border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(10px);
+
+    transition:
+        transform .35s,
+        border-color .35s,
+        box-shadow .35s;
 
     border-radius:50px;
 
@@ -1083,10 +1356,32 @@ LOYALTY CTA
 
 }
 
+.benefit-item:hover{
+
+    transform:translateY(-5px);
+
+    border-color:#FF6B00;
+
+    box-shadow:
+        0 15px 35px rgba(255,107,0,.25);
+}
+
 .benefit-item i{
 
-    color:#00E676;
+    color:#FF8A00;
 
+    transition:
+        transform .35s,
+        color .35s;
+}
+
+.benefit-item:hover i{
+
+    color:#FFA726;
+
+    transform:
+        rotate(8deg)
+        scale(1.12);
 }
 
 .loyalty-buttons{
@@ -1171,9 +1466,13 @@ REDEEM BUTTON
 
     border-radius:14px;
 
-    background:#00E676;
+    background:linear-gradient(
+        135deg,
+        #FF8A00,
+        #FF6B00
+    );
 
-    color:#000;
+    color:#fff;
 
     font-size:15px;
 
@@ -1181,22 +1480,33 @@ REDEEM BUTTON
 
     cursor:pointer;
 
-    transition:.3s;
-
+    transition:
+        transform .35s,
+        box-shadow .35s,
+        background .35s;
 }
 
 .reward-redeem-btn:hover{
 
     transform:translateY(-3px);
 
-    box-shadow:0 12px 30px rgba(0,230,118,.35);
+    background:linear-gradient(
+        135deg,
+        #FFA726,
+        #FF7A00
+    );
 
+    box-shadow:
+        0 14px 35px rgba(255,107,0,.35);
 }
 
 .reward-card:hover .reward-redeem-btn{
 
-    background:#00ff84;
-
+    background:linear-gradient(
+        135deg,
+        #FFA726,
+        #FF6B00
+    );
 }
 
 .redeem-modal{
@@ -1235,32 +1545,42 @@ visibility:visible;
 
 .redeem-popup{
 
-width:min(520px,95%);
+    width:min(560px,95%);
 
-background:#111;
+    background:linear-gradient(
+        180deg,
+        #171717,
+        #0e0e0e
+    );
 
-border:1px solid rgba(255,255,255,.08);
+    border:1px solid rgba(255,107,0,.20);
 
-border-radius:24px;
+    border-radius:24px;
 
-overflow:hidden;
+    overflow:hidden;
 
-box-shadow:0 25px 80px rgba(0,0,0,.45);
-
+    box-shadow:
+        0 30px 80px rgba(255,107,0,.18);
 }
 
 .redeem-header{
 
-display:flex;
+    display:flex;
 
-justify-content:space-between;
+    justify-content:space-between;
 
-align-items:flex-start;
+    align-items:flex-start;
 
-padding:28px;
+    padding:28px;
 
-border-bottom:1px solid rgba(255,255,255,.08);
+    border-bottom:1px solid rgba(255,107,0,.15);
 
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,107,0,.08),
+            transparent
+        );
 }
 
 .redeem-header h2{
@@ -1283,60 +1603,80 @@ color:#9ca3af;
 
 .redeem-header button{
 
-width:42px;
+    width:42px;
+    height:42px;
 
-height:42px;
+    border:none;
 
-border:none;
+    border-radius:50%;
 
-border-radius:50%;
+    background:#242424;
 
-background:#1e1e1e;
+    color:#fff;
 
-color:#fff;
+    transition:.35s;
 
-cursor:pointer;
+    cursor:pointer;
+}
 
+.redeem-header button:hover{
+
+    background:#FF6B00;
+
+    transform:rotate(90deg);
 }
 
 .selected-reward{
 
-margin:28px;
+    margin:28px;
 
-padding:22px;
+    padding:22px;
 
-border-radius:18px;
+    border-radius:18px;
 
-background:linear-gradient(135deg,#0b3020,#123b28);
+    background:
+        linear-gradient(
+            135deg,
+            #2A1808,
+            #17110B
+        );
 
-display:flex;
+    border:1px solid rgba(255,107,0,.25);
 
-gap:20px;
+    display:flex;
 
-align-items:center;
+    gap:20px;
 
+    align-items:center;
 }
 
 .reward-icon{
 
-width:65px;
+    width:65px;
+    height:65px;
 
-height:65px;
+    border-radius:18px;
 
-border-radius:18px;
+    background:
+        linear-gradient(
+            135deg,
+            #FFA726,
+            #FF6B00,
+            #D84315
+        );
 
-background:#00E676;
+    display:flex;
 
-display:flex;
+    justify-content:center;
 
-justify-content:center;
+    align-items:center;
 
-align-items:center;
+    color:#fff;
 
-color:#000;
+    font-size:28px;
 
-font-size:28px;
-
+    box-shadow:
+        0 12px 30px rgba(255,107,0,.35);
 }
 
 .selected-reward small{
@@ -1355,10 +1695,9 @@ color:#fff;
 
 .selected-reward span{
 
-color:#00E676;
+    color:#FF8A00;
 
-font-weight:700;
-
+    font-weight:700;
 }
 
 .redeem-form{
@@ -1381,50 +1720,72 @@ font-weight:600;
 
 .redeem-form input{
 
-width:100%;
+    display:block;
 
-padding:16px;
+    width:100%;
 
-background:#181818;
+    box-sizing:border-box;
 
-border:1px solid rgba(255,255,255,.08);
+    margin:0 auto;
 
-border-radius:14px;
+    padding:16px 18px;
 
-color:#fff;
+    background:#1A1A1A;
 
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:14px;
+
+    color:#fff;
+
+    transition:.35s;
+}
+
+.redeem-form input:focus{
+
+    outline:none;
+
+    border-color:#FF6B00;
+
+    box-shadow:0 0 0 4px rgba(255,107,0,.15);
 }
 
 #verifyRedeem{
 
-margin-top:28px;
+    margin-top:28px;
 
-width:100%;
+    width:100%;
 
-padding:16px;
+    padding:16px;
 
-border:none;
+    border:none;
 
-border-radius:14px;
+    border-radius:14px;
 
-background:#00E676;
+    background:
+        linear-gradient(
+            135deg,
+            #FF8A00,
+            #FF6B00
+        );
 
-font-size:16px;
+    color:#fff;
 
-font-weight:700;
+    font-size:16px;
 
-cursor:pointer;
+    font-weight:700;
 
-transition:.3s;
+    cursor:pointer;
 
+    transition:.35s;
 }
 
 #verifyRedeem:hover{
 
-transform:translateY(-2px);
+    transform:translateY(-2px);
 
-box-shadow:0 12px 30px rgba(0,230,118,.35);
-
+    box-shadow:
+        0 14px 35px rgba(255,107,0,.35);
 }
 
 /* ==========================================
@@ -1442,25 +1803,21 @@ CONFIRM SCREEN
 .confirm-box>i{
 
     width:85px;
-
     height:85px;
 
     display:flex;
-
     justify-content:center;
-
     align-items:center;
 
     margin:0 auto 25px;
 
     border-radius:50%;
 
-    background:rgba(0,230,118,.12);
+    background:rgba(255,107,0,.15);
 
-    color:#00E676;
+    color:#FF8A00;
 
     font-size:38px;
-
 }
 
 #confirmName{
@@ -1511,7 +1868,7 @@ CONFIRM SCREEN
 
 .confirm-grid strong{
 
-    color:#00E676;
+    color:#FF8A00;
 
     font-size:28px;
 
@@ -1559,9 +1916,13 @@ CONFIRM SCREEN
 
     border-radius:14px;
 
-    background:#00E676;
+    background:linear-gradient(
+        135deg,
+        #FF8A00,
+        #FF6B00
+    );
 
-    color:#000;
+    color:#fff;
 
     font-size:15px;
 
@@ -1573,8 +1934,8 @@ CONFIRM SCREEN
 
 #confirmRedeem:hover{
 
-    box-shadow:0 10px 25px rgba(0,230,118,.35);
-
+    box-shadow:
+        0 12px 30px rgba(255,107,0,.35);
 }
 
 /* ==========================================
@@ -1605,9 +1966,9 @@ SUCCESS SCREEN
 
     border-radius:50%;
 
-    background:rgba(0,230,118,.12);
+    background:rgba(255,107,0,.15);
 
-    color:#00E676;
+    color:#FF8A00;
 
     font-size:42px;
 
@@ -1644,9 +2005,14 @@ SUCCESS SCREEN
 
     border-radius:20px;
 
-    background:linear-gradient(135deg,#0f3523,#184a31);
+    background:
+        linear-gradient(
+            135deg,
+            #2A1808,
+            #17110B
+        );
 
-    border:1px solid rgba(0,230,118,.25);
+    border:1px solid rgba(255,107,0,.25);
 
     text-align:center;
 
@@ -1660,7 +2026,7 @@ SUCCESS SCREEN
 
     letter-spacing:2px;
 
-    color:#00E676;
+    color:#FF8A00;
 
     word-break:break-word;
 
@@ -1727,9 +2093,14 @@ SUCCESS SCREEN
 
     border-radius:14px;
 
-    background:#00E676;
+    background:
+        linear-gradient(
+            135deg,
+            #FF8A00,
+            #FF6B00
+        );
 
-    color:#000;
+    color:#fff;
 
     font-size:16px;
 
@@ -1767,7 +2138,7 @@ UNUSED COUPON POPUP
 
     font-size:42px;
 
-    color:#00E676;
+    color:#FF8A00;
 
     margin-bottom:18px;
 
@@ -1833,7 +2204,7 @@ UNUSED COUPON POPUP
 
     display:block;
 
-    color:#00E676 !important;
+    color:#FF8A00 !important;
 
     font-size:34px;
 
@@ -1865,7 +2236,7 @@ UNUSED COUPON POPUP
 
     display:block;
 
-    color:#00E676 !important;
+    color:#FF8A00 !important;
 
     font-size:18px;
 
@@ -1885,9 +2256,14 @@ UNUSED COUPON POPUP
 
     border-radius:14px;
 
-    background:#00E676;
+    background:
+        linear-gradient(
+            135deg,
+            #FF8A00,
+            #FF6B00
+        );
 
-    color:#000;
+    color:#fff;
 
     font-size:16px;
 
@@ -2064,9 +2440,14 @@ UNUSED COUPON POPUP
 
     border-radius:14px;
 
-    background:#00E676;
+    background:
+        linear-gradient(
+            135deg,
+            #FF8A00,
+            #FF6B00
+        );
 
-    color:#000;
+    color:#fff;
 
     font-size:16px;
 

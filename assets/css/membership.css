@@ -16,8 +16,26 @@ MEMBERSHIP HERO
 
     overflow:hidden;
 
-    background:url("../images/membership-bg.jpg") center/cover no-repeat;
+    background:url("../images/hero.png") center/cover no-repeat;
 
+}
+
+.membership-hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(255,107,0,.15),
+            transparent 45%
+        );
+
+    pointer-events:none;
 }
 
 .membership-overlay{
@@ -26,8 +44,12 @@ MEMBERSHIP HERO
 
     inset:0;
 
-    background:rgba(0,0,0,.74);
-
+    background:
+        linear-gradient(
+            rgba(0,0,0,.82),
+            rgba(28,10,0,.55),
+            rgba(0,0,0,.82)
+        );
 }
 
 .membership-hero-content{
@@ -42,11 +64,16 @@ MEMBERSHIP HERO
 
     padding:150px 20px;
 
+    color: white;
+
 }
 
 .membership-hero h1{
 
     color:#fff;
+
+    text-shadow:
+        0 5px 20px rgba(0,0,0,.45);
 
     font-size:72px;
 
@@ -58,17 +85,21 @@ MEMBERSHIP HERO
 
 .membership-hero h1 span{
 
-    color:#00E676;
+    color:#FF6B00;
+
+    text-shadow:
+        0 0 18px rgba(255,107,0,.50),
+        0 0 35px rgba(255,107,0,.25);
 
 }
 
 .membership-hero p{
 
-    color:#d5d5d5;
-
-    font-size:20px;
+    color:#E0E0E0;
 
     line-height:1.9;
+
+    font-size:20px;
 
     max-width:700px;
 
@@ -134,7 +165,13 @@ MEMBERSHIP PLANS
 
     padding:120px 20px;
 
-    background:#050505;
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255,107,0,.05),
+            transparent 50%
+        ),
+        #050505;
 
 }
 
@@ -164,26 +201,43 @@ MEMBERSHIP PLANS
 
     position:relative;
 
-    background:#111;
+    background:
+        linear-gradient(
+            180deg,
+            #151515,
+            #0d0d0d
+        );
 
-    border:1px solid rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.06);
 
     border-radius:28px;
 
     padding:40px 35px;
 
-    transition:.35s;
-
     overflow:hidden;
 
+    transition:
+        transform .35s,
+        border-color .35s,
+        box-shadow .35s,
+        background .35s;
 }
 
 .member-card:hover{
 
-    transform:translateY(-12px);
+    transform:translateY(-10px);
 
-    border-color:#00E676;
+    border-color:#FF6B00;
 
+    background:
+        linear-gradient(
+            180deg,
+            #1A1208,
+            #111
+        );
+
+    box-shadow:
+        0 22px 50px rgba(255,107,0,.25);
 }
 
 /* Featured Card */
@@ -192,16 +246,17 @@ MEMBERSHIP PLANS
 
     transform:scale(1.05);
 
-    border:2px solid #00E676;
+    border:2px solid #FF6B00;
 
-    background:linear-gradient(
-        180deg,
-        rgba(0,230,118,.12),
-        #111
-    );
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,107,0,.15),
+            #111
+        );
 
-    box-shadow:0 20px 60px rgba(0,230,118,.20);
-
+    box-shadow:
+        0 22px 55px rgba(255,107,0,.22);
 }
 
 .popular{
@@ -216,9 +271,17 @@ MEMBERSHIP PLANS
 
     text-align:center;
 
-    background:#00E676;
+    background:
+        linear-gradient(
+            135deg,
+            #FFA726,
+            #FF6B00
+        );
 
-    color:#000;
+    color:#fff;
+
+    box-shadow:
+        0 8px 20px rgba(255,107,0,.30);
 
     font-size:12px;
 
@@ -248,7 +311,10 @@ MEMBERSHIP PLANS
 
 .member-price{
 
-    color:#00E676;
+    color:#FF8A00;
+
+    text-shadow:
+        0 0 14px rgba(255,107,0,.25);
 
     font-size:60px;
 
@@ -340,26 +406,30 @@ MEMBERSHIP PLANS
 
     text-decoration:none;
 
-    background:#00E676;
-
-    color:#000;
-
     padding:16px;
 
     border-radius:14px;
 
+    background:
+        linear-gradient(
+            135deg,
+            #FF8A00,
+            #FF6B00
+        );
+
+    color:#fff;
+
     font-weight:700;
 
-    transition:.3s;
-
+    transition:.35s;
 }
 
 .member-btn:hover{
 
     transform:translateY(-3px);
 
-    box-shadow:0 12px 30px rgba(0,230,118,.25);
-
+    box-shadow:
+        0 14px 35px rgba(255,107,0,.35);
 }
 
 /*==========================================
@@ -370,8 +440,13 @@ EQUIPMENT CARD
 
     padding:120px 20px;
 
-    background:#080808;
-
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(255,107,0,.06),
+            transparent 45%
+        ),
+        #080808;
 }
 
 .equipment-container{
@@ -388,16 +463,34 @@ EQUIPMENT CARD
 
     padding:45px;
 
-    background:linear-gradient(
-        135deg,
-        rgba(0,230,118,.10),
-        rgba(255,255,255,.04)
-    );
+    background:
+        linear-gradient(
+            135deg,
+            #241406,
+            #17110B
+        );
 
-    border:1px solid rgba(0,230,118,.25);
+    border:1px solid rgba(255,107,0,.25);
 
     border-radius:28px;
 
+    box-shadow:
+        0 20px 55px rgba(255,107,0,.18);
+
+    transition:
+        transform .35s,
+        border-color .35s,
+        box-shadow .35s;
+}
+
+.equipment-container:hover{
+
+    transform:translateY(-6px);
+
+    border-color:#FF6B00;
+
+    box-shadow:
+        0 24px 60px rgba(255,107,0,.28);
 }
 
 .equipment-icon{
@@ -408,7 +501,13 @@ EQUIPMENT CARD
 
     border-radius:24px;
 
-    background:#00E676;
+    background:
+        linear-gradient(
+            135deg,
+            #FFA726,
+            #FF6B00,
+            #D84315
+        );
 
     display:flex;
 
@@ -418,14 +517,27 @@ EQUIPMENT CARD
 
     flex-shrink:0;
 
+    box-shadow:
+        0 15px 35px rgba(255,107,0,.35);
+
+    transition:.35s;
 }
 
 .equipment-icon i{
 
     font-size:46px;
 
-    color:#000;
+    color:#fff;
+}
 
+.equipment-container:hover .equipment-icon{
+
+    transform:
+        rotate(8deg)
+        scale(1.08);
+
+    box-shadow:
+        0 20px 45px rgba(255,107,0,.45);
 }
 
 .equipment-container h2{
@@ -440,7 +552,10 @@ EQUIPMENT CARD
 
 .equipment-container h3{
 
-    color:#00E676;
+    color:#FF8A00;
+
+    text-shadow:
+        0 0 12px rgba(255,107,0,.30);
 
     font-size:42px;
 
@@ -462,14 +577,13 @@ EQUIPMENT CARD
 
 .equipment-container small{
 
-    color:#ffcc66;
-
     display:block;
+
+    color:#FFA726;
 
     font-size:15px;
 
     line-height:1.7;
-
 }
 
 /*==========================================
@@ -507,6 +621,10 @@ RESPONSIVE
 
         scrollbar-width:none;
 
+        padding:20px;
+
+        scroll-padding:20px;
+
     }
 
     .member-grid::-webkit-scrollbar{
@@ -517,9 +635,28 @@ RESPONSIVE
 
     .member-card{
 
-        min-width:320px;
+        flex:0 0 86%;
 
         scroll-snap-align:center;
+
+        transform:scale(.92);
+
+        opacity:.55;
+
+        transition:
+            transform .35s,
+            opacity .35s,
+            filter .35s;
+
+    }
+
+    .member-card.active{
+
+        transform:scale(1);
+
+        opacity:1;
+
+        filter:none;
 
     }
 
@@ -567,8 +704,13 @@ MEMBERSHIP RULES
 
     padding:120px 20px;
 
-    background:#080808;
-
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255,107,0,.05),
+            transparent 55%
+        ),
+        #080808;
 }
 
 .rules-container{
@@ -593,34 +735,63 @@ MEMBERSHIP RULES
 
 .rule-card{
 
-    background:#111;
+    background:
+        linear-gradient(
+            180deg,
+            #151515,
+            #0d0d0d
+        );
 
-    border:1px solid rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.06);
 
     border-radius:24px;
 
     padding:35px;
 
-    transition:.35s;
-
+    transition:
+        transform .35s,
+        border-color .35s,
+        box-shadow .35s,
+        background .35s;
 }
 
 .rule-card:hover{
 
     transform:translateY(-8px);
 
-    border-color:#00E676;
+    border-color:#FF6B00;
 
+    background:
+        linear-gradient(
+            180deg,
+            #1A1208,
+            #111
+        );
+
+    box-shadow:
+        0 20px 45px rgba(255,107,0,.25);
 }
 
 .rule-card i{
 
-    color:#00E676;
+    color:#FF8A00;
 
     font-size:34px;
 
     margin-bottom:20px;
 
+    transition:
+        transform .35s,
+        color .35s;
+}
+
+.rule-card:hover i{
+
+    color:#FFA726;
+
+    transform:
+        rotate(8deg)
+        scale(1.12);
 }
 
 .rule-card h3{
@@ -631,14 +802,14 @@ MEMBERSHIP RULES
 
     font-size:22px;
 
+    line-height:1.4;
 }
 
 .rule-card p{
 
-    color:#bdbdbd;
+    color:#D0D0D0;
 
     line-height:1.8;
-
 }
 
 @media(max-width:992px){
@@ -663,7 +834,10 @@ padding:90px 20px;
 
 display:flex;
 
-overflow-x:auto;
+    padding: 0 20px 20px;
+    overflow-x: auto;
+    scroll-padding: 20px;
+    box-sizing: border-box;
 
 gap:20px;
 
@@ -680,37 +854,29 @@ display:none;
 }
 
 .rule-card{
+    flex: 0 0 calc(100% - 40px);
+    min-width: 0;
+    scroll-snap-align: center;
+    box-sizing: border-box;
+}
 
-min-width:310px;
+.membership-rules{
+    overflow-x: hidden;
+}
 
-scroll-snap-align:center;
-
+.rules-grid{
+    overflow-y: visible;
 }
 
 }
 
-.section-title {
-    text-align: center;
-    color: #fff;
-}
-
-.section-title span {
-    color: #00E676;
-}
-
-.section-title h2 {
-    color: #fff;
-    margin: 10px 0;
-}
-
-.section-title h2 span {
-    color: #00E676;
-}
-
-.section-title p {
-    color: rgba(255, 255, 255, 0.85);
-    max-width: 600px;
-    margin: 0 auto;
+.membership-plans .section-title > span,
+.membership-rules .section-title > span,
+.membership-faq .section-title > span,
+.membership-plans .section-title h2 span,
+.membership-rules .section-title h2 span,
+.membership-faq .section-title h2 span{
+    color:#FF6B00 !important;
 }
 
 /*==========================================
@@ -735,8 +901,26 @@ MEMBERSHIP CTA
 
     padding:160px 20px;
 
-    background:url("../images/member-cta.jpg") center/cover no-repeat;
+    background:url("../images/hero.png") center/cover no-repeat;
 
+}
+
+.membership-cta::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255,107,0,.18),
+            transparent 60%
+        );
+
+    pointer-events:none;
 }
 
 .membership-cta-overlay{
@@ -745,8 +929,12 @@ MEMBERSHIP CTA
 
     inset:0;
 
-    background:rgba(0,0,0,.75);
-
+    background:
+        linear-gradient(
+            rgba(0,0,0,.84),
+            rgba(35,12,0,.60),
+            rgba(0,0,0,.84)
+        );
 }
 
 .membership-cta-content{
@@ -771,17 +959,23 @@ MEMBERSHIP CTA
 
     margin:25px 0;
 
+    text-shadow:
+        0 5px 18px rgba(0,0,0,.45);
 }
+
 
 .membership-cta h2 span{
 
-    color:#00E676;
+    color:#FF6B00;
 
+    text-shadow:
+        0 0 18px rgba(255,107,0,.45),
+        0 0 35px rgba(255,107,0,.20);
 }
 
 .membership-cta p{
 
-    color:#ddd;
+    color:#E0E0E0;
 
     font-size:19px;
 
@@ -789,6 +983,7 @@ MEMBERSHIP CTA
 
     margin:auto auto 45px;
 
+    line-height:1.8;
 }
 
 .membership-cta-buttons{
@@ -801,6 +996,15 @@ MEMBERSHIP CTA
 
     flex-wrap:wrap;
 
+}
+
+.membership-cta .comparison-tag{
+
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    color:white;
 }
 
 @media(max-width:768px){
@@ -836,5 +1040,58 @@ align-items:center;
 width:min(320px,100%);
 
 }
+
+}
+
+.member-dots{
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-top:24px;
+
+}
+
+.member-dot{
+
+    width:8px;
+
+    height:8px;
+
+    border-radius:999px;
+
+    background:#666;
+
+    transition:.35s;
+
+}
+
+.member-dot.active{
+
+    width:38px;
+
+    background:linear-gradient(
+        90deg,
+        #FFA726,
+        #FF6B00
+    );
+
+    box-shadow:
+        0 0 18px rgba(255,107,0,.35);
+
+}
+
+@media(max-width:768px){
+
+    .member-dots{
+
+        display:flex;
+
+    }
 
 }
