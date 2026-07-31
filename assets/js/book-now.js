@@ -1500,7 +1500,10 @@ async function verifyMember(){
 
     if(!id || !phone){
 
-        alert("Enter Membership ID and Phone Number");
+        showError(
+            "Missing Information",
+            "Please enter your Membership ID and Phone Number."
+        );
 
         return;
 
@@ -1552,7 +1555,10 @@ async function verifyMember(){
 
             memberResult.style.display = "none";
 
-            alert(result.message);
+            showError(
+                "Membership Verification Failed",
+                result.message
+            );
 
         }
 
@@ -1560,7 +1566,10 @@ async function verifyMember(){
 
         console.error(err);
 
-        alert("Unable to verify membership.");
+        showError(
+            "Verification Error",
+            "Unable to verify your membership. Please try again."
+        );
 
     }
 
