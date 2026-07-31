@@ -3335,16 +3335,37 @@ ARENA STATUS - MOBILE FIX
 
 .member-success{
     background:linear-gradient(180deg,#131313,#1a1a1a);
-    border:1px solid rgba(0,230,118,.25);
+    border:1px solid rgba(255,107,0,.25);
     border-radius:22px;
     padding:28px;
     animation:fadeMember .35s ease;
+    box-shadow:0 12px 35px rgba(255,107,0,.12);
+}
+
+.member-success::before{
+    content:"✓ VERIFIED MEMBER";
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    margin-bottom:20px;
+    padding:10px 18px;
+
+    border-radius:50px;
+
+    background:rgba(255,107,0,.12);
+    border:1px solid rgba(255,107,0,.28);
+
+    color:#FFB347;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:1px;
 }
 
 .member-success h4{
     margin:0 0 18px;
     font-size:28px;
-    color:#00E676;
+    color:#FFB347;
     font-weight:700;
 }
 
@@ -3369,22 +3390,6 @@ ARENA STATUS - MOBILE FIX
     font-weight:700;
 }
 
-/* ===============================
-   VERIFIED BADGE
-================================ */
-
-.member-success::before{
-    content:"✓ VERIFIED MEMBER";
-    display:inline-block;
-    margin-bottom:18px;
-    padding:8px 14px;
-    border-radius:30px;
-    background:rgba(0,230,118,.15);
-    color:#00E676;
-    font-size:13px;
-    font-weight:700;
-    letter-spacing:1px;
-}
 
 /* ===============================
    ANIMATION
@@ -3498,6 +3503,57 @@ ARENA STATUS - MOBILE FIX
     box-shadow:0 25px 70px rgba(0,0,0,.45);
 }
 
+/* Cricket Icon */
+.success-icon{
+    width:100px;
+    height:100px;
+    margin:0 auto 28px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:linear-gradient(135deg,#FF9A1F,#FF6B00);
+    color:#fff;
+    font-size:46px;
+
+    box-shadow:
+        0 0 0 10px rgba(255,107,0,.12),
+        0 15px 40px rgba(255,107,0,.35);
+}
+
+/* Confirmation Badge */
+.booking-badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+
+    padding:12px 26px;
+    margin-bottom:42px;
+
+    background:rgba(255,107,0,.12);
+    border:1px solid rgba(255,107,0,.28);
+    border-radius:999px;
+
+    color:#FFB347;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+
+    box-shadow:
+        0 8px 25px rgba(255,107,0,.12),
+        inset 0 1px 0 rgba(255,255,255,.03);
+}
+
+.booking-badge::before{
+    content:"✓";
+    color:#FF8A00;
+    font-size:16px;
+    font-weight:900;
+}
+
 /* .success-icon{
     width:90px;
     height:90px;
@@ -3532,7 +3588,7 @@ ARENA STATUS - MOBILE FIX
     border-radius:50px;
 
     background:rgba(0,230,118,.12);
-    color:#00E676;
+    color:#FFB347;
 
     font-size:13px;
     font-weight:700;
@@ -3558,6 +3614,9 @@ ARENA STATUS - MOBILE FIX
 
     padding:22px;
     margin-bottom:30px;
+
+    color:#fff;
+    text-shadow:0 0 18px rgba(255,107,0,.25);
 }
 
 .success-details div{
@@ -3582,6 +3641,10 @@ ARENA STATUS - MOBILE FIX
     font-weight:700;
 }
 
+.success-details .row{
+    border-bottom:1px solid rgba(255,107,0,.12);
+}
+
 .success-btn{
     width:100%;
     height:56px;
@@ -3589,7 +3652,7 @@ ARENA STATUS - MOBILE FIX
     border:none;
     border-radius:16px;
 
-    background:linear-gradient(135deg,#00E676,#00C853);
+    background:linear-gradient(135deg,#FFB347,#FFB347);
     color:#000;
 
     font-size:16px;
@@ -3656,8 +3719,11 @@ ARENA STATUS - MOBILE FIX
     width:100%;
     max-width:560px;
 
-    background:#111;
-    border:1px solid rgba(255,255,255,.08);
+    background:linear-gradient(180deg,#141414,#0d0d0d);
+    border:1px solid rgba(255,107,0,.22);
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.75),
+        0 0 35px rgba(255,107,0,.12);
     border-radius:28px;
 
     padding:36px;
@@ -3677,39 +3743,20 @@ ARENA STATUS - MOBILE FIX
 }
 
 .success-icon{
-    width:90px;
-    height:90px;
 
     margin:0 auto 20px;
 
+    width:110px;
+    height:110px;
     border-radius:50%;
-    background:rgba(0,230,118,.12);
+    background:linear-gradient(135deg,#FF8A00,#FF6B00);
+    box-shadow:0 0 40px rgba(255,107,0,.35);
 
     display:flex;
     justify-content:center;
     align-items:center;
 
     font-size:44px;
-}
-
-.booking-badge{
-
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-
-    padding:10px 22px;
-
-    margin-bottom:22px;
-
-    border-radius:999px;
-
-    background:rgba(0,230,118,.12);
-    color:#00E676;
-
-    font-size:13px;
-    font-weight:700;
-    letter-spacing:1px;
 }
 
 .membership-success-card h2{
@@ -3762,9 +3809,9 @@ ARENA STATUS - MOBILE FIX
 
 .success-details strong{
 
-    color:#fff;
-    font-size:17px;
+    color:#FFB347;
     font-weight:700;
+    font-size:17px;
 }
 
 .success-btn{
@@ -3775,11 +3822,11 @@ ARENA STATUS - MOBILE FIX
     border:none;
     border-radius:16px;
 
-    background:linear-gradient(135deg,#00E676,#00C853);
-
-    color:#000;
-    font-size:18px;
+    background:linear-gradient(135deg,#FFB000,#FF6B00);
+    color:#111;
     font-weight:700;
+    transition:.3s;
+    font-size:18px;
 
     cursor:pointer;
 
@@ -3789,9 +3836,8 @@ ARENA STATUS - MOBILE FIX
 }
 
 .success-btn:hover{
-
-    transform:translateY(-2px);
-    box-shadow:0 15px 35px rgba(0,230,118,.30);
+    transform:translateY(-3px);
+    box-shadow:0 10px 30px rgba(255,107,0,.4);
 }
 
 /* ============================

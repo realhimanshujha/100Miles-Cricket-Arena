@@ -20,7 +20,7 @@ document
 .getElementById("successDoneBtn")
 .onclick = ()=>{
 
-    membershipSuccessModal.style.display="none";
+    membershipSuccessModal.classList.remove("show");
 
     location.reload();
 
@@ -974,23 +974,28 @@ async function submitMembershipBooking(
 
         if(result.success){
 
-            membershipBookingID.textContent = result.bookingID;
+            console.log("Verified Member:", verifiedMember);
+
+            membershipBookingID.textContent = result.bookingID || "--";
             membershipMemberName.textContent = verifiedMember.name;
-            const formattedDate = new Date(bookingDate.value).toLocaleDateString(
-                "en-GB",
-                {
-                    day: "2-digit",
-                    month: "short",
-                    year: "numeric"
-                }
-            );
+
+            const formattedDate = new Date(bookingDate.value).toLocaleDateString("en-GB", {
+                day: "2-digit",
+                month: "short",
+                year: "numeric"
+            });
+
             membershipPlan.textContent = summaryPlan.textContent;
             membershipDate.textContent = formattedDate;
             membershipTime.textContent = summarySlot.textContent;
-            membershipOvers.textContent =
-                verifiedMember.remainingOvers - verifiedMember.oversPerDay;
 
-            membershipSuccessModal.style.display = "flex";
+            // Update local member data
+            verifiedMember.remainingOvers -= verifiedMember.oversPerDay;
+
+            // Show updated balance
+            membershipOvers.textContent = verifiedMember.remainingOvers;
+
+            membershipSuccessModal.classList.add("show");
 
         }else{
 
