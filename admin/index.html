@@ -3,22 +3,21 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100Miles Cricket Arena | Admin Login</title>
 
-<title>100 Miles Arena | Admin Login</title>
+    <link rel="stylesheet" href="css/admin.css">
 
-<link rel="stylesheet" href="css/admin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 </head>
 
@@ -26,83 +25,184 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <div class="login-bg"></div>
 
-<div class="login-container">
+<div class="login-wrapper">
 
-    <div class="login-card">
+    <!-- ================= HEADER ================= -->
 
-        <div class="logo-box">
+    <header class="login-top">
 
-            <img src="../assets/images/logo.jpeg" alt="100 Miles Arena">
+        <a href="../index.html" class="back-home">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            <span>Back to Website</span>
+
+        </a>
+
+        <div class="admin-title">
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+            <span>Admin Login</span>
 
         </div>
 
-        <span class="admin-tag">
+    </header>
 
-            ADMIN PANEL
+    <!-- ================= LOGIN LAYOUT ================= -->
 
-        </span>
+    <div class="login-layout">
 
-        <h1>
+        <!-- LEFT PANEL -->
 
-            Welcome Back
+        <section class="login-left">
 
-        </h1>
+            <div class="left-overlay"></div>
 
-        <p>
+            <div class="left-content">
 
-            Sign in to manage bookings, customers, loyalty rewards and memberships.
+                <img
+                    src="../assets/images/logo.jpeg"
+                    alt="100Miles Logo"
+                    class="left-logo">
 
-        </p>
+                <span class="left-tag">
+                    PREMIUM INDOOR CRICKET ARENA
+                </span>
 
-        <form id="loginForm">
+                <h1>
 
-            <div class="input-box">
+                    100Miles
 
-                <i class="fa-solid fa-user"></i>
+                    <span>Cricket Arena</span>
 
-                <input
-                type="text"
-                id="username"
-                placeholder="Username"
-                autocomplete="off"
-                required>
+                </h1>
+
+                <p>
+
+                    Train Hard. Play Better.
+
+                    Book nets, manage memberships,
+
+                    loyalty rewards and daily bookings
+
+                    from one professional dashboard.
+
+                </p>
+
+                <div class="feature-list">
+
+                    <div class="feature-item">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                        <span>Booking Management</span>
+
+                    </div>
+
+                    <div class="feature-item">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                        <span>Loyalty Rewards</span>
+
+                    </div>
+
+                    <div class="feature-item">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                        <span>Membership Control</span>
+
+                    </div>
+
+                    <div class="feature-item">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                        <span>Analytics Dashboard</span>
+
+                    </div>
+
+                </div>
 
             </div>
 
-            <div class="input-box">
+        </section>
 
-                <i class="fa-solid fa-lock"></i>
+        <!-- RIGHT PANEL -->
 
-                <input
-                type="password"
-                id="password"
-                placeholder="Password"
-                required>
+        <section class="login-right">
 
-                <i class="fa-solid fa-eye eye-toggle"
-                id="togglePassword"></i>
+            <span class="admin-tag">
 
-            </div>
+                ADMIN PANEL
 
-            <button
-            type="submit"
-            class="login-btn">
+            </span>
 
-                Login
+            <h2>
 
-            </button>
+                Welcome Back 👋
 
-        </form>
-
-        <div class="login-footer">
+            </h2>
 
             <p>
 
-                © 2026 100 Miles Cricket Arena
+                Sign in to manage bookings,
+
+                customers, memberships,
+
+                loyalty rewards and more.
 
             </p>
 
-        </div>
+            <form id="loginForm">
+
+                <div class="input-box">
+
+                    <i class="fa-solid fa-user"></i>
+
+                    <input
+                        type="text"
+                        id="username"
+                        placeholder="Username"
+                        autocomplete="off"
+                        required>
+
+                </div>
+
+                <div class="input-box">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Password"
+                        required>
+
+                    <i class="fa-solid fa-eye eye-toggle"
+                       id="togglePassword"></i>
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="login-btn">
+
+                    Login
+
+                </button>
+
+            </form>
+
+            <div class="login-footer">
+
+                © 2026 100Miles Cricket Arena
+
+            </div>
+
+        </section>
 
     </div>
 
