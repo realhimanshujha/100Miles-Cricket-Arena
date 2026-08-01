@@ -234,3 +234,68 @@ document.querySelectorAll(
     observer.observe(el);
 
 });
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+const sliders=[
+
+".pricing-grid",
+".stats-grid",
+".facility-grid",
+".gallery-track"
+
+];
+
+sliders.forEach(selector=>{
+
+const slider=document.querySelector(selector);
+
+if(!slider) return;
+
+const cards=[...slider.children];
+
+if(cards.length<=1) return;
+
+const dots=document.createElement("div");
+
+dots.className="mobile-slider-dots";
+
+cards.forEach((_,i)=>{
+
+const dot=document.createElement("span");
+
+dot.className="mobile-slider-dot";
+
+if(i===0){
+
+dot.classList.add("active");
+
+}
+
+dots.appendChild(dot);
+
+});
+
+slider.after(dots);
+
+const allDots=dots.querySelectorAll(".mobile-slider-dot");
+
+const gap=parseInt(getComputedStyle(slider).gap)||20;
+
+slider.addEventListener("scroll",()=>{
+
+const cardWidth=cards[0].offsetWidth+gap;
+
+const index=Math.round(slider.scrollLeft/cardWidth);
+
+allDots.forEach((dot,i)=>{
+
+dot.classList.toggle("active",i===index);
+
+});
+
+});
+
+});
+
+});
