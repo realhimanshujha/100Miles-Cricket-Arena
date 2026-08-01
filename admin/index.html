@@ -1,52 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>100 Miles Arena | Admin Login</title>
+
 <link rel="stylesheet" href="css/admin.css">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
+
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
 </head>
+
 <body>
-<div class="bg"></div>
-<div class="orb orb1"></div>
-<div class="orb orb2"></div>
+
+<div class="login-bg"></div>
 
 <div class="login-container">
-<div class="login-card">
-<a href="../index.html" class="back-home-btn"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
 
-<div class="logo-box">
-<img src="../assets/images/logo.jpeg" alt="Logo">
-</div>
+    <div class="login-card">
 
-<span class="admin-tag">ADMIN PANEL</span>
-<h1>Welcome Back</h1>
-<p>Sign in to manage bookings, loyalty rewards and memberships.</p>
+        <div class="logo-box">
 
-<form id="loginForm">
-<div class="input-box">
-<i class="fa-solid fa-user"></i>
-<input id="username" type="text" placeholder="Username" autocomplete="off" required>
-</div>
+            <img src="../assets/images/logo.jpeg" alt="100 Miles Arena">
 
-<div class="input-box">
-<i class="fa-solid fa-lock"></i>
-<input id="password" type="password" placeholder="Password" required>
-<i class="fa-solid fa-eye eye-toggle" id="togglePassword"></i>
-</div>
+        </div>
 
-<button class="login-btn" type="submit">Login</button>
-</form>
+        <span class="admin-tag">
 
-<div class="login-footer">© 2026 100 Miles Cricket Arena</div>
-</div>
+            ADMIN PANEL
+
+        </span>
+
+        <h1>
+
+            Welcome Back
+
+        </h1>
+
+        <p>
+
+            Sign in to manage bookings, customers, loyalty rewards and memberships.
+
+        </p>
+
+        <form id="loginForm">
+
+            <div class="input-box">
+
+                <i class="fa-solid fa-user"></i>
+
+                <input
+                type="text"
+                id="username"
+                placeholder="Username"
+                autocomplete="off"
+                required>
+
+            </div>
+
+            <div class="input-box">
+
+                <i class="fa-solid fa-lock"></i>
+
+                <input
+                type="password"
+                id="password"
+                placeholder="Password"
+                required>
+
+                <i class="fa-solid fa-eye eye-toggle"
+                id="togglePassword"></i>
+
+            </div>
+
+            <button
+            type="submit"
+            class="login-btn">
+
+                Login
+
+            </button>
+
+        </form>
+
+        <div class="login-footer">
+
+            <p>
+
+                © 2026 100 Miles Cricket Arena
+
+            </p>
+
+        </div>
+
+    </div>
+
 </div>
 
 <script src="../assets/js/config.js"></script>
 <script src="js/admin.js"></script>
+
 </body>
+
 </html>

@@ -1,0 +1,469 @@
+:root{
+
+--primary:#FFC107;
+--primary-light:#FFD54F;
+--bg:#0b0b0b;
+--card:#171717;
+--border:rgba(255,255,255,.08);
+--text:#fff;
+--muted:#bdbdbd;
+
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+
+font-family:'Poppins',sans-serif;
+background:var(--bg);
+color:var(--text);
+overflow:hidden;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+position:relative;
+
+}
+
+/* Background */
+
+.login-bg{
+
+position:fixed;
+inset:0;
+
+background:
+radial-gradient(circle at top left,
+rgba(255,193,7,.12),
+transparent 35%),
+
+radial-gradient(circle at bottom right,
+rgba(255,193,7,.08),
+transparent 40%),
+
+#0b0b0b;
+
+z-index:-2;
+
+}
+
+.login-bg::before{
+
+content:"";
+
+position:absolute;
+
+width:550px;
+height:550px;
+
+background:#FFC107;
+
+filter:blur(180px);
+
+opacity:.12;
+
+top:-220px;
+right:-180px;
+
+border-radius:50%;
+
+}
+
+.login-bg::after{
+
+content:"";
+
+position:absolute;
+
+width:500px;
+height:500px;
+
+background:#FFC107;
+
+filter:blur(170px);
+
+opacity:.08;
+
+bottom:-220px;
+left:-180px;
+
+border-radius:50%;
+
+}
+
+/* Container */
+
+.login-container{
+
+width:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:25px;
+
+}
+
+/* Card */
+
+.login-card{
+
+width:100%;
+max-width:470px;
+
+background:rgba(22,22,22,.85);
+
+backdrop-filter:blur(20px);
+
+-webkit-backdrop-filter:blur(20px);
+
+border:1px solid var(--border);
+
+border-radius:30px;
+
+padding:50px 40px;
+
+box-shadow:
+
+0 30px 70px rgba(0,0,0,.45);
+
+animation:fadeUp .8s ease;
+
+}
+
+/* Logo */
+
+.logo-box{
+
+display:flex;
+justify-content:center;
+margin-bottom:25px;
+
+}
+
+.logo-box img{
+
+width:90px;
+height:90px;
+object-fit:contain;
+
+transition:.35s;
+
+}
+
+.logo-box img:hover{
+
+transform:scale(1.08) rotate(-4deg);
+
+}
+
+/* Tag */
+
+.admin-tag{
+
+display:inline-block;
+
+padding:10px 22px;
+
+background:rgba(255,193,7,.12);
+
+border:1px solid rgba(255,193,7,.35);
+
+color:var(--primary);
+
+font-size:12px;
+
+letter-spacing:2px;
+
+border-radius:999px;
+
+margin-bottom:22px;
+
+}
+
+/* Heading */
+
+.login-card h1{
+
+font-size:42px;
+
+font-weight:700;
+
+margin-bottom:10px;
+
+}
+
+.login-card p{
+
+color:var(--muted);
+
+line-height:28px;
+
+margin-bottom:35px;
+
+}
+
+/* Form */
+
+#loginForm{
+
+display:flex;
+flex-direction:column;
+gap:22px;
+
+}
+
+/* Inputs */
+
+.input-box{
+
+position:relative;
+
+}
+
+.input-box input{
+
+width:100%;
+
+padding:18px 55px;
+
+border:none;
+
+outline:none;
+
+border-radius:18px;
+
+background:#222;
+
+color:#fff;
+
+font-size:16px;
+
+transition:.35s;
+
+}
+
+.input-box input:focus{
+
+box-shadow:
+
+0 0 0 4px rgba(255,193,7,.15);
+
+border:1px solid #FFC107;
+
+}
+
+/* Icons */
+
+.input-box i:first-child{
+
+position:absolute;
+
+left:20px;
+
+top:50%;
+
+transform:translateY(-50%);
+
+color:#888;
+
+font-size:18px;
+
+}
+
+.eye-toggle{
+
+position:absolute;
+
+right:20px;
+
+top:50%;
+
+transform:translateY(-50%);
+
+cursor:pointer;
+
+color:#888;
+
+transition:.3s;
+
+}
+
+.eye-toggle:hover{
+
+color:#FFC107;
+
+}
+
+/* Button */
+
+.login-btn{
+
+width:100%;
+
+padding:18px;
+
+border:none;
+
+border-radius:50px;
+
+background:linear-gradient(135deg,#FFC107,#FFD54F);
+
+color:#111;
+
+font-size:18px;
+
+font-weight:700;
+
+cursor:pointer;
+
+transition:.35s;
+
+margin-top:10px;
+
+}
+
+.login-btn:hover{
+
+transform:translateY(-4px);
+
+box-shadow:
+
+0 18px 40px rgba(255,193,7,.28);
+
+}
+
+.login-btn:active{
+
+transform:scale(.98);
+
+}
+
+/* Footer */
+
+.login-footer{
+
+margin-top:35px;
+
+text-align:center;
+
+}
+
+.login-footer p{
+
+font-size:13px;
+
+color:#777;
+
+margin:0;
+
+}
+
+/* Animation */
+
+@keyframes fadeUp{
+
+from{
+
+opacity:0;
+transform:translateY(50px);
+
+}
+
+to{
+
+opacity:1;
+transform:none;
+
+}
+
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+body{
+
+overflow:auto;
+
+}
+
+.login-card{
+
+padding:35px 25px;
+
+border-radius:24px;
+
+}
+
+.logo-box img{
+
+width:75px;
+height:75px;
+
+}
+
+.login-card h1{
+
+font-size:32px;
+
+}
+
+.login-card p{
+
+font-size:15px;
+
+line-height:26px;
+
+}
+
+.input-box input{
+
+padding:16px 50px;
+
+font-size:15px;
+
+}
+
+.login-btn{
+
+padding:16px;
+
+font-size:16px;
+
+}
+
+}
+
+/* Small Phones */
+
+@media(max-width:400px){
+
+.login-card{
+
+padding:28px 20px;
+
+}
+
+.login-card h1{
+
+font-size:28px;
+
+}
+
+.admin-tag{
+
+font-size:11px;
+
+}
+
+}
