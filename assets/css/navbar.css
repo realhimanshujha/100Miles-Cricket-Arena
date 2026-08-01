@@ -91,6 +91,12 @@
     box-shadow:0 0 18px rgba(255,107,0,.45);
 }
 
+html,
+body{
+    overflow-x:hidden;
+    max-width:100%;
+}
+
 .logo-icon img{
 
     width:88%;
@@ -317,7 +323,7 @@
     position:fixed;
 
     top:0;
-    right:-100%;
+    right:0;
 
     width:320px;
 
@@ -329,7 +335,9 @@
 
     z-index:10002;
 
-    transition:.4s ease;
+    transform:translateX(100%);
+
+    transition:transform .4s ease;
 
     display:flex;
 
@@ -339,7 +347,7 @@
 
 .mobile-menu.active{
 
-    right:0;
+    transform:translateX(0);
 
 }
 
